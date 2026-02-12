@@ -209,7 +209,7 @@ END
    # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
    #"ows_onlineresource" "https://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
    # "ows_onlineresource" "https://kart.artsdatabanken.no/WMS/artskart.aspx?"
-   "ows_onlineresource" "https://adb-test-mapserver-as.azurewebsites.net/?map=docker_artskart"
+   "ows_onlineresource" "https://mapserver.test.artsdatabanken.no/?map=docker_artskart"
 
    # sets:
    # /WMT_MS_Capabilities/Service/Fees
