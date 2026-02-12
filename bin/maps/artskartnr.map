@@ -1,0 +1,1352 @@
+#
+# Artsdatabankens WMS mapfil
+#
+
+# the metadata entered here is what drives the OGC interfaces:
+# OGC:WMS
+# OGC:WFS
+# OGC:WCS
+# OGC:WMC
+#
+# Here are example URLs so you can see where the metadata entered
+# below fits in:
+#
+# For OGC:WMS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.1.1&service=WMS&request=GetCapabilities
+#
+# For OGC:WFS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WFS&request=GetCapabilities
+#
+# For OGC:WCS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WCS&request=GetCapabilities
+#
+
+MAP
+
+ #CONFIG "PROJ_LIB" "D:/MapServer/bin/nad/"
+ # all temp files get prefixed with this string
+ NAME Artskart
+ 
+ MAXSIZE 12000
+
+ # background color of image if transparency
+ # is not requested
+ IMAGECOLOR 125 125 125
+
+ # default output image dimensions
+ SIZE 600 400
+
+ # always returns a map
+ STATUS ON
+ 
+ SHAPEPATH "C:/MapServer/bin/kartdata/Artskart"
+
+ # set top level projection
+ PROJECTION
+  "init=epsg:32633"
+ END
+
+ 
+
+ # image format options
+ OUTPUTFORMAT
+  NAME "png"
+  DRIVER AGG/PNG
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "gif"
+  DRIVER GD/GIF
+  MIMETYPE "image/gif"
+  IMAGEMODE PC256
+  EXTENSION "gif"
+END
+OUTPUTFORMAT
+  NAME "png8"
+  DRIVER AGG/PNG8
+  MIMETYPE "image/png; mode=8bit"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "QUANTIZE_FORCE=on"
+  FORMATOPTION "QUANTIZE_COLORS=256"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "jpeg"
+  DRIVER AGG/JPEG
+  MIMETYPE "image/jpeg"
+  IMAGEMODE RGB
+  EXTENSION "jpg"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "svg"
+  DRIVER CAIRO/SVG
+  MIMETYPE "image/svg+xml"
+  IMAGEMODE RGB
+  EXTENSION "svg"
+END
+OUTPUTFORMAT
+  NAME "pdf"
+  DRIVER CAIRO/PDF
+  MIMETYPE "application/x-pdf"
+  IMAGEMODE RGB
+  EXTENSION "pdf"
+END
+OUTPUTFORMAT
+  NAME "GTiff"
+  DRIVER GDAL/GTiff
+  MIMETYPE "image/tiff"
+  IMAGEMODE RGB
+  EXTENSION "tif"
+END
+
+OUTPUTFORMAT
+  NAME "cairopng"
+  DRIVER CAIRO/PNG
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+END
+
+ # minx miny maxx maxy
+ # sets:
+ # /WMT_MS_Capabilities/Capability/Layer/LatLonBoundingBox(@minx @miny @maxx @maxx)
+ EXTENT -300000 5000000 1000000 9000000 # World
+
+ # add def pointers for symbols
+
+ #SYMBOLSET "symbols/symbols.sym"
+ FONTSET   "fonts/fonts.txt"
+
+ #
+ # Start of web interface definition
+ WEB
+
+  # this is the real filepath to the temp dir for intermediate file creation
+  # IMAGEPATH "D:/MapServer/bin/output/"
+
+  # this is the web-accessible path to IMAGEPATH
+  IMAGEPATH "output/"
+  
+  #HEADER "../templates/query_header.html"
+  #FOOTER "../templates/query_footer.html"
+
+  METADATA
+
+   "map" "wms.map"
+   "ows_enable_request" "*"
+   # generic OWS specific info
+   # sets base URL for OGC Schemas so the root element in the
+   # Capabilities document points to the correct schema location
+   # to produce valid XML
+   "ows_schemas_location" "http://schemas.opengeospatial.net"
+
+   # unified OWS tags
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Title
+   # /WMT_MS_Capabilities/Capability/Layer/Title
+   # /WFS_Capabilities/Service/Title
+   "ows_title" "Data fra Artskart"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Abstract
+   # /WFS_Capabilities/Service/Abstract
+   "ows_abstract" "Artsdatabanken publiserer via denne tjenesten data fra tjenesten Artskart"
+   
+   # sets:
+   # /WMT_MS_Capabilities/Service/KeywordList/Keyword[]
+   # /WFS_Capabilities/Service/Keywords   
+   # /WCS_Capabilities/Service/keywords/keyword[]
+   "ows_keywordlist" "Funn av arter, species observations"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/OnlineResource
+   # /WFS_Capabilities/Service/OnlineResource
+   # /WCS_Capabilities/Service/responsibleParty/onlineResource/@xlink:href
+   "ows_service_onlineresource" "https://artskart.artsdatabanken.no"
+   
+   # sets:
+   # /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetFeatureInfo/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetFeatureInfo/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/DescribeLayer/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/DescribeLayer/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetLegendGraphic/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetLegendGraphic/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMS_DescribeLayerResponse/LayerDescription/@wfs is WFS is enabled
+   # /WFS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   #"ows_onlineresource" "https://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
+    "ows_onlineresource" "https://kart.artsdatabanken.no/WMS/artskartnr.aspx?"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Fees
+   # /WFS_Capabilities/Service/Fees
+   # /WCS_Capabilities/Service/fees
+   "ows_fees" "free"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/AccessConstraints
+   # /WFS_Capabilities/Service/AccessConstraints
+   # /WCS_Capabilities/Service/accessConstraints   
+   "ows_accessconstraints" "read online"
+
+   # OGC:WMS specific tags
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactPerson
+   # /WCS_Capabilities/Service/responsibleParty/individualName
+   "ows_contactperson" "Stein Hoem"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization
+   # /WCS_Capabilities/Service/responsibleParty/organisationName   
+   "ows_contactorganization" "Artsdatabanken"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPosition
+   # /WCS_Capabilities/Service/responsibleParty/positionName   
+   "ows_contactposition" "Overingeniør"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/AddressType
+   "ows_addresstype" "post"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/Address
+   # /WCS_Capabilities/Service/contactInfo/address/deliveryPoint 
+   "ows_address"     "Erling Skakkesgt. 47"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/City
+   # /WCS_Capabilities/Service/contactInfo/address/city   
+   "ows_city" "Trondheim"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/StateOrProvince
+   # /WCS_Capabilities/Service/contactInfo/address/administrativeArea   
+   "ows_stateorprovince" "ST"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/PostCode
+   # /WCS_Capabilities/Service/contactInfo/address/postalCode   
+   "ows_postcode" "7491"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/Country
+   # /WCS_Capabilities/Service/contactInfo/address/country   
+   "ows_country" "Norway"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactVoiceTelephone
+   # /WCS_Capabilities/Service/contactInfo/phone/voice
+   "ows_contactvoicetelephone" "+47-73590792"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactFacsimileTelephone
+   # /WCS_Capabilities/Service/contactInfo/phone/facsimile   
+   "ows_contactfacsimiletelephone" "+47-73592240"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactElectronicMailAddress
+   # /WCS_Capabilities/Service/contactInfo/address/eletronicMailAddress
+   "ows_contactelectronicmailaddress" "stein.hoem@artsdatabanken.no"
+
+   # sets:
+   # /WMT_MS_Capabilities/Capability/Layer/SRS
+   # /WMT_MS_Capabilities/Capability/Layer/Layer[*]/SRS
+   # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/SRS
+   # unless differently defined in LAYER object
+   # if you are setting > 1 SRS for WMS, you need to define "wms_srs" and "wfs_srs"
+   # seperately because OGC:WFS only accepts one OUTPUT SRS
+   "wms_srs" "EPSG:4326 EPSG:4258 EPSG:32633 EPSG:32632 EPSG:32631 EPSG:32634 EPSG:32635 EPSG:32636 EPSG:25829 EPSG:25830 EPSG:25831 EPSG:25832 EPSG:25833 EPSG:25834 EPSG:25835 EPSG:25836 EPSG:3857"
+   "wfs_srs" "EPSG:32633 EPSG:4326"
+   
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/OnlineResource/@xlink:href
+   "wms_attribution_onlineresource" "https://artskart.artsdatabanken.no/"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/Title   
+   "wms_attribution_title" "Data fra tjenesten Artskart"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@width
+   "wms_attribution_logourl_width" "655"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@height
+   "wms_attribution_logourl_height" "130"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/Format   
+   "wms_attribution_logourl_format" "image/png"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/OnlineResource/@xlink:href
+   "wms_attribution_logourl_href" "https://artskart.artsdatabanken.no/Logoer/Artdb_logo.gif"
+
+   # we support GetFeatureInfo text/html queries
+   # you NEED query headers, footers, and body templates
+   "wms_feature_info_mime_type"  "text/html"
+   
+   
+   # sets namespace URI when performing a DescribeFeatureType or GetFeature
+   # in the root element of the XML response
+   "wfs_namespace_uri" "http://rs.tdwg.org/dwc/xsd/tdwg_dwc_simple.xsd"
+
+   # sets the XML namespace prefix to be used when defining types for data
+   # in this mapfile
+   "wfs_namespace_prefix" "dwcN"
+
+   # OGC:WCS
+   
+   # sets:
+   # /WCS_Capabilities/Service/label
+   "wcs_label" "Artsdatabankens karttjeneste for Artskart"
+
+   # sets:
+   # /WCS_Capabilities/Service/description
+   "wcs_description" "Funn av arter fra tjenesten Artskart artskart.artsdatabanken.no (minus data på rovvilt fra DN)"
+
+   # sets:
+   # /WCS_Capabilities/Service/metadataLink/@xlink:href
+   "wcs_metadatalink_href" "https://www.artsdatabanken.no"
+   
+   "wms_allow_getmap_without_styles" "true"
+   END
+ END
+
+ # hilite map for GetFeatureInfo "info_format=text/html"
+ # requests
+
+ QUERYMAP
+  STATUS ON
+  SIZE 200 200
+  STYLE HILITE
+  COLOR 255 255 0
+ END
+
+
+ # set defaults for GetLegendGraphic requests 
+ #LEGEND
+ # LABEL
+ #  TYPE BITMAP
+ #  SIZE MEDIUM
+ #  COLOR 120 120 120
+ # END
+ #END
+ 
+LEGEND
+   STATUS ON
+   KEYSIZE 16 10
+   TRANSPARENT ON
+   LABEL
+      TYPE TRUETYPE
+      FONT 'arial'
+      SIZE 8
+      COLOR 1 1 1
+   END
+END
+
+
+ 
+      #Circle symbol
+      SYMBOL
+        NAME "circle"
+        TYPE ellipse
+        FILLED true
+        POINTS
+          1 1
+        END
+      END
+      SYMBOL
+	     NAME "TRIANGLE"
+	     TYPE vector
+	     POINTS
+	       0 4
+	       2 0
+	       4 4
+	       0 4
+	     END
+	     FILLED TRUE
+	   END
+	    SYMBOL
+	        NAME "SQUARE"
+	        TYPE vector
+	        POINTS
+	          0 0
+	          0 1
+	          1 1
+	          1 0
+	          0 0
+	        END
+	     FILLED TRUE
+	   END
+
+#LAYER
+#    NAME "RodlistedeArter"
+#    #MAXSCALE 95000
+#    #MINSCALE 300000
+#    #GROUP "UTM32"
+#    TYPE POINT
+#    DATA artskartred
+#    #MAXFEATURES 50000
+#    STATUS OFF
+#    HEADER "C:\inetpub\Webber\kart.artsdatabanken.no\Mapserver\query\artskart_query_header.html"
+#    FOOTER "C:\inetpub\Webber\kart.artsdatabanken.no\Mapserver\query\artskart_query_footer.html"
+#    TEMPLATE "C:\inetpub\Webber\kart.artsdatabanken.no\Mapserver\query\artskart_query_body.html"
+#    #DUMP true
+#    EXTENT -300000 5000000 1000000 9000000 # World
+#    
+#    CLASSITEM 'Status'
+#        CLASS
+#          NAME 'RE - Regionalt utdødd' 
+#          EXPRESSION 'RE' 
+#          STYLE
+#            SYMBOL "TRIANGLE"
+#            SIZE 6 
+#             OUTLINECOLOR 0 0 0
+#             COLOR 180 22 33
+#           END
+#        END
+#        CLASS
+#          NAME 'CR - Kritisk truet' 
+#          EXPRESSION 'CR' 
+#          STYLE
+#            SYMBOL "circle"
+#            SIZE 6 
+#             OUTLINECOLOR 0 0 0
+#             COLOR 180 22 33
+#           END
+#        END
+#        CLASS
+#          NAME 'EN - Sterkt truet' 
+#          EXPRESSION 'EN' 
+#          STYLE
+#            SYMBOL "circle"
+#            SIZE 6 
+#             OUTLINECOLOR 0 0 0
+#             COLOR 244 158 0
+#           END
+#        END
+#        CLASS
+#          NAME 'VU - Sårbar' 
+#          EXPRESSION 'VU' 
+#          STYLE
+#            SYMBOL "circle"
+#            SIZE 6 
+#             OUTLINECOLOR 0 0 0
+#             COLOR 255 216 0
+#           END
+#        END
+#        CLASS
+#          NAME 'NT - Nær truet' 
+#          EXPRESSION 'NT' 
+#          STYLE
+#            SYMBOL "SQUARE"
+#            SIZE 6 
+#             OUTLINECOLOR 0 0 0
+#             COLOR 244 158 0
+#           END
+#        END
+#
+#        CLASS
+#          NAME 'DD - Datamangel' 
+#          EXPRESSION 'DD' 
+#          STYLE
+#            SYMBOL "circle"
+#            SIZE 5 
+#             OUTLINECOLOR 100 100 100
+#             COLOR 255 244 153
+#           END
+#        END
+#
+# 
+#   PROJECTION
+#       "init=epsg:32633"
+#   END
+#     
+#       METADATA
+#      "DESCRIPTION" "RodlistedeArter"
+#     
+#        "ows_title"    "Funn av rødlistede arter"
+#        "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+#        "ows_keywordlist"    "Species observation, artsobservasjoner"
+#        "wms_opaque"    "0"
+#        "wms_group_title" "Vectors"
+#        "wms_group_abstract" "Vector layers"
+#        "wms_dataurl_href" "https://www.artsdatabanken.no/"
+#        "wms_dataurl_format" "text/html"
+#        "ows_metadataurl_type" "FGDC"
+#        "ows_metadataurl_href" "https://www.artsdatabanken.no"
+#        "ows_metadataurl_format" "text/html"
+#        "wfs_metadataurl_format" "TXT"
+#        # specify which fields to include when returning queries
+#        "gml_include_items" "all"
+#        "wms_include_items" "all"
+#        "gml_VitNavn_alias" "ScientificName"
+#        "gml_NodeDataba_alias" "NodeID"
+#        "gml_Institutio_alias" "InstitutionCode"
+#        "gml_Collection_alias" "CollectionCode"
+#        "gml_CatalogNum_alias" "CatalogNumber"
+#        "gml_BasisOfRec_alias" "BasisOfRecord"
+#        "gml_Identified_alias" "IdentifiedBy"
+#        "gml_YearIdenti_alias" "YearIdentified"
+#        "gml_MonthIdent_alias" "MonthIdentified"
+#        "gml_DayIdentif_alias" "DayIdentified"
+#        "gml_CollectorN_alias" "CollectorNumber"
+#        "gml_DayCollect_alias" "DayCollected"
+#        "gml_YearCollec_alias" "YearCollected"
+#        "gml_MonthColle_alias" "MonthCollected"
+#        "gml_FieldNumbe_alias" "FieldNumber"
+#        "gml_ContinentO_alias" "ContinentOcean"     
+#        "gml_StateProvi_alias" "StateProvinceOrg"
+#        "gml_Municipali_alias" "MunicipalityCode"
+#        "gml_MuniName_alias" "MunicipalityName"
+#        "gml_Coordinate_alias" "CoordinatePrecision"
+#        "gml_BoundingBo_alias" "BoundingBox"
+#        "gml_MinElevati_alias" "MinElevation"
+#        "gml_MaxElevati_alias" "MaxElevation"
+#        "gml_Preparatio_alias" "PreparationType"
+#        "gml_PreviousCa_alias" "PreviousCatalogNumber"
+#        "gml_Relationsh_alias" "RelationshipType"
+#        "gml_RelatedCat_alias" "RelatedCatalogNumber"
+#        "gml_Collecting_alias" "CollectingMethod"
+#        "gml_Identifica_alias" "IdentificationPrecision"
+#        "gml_RelativeAb_alias" "RelativeAbundance"        
+#       END
+#     
+#     
+# END
+LAYER
+      NAME "DD Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "DD"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      #MINSCALE 300000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrDD
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+      FILTER ([CoordinatePrecision]<=1000)
+      SIZEUNITS meters
+        CLASS
+          NAME 'DD Presisjon'
+          STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "DD"
+       
+          "ows_title"    "DD - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "DD - Datamangel"
+          "wms_group_abstract" "DD - Datamangel"
+         END
+       
+       
+  END
+LAYER
+      NAME "NT Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "NT"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrNT
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+	  FILTER ([CoordinatePrecision]<=1000)
+	  SIZEUNITS meters
+        CLASS
+          NAME 'NT Presisjon'
+		  STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "NT"
+       
+          "ows_title"    "NT - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "NT - Nær truet"
+          "wms_group_abstract" "NT - Nær truet"
+         END
+       
+       
+  END
+LAYER
+      NAME "VU Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "VU"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrVU
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+      FILTER ([CoordinatePrecision]<=1000)
+      SIZEUNITS meters
+        CLASS
+          NAME 'VU Presisjon'
+		  STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "VU"
+       
+          "ows_title"    "VU - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "VU - Sårbar"
+          "wms_group_abstract" "VU - Sårbar"
+         END
+       
+       
+  END
+LAYER
+      NAME "EN Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "EN"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrEN
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+      FILTER ([CoordinatePrecision]<=1000)
+      SIZEUNITS meters
+        CLASS
+          NAME 'EN Presisjon'
+		  STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "EN"
+       
+          "ows_title"    "EN - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "EN - Sterkt truet"
+          "wms_group_abstract" "EN - Sterkt truet"
+         END
+       
+       
+  END
+LAYER
+      NAME "CR Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "CR"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrCR
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+      FILTER ([CoordinatePrecision]<=1000)	  
+      SIZEUNITS meters
+        CLASS
+          NAME 'CR Presisjon'
+		  STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "CR"
+       
+          "ows_title"    "CR - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "CR - Kritisk truet"
+          "wms_group_abstract" "CR - Kritisk truet"
+         END
+       
+       
+  END  
+LAYER
+      NAME "RE Presisjon"
+	  #ENCODING "LATIN1"
+      GROUP "RE"
+	  COMPOSITE
+		OPACITY 30
+	  END
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrRE
+      STATUS OFF
+      #DUMP False
+      EXTENT -300000 5000000 1000000 9000000 # World
+      FILTER ([CoordinatePrecision]<=1000)	  
+      SIZEUNITS meters
+        CLASS
+          NAME 'RE Presisjon'
+		  STYLE
+			MAXSIZE 999
+            SYMBOL "SQUARE"
+            SIZE [CoordinatePrecision] 
+             OUTLINECOLOR 0 0 0
+             COLOR 50 50 50
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "RE"
+       
+          "ows_title"    "RE - symbolisering av presisjon"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          #"wms_opaque"    "0"
+          "wms_group_title" "RE - Regionalt utdødd"
+          "wms_group_abstract" "RE - Regionalt utdødd"
+         END
+       
+       
+  END 
+
+LAYER
+      NAME "DD_punkt"
+	  #ENCODING "LATIN1"
+      GROUP "DD"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      #GROUP "UTM32"
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrDD
+      #MAXFEATURES 50000
+      STATUS ON
+      HEADER "query\artskart_query_header.html"
+      FOOTER "query\artskart_query_footer.html"
+      TEMPLATE "query\artskart_query_body.html"
+      #DUMP true
+      TOLERANCE 6
+      EXTENT -300000 5000000 1000000 9000000 # World
+        CLASS
+          NAME 'DD - Datamangel' 
+          STYLE
+            SYMBOL "circle"
+            SIZE 5 
+             OUTLINECOLOR 100 100 100
+             COLOR 255 244 153
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "DD"
+                "gml_featureid" "FID" 
+          "ows_title"    "DD - Datamangel"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          "wms_opaque"    "0"
+          "wms_group_title" "DD - Datamangel"
+          "wms_group_abstract" "DD - Datamangel"
+          "wms_dataurl_href" "https://www.artsdatabanken.no/"
+          "wms_dataurl_format" "text/html"
+          "ows_metadataurl_type" "FGDC"
+          "ows_metadataurl_href" "https://www.artsdatabanken.no"
+          "ows_metadataurl_format" "text/html"
+          "wfs_metadataurl_format" "TXT"
+          # specify which fields to include when returning queries
+          "gml_include_items" "all"
+          "wms_include_items" "all"
+          "gml_VitNavn_alias" "ScientificName"
+          "gml_NodeDataba_alias" "NodeID"
+         "gml_NodeDataba_type" integer
+          "gml_Institutio_alias" "InstitutionCode"
+          "gml_Collection_alias" "CollectionCode"
+          "gml_CatalogNum_alias" "CatalogNumber"
+          "gml_BasisOfRec_alias" "BasisOfRecord"
+          "gml_Identified_alias" "IdentifiedBy"
+          "gml_YearIdenti_alias" "YearIdentified"
+          "gml_MonthIdent_alias" "MonthIdentified"
+          "gml_DayIdentif_alias" "DayIdentified"
+          "gml_CollectorN_alias" "CollectorNumber"
+          "gml_DayCollect_alias" "DayCollected"
+          "gml_YearCollec_alias" "YearCollected"
+          "gml_MonthColle_alias" "MonthCollected"
+          "gml_FieldNumbe_alias" "FieldNumber"
+          "gml_ContinentO_alias" "ContinentOcean"     
+          "gml_StateProvi_alias" "StateProvinceOrg"
+          "gml_Municipali_alias" "MunicipalityCode"
+          "gml_MuniName_alias" "MunicipalityName"
+          "gml_Coordinate_alias" "CoordinatePrecision"
+          "gml_BoundingBo_alias" "BoundingBox"
+          "gml_MinElevati_alias" "MinElevation"
+          "gml_MaxElevati_alias" "MaxElevation"
+          "gml_Preparatio_alias" "PreparationType"
+          "gml_PreviousCa_alias" "PreviousCatalogNumber"
+          "gml_Relationsh_alias" "RelationshipType"
+          "gml_RelatedCat_alias" "RelatedCatalogNumber"
+          "gml_Collecting_alias" "CollectingMethod"
+          "gml_Identifica_alias" "IdentificationPrecision"
+          "gml_RelativeAb_alias" "RelativeAbundance"        
+         END
+       
+       
+  END
+ 
+ LAYER
+      NAME "NT_punkt"
+	  #ENCODING "LATIN1"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+      GROUP "NT"
+      TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA artskartrednrNT
+      #MAXFEATURES 50000
+      STATUS ON
+      HEADER "query\artskart_query_header.html"
+      FOOTER "query\artskart_query_footer.html"
+      TEMPLATE "query\artskart_query_body.html"
+      #DUMP true
+      TOLERANCE 6
+      EXTENT -300000 5000000 1000000 9000000 # World
+        
+       CLASS
+          NAME 'NT - Nær truet' 
+          STYLE
+            SYMBOL "SQUARE"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR 244 158 0
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:32633"
+     END
+       
+         METADATA
+        "DESCRIPTION" "NT"
+                "gml_featureid" "FID" 
+          "ows_title"    "NT - Nær truet"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          "wms_opaque"    "0"
+          "wms_group_title" "Vectors"
+          "wms_group_abstract" "Vector layers"
+          "wms_dataurl_href" "https://www.artsdatabanken.no/"
+          "wms_dataurl_format" "text/html"
+          "ows_metadataurl_type" "FGDC"
+          "ows_metadataurl_href" "https://www.artsdatabanken.no"
+          "ows_metadataurl_format" "text/html"
+          "wfs_metadataurl_format" "TXT"
+          # specify which fields to include when returning queries
+          "gml_include_items" "all"
+          "wms_include_items" "all"
+          "gml_VitNavn_alias" "ScientificName"
+          "gml_NodeDataba_alias" "NodeID"
+         "gml_NodeDataba_type" integer
+          "gml_Institutio_alias" "InstitutionCode"
+          "gml_Collection_alias" "CollectionCode"
+          "gml_CatalogNum_alias" "CatalogNumber"
+          "gml_BasisOfRec_alias" "BasisOfRecord"
+          "gml_Identified_alias" "IdentifiedBy"
+          "gml_YearIdenti_alias" "YearIdentified"
+          "gml_MonthIdent_alias" "MonthIdentified"
+          "gml_DayIdentif_alias" "DayIdentified"
+          "gml_CollectorN_alias" "CollectorNumber"
+          "gml_DayCollect_alias" "DayCollected"
+          "gml_YearCollec_alias" "YearCollected"
+          "gml_MonthColle_alias" "MonthCollected"
+          "gml_FieldNumbe_alias" "FieldNumber"
+          "gml_ContinentO_alias" "ContinentOcean"     
+          "gml_StateProvi_alias" "StateProvinceOrg"
+          "gml_Municipali_alias" "MunicipalityCode"
+          "gml_MuniName_alias" "MunicipalityName"
+          "gml_Coordinate_alias" "CoordinatePrecision"
+          "gml_BoundingBo_alias" "BoundingBox"
+          "gml_MinElevati_alias" "MinElevation"
+          "gml_MaxElevati_alias" "MaxElevation"
+          "gml_Preparatio_alias" "PreparationType"
+          "gml_PreviousCa_alias" "PreviousCatalogNumber"
+          "gml_Relationsh_alias" "RelationshipType"
+          "gml_RelatedCat_alias" "RelatedCatalogNumber"
+          "gml_Collecting_alias" "CollectingMethod"
+          "gml_Identifica_alias" "IdentificationPrecision"
+          "gml_RelativeAb_alias" "RelativeAbundance"        
+         END
+       
+       
+  END
+ 
+
+ LAYER
+     NAME "VU_punkt"
+	  #ENCODING "LATIN1"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+     GROUP "VU"
+     TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA artskartrednrVU
+     #MAXFEATURES 50000
+     STATUS ON
+     HEADER "query\artskart_query_header.html"
+     FOOTER "query\artskart_query_footer.html"
+     TEMPLATE "query\artskart_query_body.html"
+     #DUMP true
+     TOLERANCE 6
+     EXTENT -300000 5000000 1000000 9000000 # World
+       
+        CLASS
+          NAME 'VU - Sårbar' 
+          STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR 255 216 0
+           END
+        END
+      
+    PROJECTION
+        "init=epsg:32633"
+    END
+      
+        METADATA
+       "DESCRIPTION" "VU"
+               "gml_featureid" "FID" 
+         "ows_title"    "VU - Sårbar"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+         "gml_VitNavn_alias" "ScientificName"
+         "gml_NodeDataba_alias" "NodeID"
+         "gml_NodeDataba_type" integer
+         "gml_Institutio_alias" "InstitutionCode"
+         "gml_Collection_alias" "CollectionCode"
+         "gml_CatalogNum_alias" "CatalogNumber"
+         "gml_BasisOfRec_alias" "BasisOfRecord"
+         "gml_Identified_alias" "IdentifiedBy"
+         "gml_YearIdenti_alias" "YearIdentified"
+         "gml_MonthIdent_alias" "MonthIdentified"
+         "gml_DayIdentif_alias" "DayIdentified"
+         "gml_CollectorN_alias" "CollectorNumber"
+         "gml_DayCollect_alias" "DayCollected"
+         "gml_YearCollec_alias" "YearCollected"
+         "gml_MonthColle_alias" "MonthCollected"
+         "gml_FieldNumbe_alias" "FieldNumber"
+         "gml_ContinentO_alias" "ContinentOcean"     
+         "gml_StateProvi_alias" "StateProvinceOrg"
+         "gml_Municipali_alias" "MunicipalityCode"
+         "gml_MuniName_alias" "MunicipalityName"
+         "gml_Coordinate_alias" "CoordinatePrecision"
+         "gml_BoundingBo_alias" "BoundingBox"
+         "gml_MinElevati_alias" "MinElevation"
+         "gml_MaxElevati_alias" "MaxElevation"
+         "gml_Preparatio_alias" "PreparationType"
+         "gml_PreviousCa_alias" "PreviousCatalogNumber"
+         "gml_Relationsh_alias" "RelationshipType"
+         "gml_RelatedCat_alias" "RelatedCatalogNumber"
+         "gml_Collecting_alias" "CollectingMethod"
+         "gml_Identifica_alias" "IdentificationPrecision"
+         "gml_RelativeAb_alias" "RelativeAbundance"        
+        END
+      
+      
+ END
+
+ LAYER
+     NAME "EN_punkt"
+	  #ENCODING "LATIN1"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+     GROUP "EN"
+     TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA artskartrednrEN
+     #MAXFEATURES 50000
+     STATUS ON
+     HEADER "query\artskart_query_header.html"
+     FOOTER "query\artskart_query_footer.html"
+     TEMPLATE "query\artskart_query_body.html"
+     #DUMP true
+     TOLERANCE 6
+     EXTENT -300000 5000000 1000000 9000000 # World
+       
+        CLASS
+          NAME 'EN - Sterkt truet' 
+         
+          STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR 244 158 0
+           END
+        END
+      
+    PROJECTION
+        "init=epsg:32633"
+    END
+      
+        METADATA
+       "DESCRIPTION" "EN"
+         "gml_featureid" "FID"      
+         "ows_title"    "EN - Sterkt truet"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+         "gml_VitNavn_alias" "ScientificName"
+         "gml_NodeDataba_alias" "NodeID"
+         "gml_NodeDataba_type" integer
+         "gml_Institutio_alias" "InstitutionCode"
+         "gml_Collection_alias" "CollectionCode"
+         "gml_CatalogNum_alias" "CatalogNumber"
+         "gml_BasisOfRec_alias" "BasisOfRecord"
+         "gml_Identified_alias" "IdentifiedBy"
+         "gml_YearIdenti_alias" "YearIdentified"
+         "gml_MonthIdent_alias" "MonthIdentified"
+         "gml_DayIdentif_alias" "DayIdentified"
+         "gml_CollectorN_alias" "CollectorNumber"
+         "gml_DayCollect_alias" "DayCollected"
+         "gml_YearCollec_alias" "YearCollected"
+         "gml_MonthColle_alias" "MonthCollected"
+         "gml_FieldNumbe_alias" "FieldNumber"
+         "gml_ContinentO_alias" "ContinentOcean"     
+         "gml_StateProvi_alias" "StateProvinceOrg"
+         "gml_Municipali_alias" "MunicipalityCode"
+         "gml_MuniName_alias" "MunicipalityName"
+         "gml_Coordinate_alias" "CoordinatePrecision"
+         "gml_BoundingBo_alias" "BoundingBox"
+         "gml_MinElevati_alias" "MinElevation"
+         "gml_MaxElevati_alias" "MaxElevation"
+         "gml_Preparatio_alias" "PreparationType"
+         "gml_PreviousCa_alias" "PreviousCatalogNumber"
+         "gml_Relationsh_alias" "RelationshipType"
+         "gml_RelatedCat_alias" "RelatedCatalogNumber"
+         "gml_Collecting_alias" "CollectingMethod"
+         "gml_Identifica_alias" "IdentificationPrecision"
+         "gml_RelativeAb_alias" "RelativeAbundance"        
+        END
+      
+      
+ END
+
+ LAYER
+     NAME "CR_punkt"
+	  #ENCODING "LATIN1"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+     GROUP "CR"
+     TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA artskartrednrCR
+     #MAXFEATURES 50000
+     STATUS ON
+     HEADER "query\artskart_query_header.html"
+     FOOTER "query\artskart_query_footer.html"
+     TEMPLATE "query\artskart_query_body.html"
+     #DUMP true
+     TOLERANCE 6
+     EXTENT -300000 5000000 1000000 9000000 # World
+       
+         CLASS
+           NAME 'CR - Kritisk truet' 
+           STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR 180 22 33
+           END
+         END
+      
+    PROJECTION
+        "init=epsg:32633"
+    END
+      
+        METADATA
+       "DESCRIPTION" "CR"
+               "gml_featureid" "FID" 
+         "ows_title"    "CR - Kritisk truet"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+         "gml_VitNavn_alias" "ScientificName"
+         "gml_NodeDataba_alias" "NodeID"
+         "gml_NodeDataba_type" integer
+         "gml_Institutio_alias" "InstitutionCode"
+         "gml_Collection_alias" "CollectionCode"
+         "gml_CatalogNum_alias" "CatalogNumber"
+         "gml_BasisOfRec_alias" "BasisOfRecord"
+         "gml_Identified_alias" "IdentifiedBy"
+         "gml_YearIdenti_alias" "YearIdentified"
+         "gml_MonthIdent_alias" "MonthIdentified"
+         "gml_DayIdentif_alias" "DayIdentified"
+         "gml_CollectorN_alias" "CollectorNumber"
+         "gml_DayCollect_alias" "DayCollected"
+         "gml_YearCollec_alias" "YearCollected"
+         "gml_MonthColle_alias" "MonthCollected"
+         "gml_FieldNumbe_alias" "FieldNumber"
+         "gml_ContinentO_alias" "ContinentOcean"     
+         "gml_StateProvi_alias" "StateProvinceOrg"
+         "gml_Municipali_alias" "MunicipalityCode"
+         "gml_MuniName_alias" "MunicipalityName"
+         "gml_Coordinate_alias" "CoordinatePrecision"
+         "gml_BoundingBo_alias" "BoundingBox"
+         "gml_MinElevati_alias" "MinElevation"
+         "gml_MaxElevati_alias" "MaxElevation"
+         "gml_Preparatio_alias" "PreparationType"
+         "gml_PreviousCa_alias" "PreviousCatalogNumber"
+         "gml_Relationsh_alias" "RelationshipType"
+         "gml_RelatedCat_alias" "RelatedCatalogNumber"
+         "gml_Collecting_alias" "CollectingMethod"
+         "gml_Identifica_alias" "IdentificationPrecision"
+         "gml_RelativeAb_alias" "RelativeAbundance"        
+        END
+      
+      
+ END
+ LAYER
+     NAME "RE_punkt"
+	  #ENCODING "LATIN1"
+	  MAXSCALEDENOM 150000
+      #MAXSCALE 1000000
+     GROUP "RE"
+     TYPE POINT
+	  CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+	  PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA artskartrednrRE
+     #MAXFEATURES 50000
+     STATUS ON
+     HEADER "query\artskart_query_header.html"
+     FOOTER "query\artskart_query_footer.html"
+     TEMPLATE "query\artskart_query_body.html"
+     #TEMPLATE "http://artskart.artsdatabanken.no/FaneObjektInfo.aspx?Date=0,0&DT=111&NCID=[NodeDataba]&ICID=[Institutio]&CCID=[Collection]&CNR=[CatalogNum]"
+     #DUMP true
+     TOLERANCE 6
+     EXTENT -300000 5000000 1000000 9000000 # World
+       
+         CLASS
+           NAME 'RE - Regionalt utdødd' 
+           STYLE
+             SYMBOL "TRIANGLE"
+             SIZE 6 
+              OUTLINECOLOR 0 0 0
+              COLOR 180 22 33
+            END
+         END
+      
+    PROJECTION
+        "init=epsg:32633"
+    END
+      
+        METADATA
+       "DESCRIPTION" "RE"
+               "gml_featureid" "FID" 
+         "ows_title"    "RE - Regionalt utdødd"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+         "gml_VitNavn_alias" "ScientificName"
+         "gml_NodeDataba_type" integer
+         "gml_NodeDataba_alias" "NodeID"
+         "gml_Institutio_alias" "InstitutionCode"
+         "gml_Collection_alias" "CollectionCode"
+         "gml_CatalogNum_alias" "CatalogNumber"
+         "gml_BasisOfRec_alias" "BasisOfRecord"
+         "gml_Identified_alias" "IdentifiedBy"
+         "gml_YearIdenti_alias" "YearIdentified"
+         "gml_MonthIdent_alias" "MonthIdentified"
+         "gml_DayIdentif_alias" "DayIdentified"
+         "gml_CollectorN_alias" "CollectorNumber"
+         "gml_DayCollect_alias" "DayCollected"
+         "gml_YearCollec_alias" "YearCollected"
+         "gml_MonthColle_alias" "MonthCollected"
+         "gml_FieldNumbe_alias" "FieldNumber"
+         "gml_ContinentO_alias" "ContinentOcean"     
+         "gml_StateProvi_alias" "StateProvinceOrg"
+         "gml_Municipali_alias" "MunicipalityCode"
+         "gml_MuniName_alias" "MunicipalityName"
+         "gml_Coordinate_alias" "CoordinatePrecision"
+         "gml_BoundingBo_alias" "BoundingBox"
+         "gml_MinElevati_alias" "MinElevation"
+         "gml_MaxElevati_alias" "MaxElevation"
+         "gml_Preparatio_alias" "PreparationType"
+         "gml_PreviousCa_alias" "PreviousCatalogNumber"
+         "gml_Relationsh_alias" "RelationshipType"
+         "gml_RelatedCat_alias" "RelatedCatalogNumber"
+         "gml_Collecting_alias" "CollectingMethod"
+         "gml_Identifica_alias" "IdentificationPrecision"
+         "gml_RelativeAb_alias" "RelativeAbundance"        
+        END
+      
+      
+ END
+
+END

@@ -1,0 +1,16 @@
+  MAXSIZE 12000
+  IMAGECOLOR 125 125 125
+  SIZE 600 600
+  STATUS ON
+  #SHAPEPATH "C:/inetpub/Webber/kart.artsdatabanken.no/Mapserver/kartdata/Artskart"
+  #CONFIG "PROJ_LIB" "C:/inetpub/Webber/kart.artsdatabanken.no/Mapserver/nad/"
+  PROJECTION
+    "init=epsg:32633"
+  END
+
+  INCLUDE "../mapdata/la/outputformats" #path relative to mapfile
+
+
+  #SYMBOLSET "symbols/symbols.sym"
+  FONTSET   "../fonts/fonts.txt"
+

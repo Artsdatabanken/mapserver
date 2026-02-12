@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pr: none
+
+variables:
+  tag: 'latest'
+
+jobs:
+- job: PublishToAppService
+  displayName: Publish
+  pool:
+    vmImage: ubuntu-latest
+
+  steps:
+
+  - task: AzureWebAppContainer@1
+    displayName: 'Deploy container to App Service'
+    inputs:
+      azureSubscription: 'prod-deploy-code'
+      appName: 'adb-prod-mapserver-as'
+      containers: 'artsdatabanken/mapserver:$(tag)'

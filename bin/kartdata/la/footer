@@ -1,0 +1,19 @@
+  QUERYMAP
+    STATUS OFF #ON
+    SIZE 200 200
+    STYLE HILITE
+    COLOR 255 255 0
+  END
+
+  LEGEND
+    STATUS ON
+    KEYSIZE 16 10
+    TRANSPARENT ON
+    LABEL
+      TYPE TRUETYPE
+      FONT 'arial'
+      SIZE 8
+      COLOR 1 1 1
+    END
+  END
+

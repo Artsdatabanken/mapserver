@@ -1,0 +1,29 @@
+  LAYER
+    INCLUDE '../headers/la'
+
+    NAME "LA-I"
+    PROCESSING "NATIVE_FILTER=code like 'LA-I-%'"
+
+    CLASS
+       EXPRESSION /^LA-I-A.*$/
+       NAME "LA-I-A"
+       STYLE
+         COLOR 210 212 181
+       END
+    END
+    CLASS
+       EXPRESSION /^LA-I-D.*$/
+       NAME "LA-I-D"
+       STYLE
+         COLOR 162 200 191
+       END
+    END
+    CLASS
+       EXPRESSION /^LA-I-S.*$/
+       NAME "LA-I-S"
+       STYLE
+         COLOR 180 193 143
+       END
+    END
+  END
+

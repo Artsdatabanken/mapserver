@@ -1,0 +1,1429 @@
+#
+# Artsdatabankens WMS mapfil
+#
+
+# the metadata entered here is what drives the OGC interfaces:
+# OGC:WMS
+# OGC:WFS
+# OGC:WCS
+# OGC:WMC
+#
+# Here are example URLs so you can see where the metadata entered
+# below fits in:
+#
+# For OGC:WMS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.1.1&service=WMS&request=GetCapabilities
+#
+# For OGC:WFS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WFS&request=GetCapabilities
+#
+# For OGC:WCS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WCS&request=GetCapabilities
+#
+
+MAP
+
+ CONFIG "PROJ_LIB" "C:/Mapserver/bin/proj/share"
+ # all temp files get prefixed with this string
+ NAME GRIDS
+
+ # background color of image if transparency
+ # is not requested
+ IMAGECOLOR 125 125 125
+
+ # default output image dimensions
+ SIZE 600 400
+
+ # always returns a map
+ STATUS ON
+
+ # set top level projection
+ PROJECTION
+  "init=epsg:32633"
+ END
+ # image format options
+ OUTPUTFORMAT
+  NAME "png"
+  DRIVER AGG/PNG
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "gif"
+  DRIVER GD/GIF
+  MIMETYPE "image/gif"
+  IMAGEMODE PC256
+  EXTENSION "gif"
+END
+OUTPUTFORMAT
+  NAME "png8"
+  DRIVER AGG/PNG8
+  MIMETYPE "image/png; mode=8bit"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "QUANTIZE_FORCE=on"
+  FORMATOPTION "QUANTIZE_COLORS=256"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "jpeg"
+  DRIVER AGG/JPEG
+  MIMETYPE "image/jpeg"
+  IMAGEMODE RGB
+  EXTENSION "jpg"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "svg"
+  DRIVER CAIRO/SVG
+  MIMETYPE "image/svg+xml"
+  IMAGEMODE RGB
+  EXTENSION "svg"
+END
+OUTPUTFORMAT
+  NAME "pdf"
+  DRIVER CAIRO/PDF
+  MIMETYPE "application/x-pdf"
+  IMAGEMODE RGB
+  EXTENSION "pdf"
+END
+OUTPUTFORMAT
+  NAME "GTiff"
+  DRIVER GDAL/GTiff
+  MIMETYPE "image/tiff"
+  IMAGEMODE RGB
+  EXTENSION "tif"
+END
+
+
+ # minx miny maxx maxy
+ # sets:
+ # /WMT_MS_Capabilities/Capability/Layer/LatLonBoundingBox(@minx @miny @maxx @maxx)
+ EXTENT -300000 5000000 1000000 9000000 # World
+
+ # add def pointers for symbols
+
+ #SYMBOLSET "symbols/symbols.sym"
+ #FONTSET   "fonts/fonts.txt"
+
+ #
+ # Start of web interface definition
+ WEB
+
+  # this is the real filepath to the temp dir for intermediate file creation
+  IMAGEPATH "/agsoutput/"
+
+  # this is the web-accessible path to IMAGEPATH
+  IMAGEURL "/output/"
+  
+  #HEADER "../templates/query_header.html"
+  #FOOTER "../templates/query_footer.html"
+
+  METADATA
+
+   "map" "wms.map"
+      "ows_enable_request" "*"
+   # generic OWS specific info
+   # sets base URL for OGC Schemas so the root element in the
+   # Capabilities document points to the correct schema location
+   # to produce valid XML
+   "ows_schemas_location" "http://schemas.opengeospatial.net"
+
+   # unified OWS tags
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Title
+   # /WMT_MS_Capabilities/Capability/Layer/Title
+   # /WFS_Capabilities/Service/Title
+   "ows_title" "Artsdatabankens kartserver GRID"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Abstract
+   # /WFS_Capabilities/Service/Abstract
+   "ows_abstract" "Artsdatabanken publiserer via denne tjenesten GRID for bruk på kart"
+   
+   # sets:
+   # /WMT_MS_Capabilities/Service/KeywordList/Keyword[]
+   # /WFS_Capabilities/Service/Keywords   
+   # /WCS_Capabilities/Service/keywords/keyword[]
+   "ows_keywordlist" "utm grid, graticules"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/OnlineResource
+   # /WFS_Capabilities/Service/OnlineResource
+   # /WCS_Capabilities/Service/responsibleParty/onlineResource/@xlink:href
+   "ows_service_onlineresource" "http://www.artsdatabanken.no"
+   
+   # sets:
+   # /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetMap/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetFeatureInfo/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetFeatureInfo/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/DescribeLayer/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/DescribeLayer/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetLegendGraphic/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WMT_MS_Capabilities/Capability/Request/GetLegendGraphic/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WMS_DescribeLayerResponse/LayerDescription/@wfs is WFS is enabled
+   # /WFS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WFS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetCapabilities/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
+   # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
+   "ows_onlineresource" "http://kart.artsdatabanken.no/WMS/mapserv.exe?map=grid.map&"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Fees
+   # /WFS_Capabilities/Service/Fees
+   # /WCS_Capabilities/Service/fees
+   "ows_fees" "fri"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/AccessConstraints
+   # /WFS_Capabilities/Service/AccessConstraints
+   # /WCS_Capabilities/Service/accessConstraints   
+   "ows_accessconstraints" "ingen"
+
+   # OGC:WMS specific tags
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactPerson
+   # /WCS_Capabilities/Service/responsibleParty/individualName
+   "ows_contactperson" "Stein Hoem"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPersonPrimary/ContactOrganization
+   # /WCS_Capabilities/Service/responsibleParty/organisationName   
+   "ows_contactorganization" "Artsdatabanken"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactPosition
+   # /WCS_Capabilities/Service/responsibleParty/positionName   
+   "ows_contactposition" "Overingeniør"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/AddressType
+   "ows_addresstype" "post"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/Address
+   # /WCS_Capabilities/Service/contactInfo/address/deliveryPoint 
+   "ows_address"     "Erling Skakkesgt. 47"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/City
+   # /WCS_Capabilities/Service/contactInfo/address/city   
+   "ows_city" "Trondheim"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/StateOrProvince
+   # /WCS_Capabilities/Service/contactInfo/address/administrativeArea   
+   "ows_stateorprovince" "ST"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/PostCode
+   # /WCS_Capabilities/Service/contactInfo/address/postalCode   
+   "ows_postcode" "7491"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/Country
+   # /WCS_Capabilities/Service/contactInfo/address/country   
+   "ows_country" "Norway"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactVoiceTelephone
+   # /WCS_Capabilities/Service/contactInfo/phone/voice
+   "ows_contactvoicetelephone" "+47-73590792"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactFacsimileTelephone
+   # /WCS_Capabilities/Service/contactInfo/phone/facsimile   
+   "ows_contactfacsimiletelephone" "+47-73592240"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/ContactInformation/ContactElectronicMailAddress
+   # /WCS_Capabilities/Service/contactInfo/address/eletronicMailAddress
+   "ows_contactelectronicmailaddress" "stein.hoem@artsdatabanken.no"
+
+   # sets:
+   # /WMT_MS_Capabilities/Capability/Layer/SRS
+   # /WMT_MS_Capabilities/Capability/Layer/Layer[*]/SRS
+   # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/SRS
+   # unless differently defined in LAYER object
+   # if you are setting > 1 SRS for WMS, you need to define "wms_srs" and "wfs_srs"
+   # seperately because OGC:WFS only accepts one OUTPUT SRS
+   "wms_srs" "EPSG:4326 EPSG:32633 EPSG:32632 EPSG:32634 EPSG:32635 EPSG:32636 EPSG:3857"
+   "wfs_srs" "EPSG:32633"
+   
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/OnlineResource/@xlink:href
+   "wms_attribution_onlineresource" "http://www.ec.gc.ca/"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/Title   
+   "wms_attribution_title" "Data from Environment Canada"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@width
+   "wms_attribution_logourl_width" "655"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@height
+   "wms_attribution_logourl_height" "130"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/Format   
+   "wms_attribution_logourl_format" "image/png"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/OnlineResource/@xlink:href
+   "wms_attribution_logourl_href" "http://mapserver.gis.umn.edu/mum/header_fsa.png"
+
+   # we support GetFeatureInfo text/html queries
+   # you NEED query headers, footers, and body templates
+   "wms_feature_info_mime_type"  "text/html"
+   
+   # sets namespace URI when performing a DescribeFeatureType or GetFeature
+   # in the root element of the XML response
+   "wfs_namespace_uri" "http://129.241.46.252/ms_ogc_workshop"
+
+   # sets the XML namespace prefix to be used when defining types for data
+   # in this mapfile
+   "wfs_namespace_prefix" "ms_ogc_workshop"
+
+   # OGC:WCS
+   
+   # sets:
+   # /WCS_Capabilities/Service/label
+   "wcs_label" "Artsdatabankens karttjeneste GRID"
+
+   # sets:
+   # /WCS_Capabilities/Service/description
+   "wcs_description" "Diverse GRID for bruk i kart"
+
+   # sets:
+   # /WCS_Capabilities/Service/metadataLink/@xlink:href
+   "wcs_metadatalink_href" "http://www.artsdatabanken.no"
+   END
+ END
+
+ # hilite map for GetFeatureInfo "info_format=text/html"
+ # requests
+
+ QUERYMAP
+  STATUS OFF
+  SIZE 200 200
+  STYLE HILITE
+  COLOR 255 255 0
+ END
+
+
+ # set defaults for GetLegendGraphic requests 
+ #LEGEND
+ # LABEL
+ #  TYPE BITMAP
+ #  SIZE MEDIUM
+ #  COLOR 120 120 120
+ # END
+ #END
+ 
+LEGEND
+   STATUS ON
+   KEYSIZE 16 10
+   TRANSPARENT ON
+   LABEL
+      TYPE TRUETYPE
+      FONT 'arial'
+      SIZE 8
+      COLOR 1 1 1
+   END
+END
+
+ # start of layer definitions
+LAYER
+    NAME "grid"
+    METADATA
+      "DESCRIPTION" "Grid"
+    END
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "Graticule"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:4326"
+   END
+   GRID
+     LABELFORMAT DDMMSS
+MINARCS 2
+MAXARCS 13
+
+   END
+     
+       METADATA
+     
+        # OGC:WMS specific tags
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Title
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Title
+        "ows_title"    "Lat-Lon Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Abstract
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Abstract   
+        "ows_abstract"    "Lat-Lon Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/KeywordList/Keyword[]
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Keywords
+        "ows_keywordlist"    "Lat-Lon Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/SRS   
+
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/@opaque
+        "wms_opaque"    "0"
+     
+        # this positions this layer definition within the GROUP defined above
+        "wms_group_title" "Vectors"
+     
+        # this is the abstract text associated with "wms_group_title"
+        # you only need to define this once
+        "wms_group_abstract" "Vector layers"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/OnlineResource/@xlink:href
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/Format
+        "wms_dataurl_format" "text/html"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/@type
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@type
+        "ows_metadataurl_type" "FGDC"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/OnlineResource/@xlink:href
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/Format
+        "ows_metadataurl_format" "text/html"
+     
+        # OGC:WFS specific tags
+        
+        # sets:
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@format
+        "wfs_metadataurl_format" "TXT"
+     
+        # specify which fields to include when returning queries
+        "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+
+ # start of layer definitions
+LAYER
+    NAME "UTM32"
+    METADATA
+      "DESCRIPTION" "UTM32"
+    END
+    GROUP "UTM32"
+    MINSCALE 300000
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM32"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32632"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MINARCS 2
+MAXARCS 13
+#MININTERVAL 10000
+#MAXINTERVAL 10000
+   END
+     
+       METADATA
+     
+        # OGC:WMS specific tags
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Title
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Title
+        "ows_title"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Abstract
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Abstract   
+        "ows_abstract"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/KeywordList/Keyword[]
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Keywords
+        "ows_keywordlist"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/SRS   
+
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/@opaque
+        "wms_opaque"    "0"
+     
+        # this positions this layer definition within the GROUP defined above
+        "wms_group_title" "Vectors"
+     
+        # this is the abstract text associated with "wms_group_title"
+        # you only need to define this once
+        "wms_group_abstract" "Vector layers"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/OnlineResource/@xlink:href
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/Format
+        "wms_dataurl_format" "text/html"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/@type
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@type
+        "ows_metadataurl_type" "FGDC"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/OnlineResource/@xlink:href
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/Format
+        "ows_metadataurl_format" "text/html"
+     
+        # OGC:WFS specific tags
+        
+        # sets:
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@format
+        "wfs_metadataurl_format" "TXT"
+     
+        # specify which fields to include when returning queries
+        "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+LAYER
+    NAME "UTM32"
+    METADATA
+      "DESCRIPTION" "UTM32"
+    END
+    MAXSCALE 95000
+    GROUP "UTM32"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM32"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32632"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+#MINARCS 2
+#MAXARCS 13
+MININTERVAL 1000
+#MAXINTERVAL 10000
+   END
+     
+       METADATA
+     
+        # OGC:WMS specific tags
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Title
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Title
+        "ows_title"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Abstract
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Abstract   
+        "ows_abstract"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/KeywordList/Keyword[]
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Keywords
+        "ows_keywordlist"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/SRS   
+
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/@opaque
+        "wms_opaque"    "0"
+     
+        # this positions this layer definition within the GROUP defined above
+        "wms_group_title" "Vectors"
+     
+        # this is the abstract text associated with "wms_group_title"
+        # you only need to define this once
+        "wms_group_abstract" "Vector layers"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/OnlineResource/@xlink:href
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/Format
+        "wms_dataurl_format" "text/html"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/@type
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@type
+        "ows_metadataurl_type" "FGDC"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/OnlineResource/@xlink:href
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/Format
+        "ows_metadataurl_format" "text/html"
+     
+        # OGC:WFS specific tags
+        
+        # sets:
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@format
+        "wfs_metadataurl_format" "TXT"
+     
+        # specify which fields to include when returning queries
+        "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+LAYER
+    NAME "UTM32"
+    METADATA
+      "DESCRIPTION" "UTM32"
+    END
+    #MINSCALE 95000
+    MAXSCALE 300000
+    GROUP "UTM32"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM32"
+      COLOR 0 0 0
+	LABEL
+        COLOR  0 0 0
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32632"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+#MINARCS 2
+#MAXARCS 13
+MININTERVAL 10000
+#MAXINTERVAL 10000
+   END
+     
+       METADATA
+     
+        # OGC:WMS specific tags
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Title
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Title
+        "ows_title"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/Abstract
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Abstract   
+        "ows_abstract"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/KeywordList/Keyword[]
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/Keywords
+        "ows_keywordlist"    "UTM32 Grid"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/SRS   
+
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/@opaque
+        "wms_opaque"    "0"
+     
+        # this positions this layer definition within the GROUP defined above
+        "wms_group_title" "Vectors"
+     
+        # this is the abstract text associated with "wms_group_title"
+        # you only need to define this once
+        "wms_group_abstract" "Vector layers"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/OnlineResource/@xlink:href
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/DataURL/Format
+        "wms_dataurl_format" "text/html"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/@type
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@type
+        "ows_metadataurl_type" "FGDC"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/OnlineResource/@xlink:href
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+     
+        # sets:
+        # /WMT_MS_Capabilities/Capability/Layer/*/MetadataURL/Format
+        "ows_metadataurl_format" "text/html"
+     
+        # OGC:WFS specific tags
+        
+        # sets:
+        # /WFS_Capabilities/FeatureTypeList/FeatureType[*]/MetadataURL/@format
+        "wfs_metadataurl_format" "TXT"
+
+        "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+
+ # start of layer definitions
+LAYER
+    NAME "UTM33"
+    METADATA
+      "DESCRIPTION" "UTM33"
+    END
+    MAXSCALE 95000
+    GROUP "UTM33"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM33"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32633"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 1000
+
+   END
+     
+   METADATA
+        "ows_title"    "UTM33 Grid"
+        "ows_abstract"    "UTM33 Grid"
+        "ows_keywordlist"    "UTM33 Grid"
+        "wms_opaque"    "0"
+        "wms_group_title" "Vectors"
+        "wms_group_abstract" "Vector layers"
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+        "wms_dataurl_format" "text/html"
+        "ows_metadataurl_type" "FGDC"
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+        "ows_metadataurl_format" "text/html"
+        "wfs_metadataurl_format" "TXT"
+        "gml_include_items" "all"
+    END
+ END
+LAYER
+    NAME "UTM33"
+    METADATA
+      "DESCRIPTION" "UTM33"
+    END
+    #MINSCALE 95000
+    MAXSCALE 300000
+    GROUP "UTM33"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM33"
+      COLOR 0 0 0
+      LABEL
+        COLOR  0 0 0
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32633"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 10000
+
+   END
+     
+   METADATA
+        "ows_title"    "UTM33 Grid"
+        "ows_abstract"    "UTM33 Grid"
+        "ows_keywordlist"    "UTM33 Grid"
+        "wms_opaque"    "0"
+        "wms_group_title" "Vectors"
+        "wms_group_abstract" "Vector layers"
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+        "wms_dataurl_format" "text/html"
+        "ows_metadataurl_type" "FGDC"
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+        "ows_metadataurl_format" "text/html"
+        "wfs_metadataurl_format" "TXT"
+        "gml_include_items" "all"
+    END
+ END
+LAYER
+    NAME "UTM33"
+    METADATA
+      "DESCRIPTION" "UTM33"
+    END
+    MINSCALE 300000
+    GROUP "UTM33"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM33"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32633"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MINARCS 2
+MAXARCS 13
+
+   END
+     
+   METADATA
+        "ows_title"    "UTM33 Grid"
+        "ows_abstract"    "UTM33 Grid"
+        "ows_keywordlist"    "UTM33 Grid"
+        "wms_opaque"    "0"
+        "wms_group_title" "Vectors"
+        "wms_group_abstract" "Vector layers"
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+        "wms_dataurl_format" "text/html"
+        "ows_metadataurl_type" "FGDC"
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+        "ows_metadataurl_format" "text/html"
+        "wfs_metadataurl_format" "TXT"
+        "gml_include_items" "all"
+    END
+ END
+   
+ # start of layer definitions
+LAYER
+    NAME "UTM34"
+    METADATA
+      "DESCRIPTION" "UTM34"
+    END
+        MAXSCALE 95000
+    GROUP "UTM34"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM34"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32634"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 1000
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM34 Grid"
+        "ows_abstract"    "UTM34 Grid"
+        "ows_keywordlist"    "UTM34 Grid"
+        "wms_opaque"    "0"
+        "wms_group_title" "Vectors"
+        "wms_group_abstract" "Vector layers"
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+        "wms_dataurl_format" "text/html"
+        "ows_metadataurl_type" "FGDC"
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+        "ows_metadataurl_format" "text/html"
+        "wfs_metadataurl_format" "TXT"
+        "gml_include_items" "all"
+       END
+     
+     
+ END
+ LAYER
+     NAME "UTM34"
+     METADATA
+       "DESCRIPTION" "UTM34"
+     END
+         #MINSCALE 95000
+    MAXSCALE 300000
+     GROUP "UTM34"
+     TYPE LINE
+     STATUS OFF
+     CLASS
+       NAME "UTM34"
+       COLOR 0 0 0
+       LABEL
+         COLOR  0 0 0
+         FONT fritqat
+         TYPE truetype
+         SIZE 8
+         POSITION AUTO          
+         PARTIALS FALSE
+         BUFFER 5
+         OUTLINECOLOR 255 255 255           
+       END 
+    END
+    PROJECTION
+        "init=epsg:32634"
+    END
+    GRID
+ LABELFORMAT "%5.0f"
+MININTERVAL 10000
+ 
+    END
+      
+        METADATA
+         "ows_title"    "UTM34 Grid"
+         "ows_abstract"    "UTM34 Grid"
+         "ows_keywordlist"    "UTM34 Grid"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "http://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "http://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"
+        END
+      
+      
+  END
+LAYER
+    NAME "UTM34"
+    METADATA
+      "DESCRIPTION" "UTM34"
+    END
+    MINSCALE 300000
+    GROUP "UTM34"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM34"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32634"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MINARCS 2
+MAXARCS 13
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM34 Grid"
+        "ows_abstract"    "UTM34 Grid"
+        "ows_keywordlist"    "UTM34 Grid"
+        "wms_opaque"    "0"
+        "wms_group_title" "Vectors"
+        "wms_group_abstract" "Vector layers"
+        "wms_dataurl_href" "http://www.artsdatabanken.no/"
+        "wms_dataurl_format" "text/html"
+        "ows_metadataurl_type" "FGDC"
+        "ows_metadataurl_href" "http://www.artsdatabanken.no"
+        "ows_metadataurl_format" "text/html"
+        "wfs_metadataurl_format" "TXT"
+        "gml_include_items" "all"
+       END
+     
+     
+ END
+
+ # start of layer definitions
+LAYER
+    NAME "UTM35"
+    METADATA
+      "DESCRIPTION" "UTM35"
+    END
+        MAXSCALE 95000
+    GROUP "UTM35"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM35"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32635"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 1000
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM35 Grid"
+        "ows_abstract"    "UTM35 Grid"
+        "ows_keywordlist"    "UTM35 Grid"
+              "wms_opaque"    "0"
+              "wms_group_title" "Vectors"
+              "wms_group_abstract" "Vector layers"
+              "wms_dataurl_href" "http://www.artsdatabanken.no/"
+              "wms_dataurl_format" "text/html"
+              "ows_metadataurl_type" "FGDC"
+              "ows_metadataurl_href" "http://www.artsdatabanken.no"
+              "ows_metadataurl_format" "text/html"
+              "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+LAYER
+    NAME "UTM35"
+    METADATA
+      "DESCRIPTION" "UTM35"
+    END
+        #MINSCALE 95000
+    MAXSCALE 300000
+    GROUP "UTM35"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM35"
+      COLOR 0 0 0
+      LABEL
+        COLOR  0 0 0
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32635"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 10000
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM35 Grid"
+        "ows_abstract"    "UTM35 Grid"
+        "ows_keywordlist"    "UTM35 Grid"
+              "wms_opaque"    "0"
+              "wms_group_title" "Vectors"
+              "wms_group_abstract" "Vector layers"
+              "wms_dataurl_href" "http://www.artsdatabanken.no/"
+              "wms_dataurl_format" "text/html"
+              "ows_metadataurl_type" "FGDC"
+              "ows_metadataurl_href" "http://www.artsdatabanken.no"
+              "ows_metadataurl_format" "text/html"
+              "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+LAYER
+    NAME "UTM35"
+    METADATA
+      "DESCRIPTION" "UTM35"
+    END
+        MINSCALE 300000
+    GROUP "UTM35"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM35"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32635"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MINARCS 2
+MAXARCS 13
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM35 Grid"
+        "ows_abstract"    "UTM35 Grid"
+        "ows_keywordlist"    "UTM35 Grid"
+              "wms_opaque"    "0"
+              "wms_group_title" "Vectors"
+              "wms_group_abstract" "Vector layers"
+              "wms_dataurl_href" "http://www.artsdatabanken.no/"
+              "wms_dataurl_format" "text/html"
+              "ows_metadataurl_type" "FGDC"
+              "ows_metadataurl_href" "http://www.artsdatabanken.no"
+              "ows_metadataurl_format" "text/html"
+              "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"
+     
+       END
+     
+     
+ END
+
+ # start of layer definitions
+LAYER
+    NAME "UTM36"
+    METADATA
+      "DESCRIPTION" "UTM36"
+    END
+    MAXSCALE 95000
+    GROUP "UTM36"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM36"
+      COLOR 120 120 120
+      LABEL
+        COLOR  120 120 120
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32636"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 1000
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM36 Grid"
+        "ows_abstract"    "UTM36 Grid"
+        "ows_keywordlist"    "UTM36 Grid"
+              "wms_opaque"    "0"
+              "wms_group_title" "Vectors"
+              "wms_group_abstract" "Vector layers"
+              "wms_dataurl_href" "http://www.artsdatabanken.no/"
+              "wms_dataurl_format" "text/html"
+              "ows_metadataurl_type" "FGDC"
+              "ows_metadataurl_href" "http://www.artsdatabanken.no"
+              "ows_metadataurl_format" "text/html"
+              "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"     
+       END
+     
+     
+ END
+LAYER
+    NAME "UTM36"
+    METADATA
+      "DESCRIPTION" "UTM36"
+    END
+    #MINSCALE 95000
+    MAXSCALE 300000
+    GROUP "UTM36"
+    TYPE LINE
+    STATUS OFF
+    CLASS
+      NAME "UTM36"
+      COLOR 0 0 0
+      LABEL
+        COLOR  0 0 0
+        FONT fritqat
+        TYPE truetype
+        SIZE 8
+        POSITION AUTO          
+        PARTIALS FALSE
+        BUFFER 5
+        OUTLINECOLOR 255 255 255           
+      END 
+   END
+   PROJECTION
+       "init=epsg:32636"
+   END
+   GRID
+LABELFORMAT "%5.0f"
+MININTERVAL 10000
+
+   END
+     
+       METADATA
+        "ows_title"    "UTM36 Grid"
+        "ows_abstract"    "UTM36 Grid"
+        "ows_keywordlist"    "UTM36 Grid"
+              "wms_opaque"    "0"
+              "wms_group_title" "Vectors"
+              "wms_group_abstract" "Vector layers"
+              "wms_dataurl_href" "http://www.artsdatabanken.no/"
+              "wms_dataurl_format" "text/html"
+              "ows_metadataurl_type" "FGDC"
+              "ows_metadataurl_href" "http://www.artsdatabanken.no"
+              "ows_metadataurl_format" "text/html"
+              "wfs_metadataurl_format" "TXT"
+         "gml_include_items" "all"     
+       END
+     
+     
+ END
+ LAYER
+     NAME "UTM36"
+     METADATA
+       "DESCRIPTION" "UTM36"
+     END
+     MINSCALE 300000
+     GROUP "UTM36"
+     TYPE LINE
+     STATUS OFF
+     CLASS
+       NAME "UTM36"
+       COLOR 120 120 120
+       LABEL
+         COLOR  120 120 120
+         FONT fritqat
+         TYPE truetype
+         SIZE 8
+         POSITION AUTO          
+         PARTIALS FALSE
+         BUFFER 5
+         OUTLINECOLOR 255 255 255           
+       END 
+    END
+    PROJECTION
+        "init=epsg:32636"
+    END
+    GRID
+ LABELFORMAT "%5.0f"
+ MINARCS 2
+ MAXARCS 13
+ 
+    END
+      
+        METADATA
+         "ows_title"    "UTM36 Grid"
+         "ows_abstract"    "UTM36 Grid"
+         "ows_keywordlist"    "UTM36 Grid"
+               "wms_opaque"    "0"
+               "wms_group_title" "Vectors"
+               "wms_group_abstract" "Vector layers"
+               "wms_dataurl_href" "http://www.artsdatabanken.no/"
+               "wms_dataurl_format" "text/html"
+               "ows_metadataurl_type" "FGDC"
+               "ows_metadataurl_href" "http://www.artsdatabanken.no"
+               "ows_metadataurl_format" "text/html"
+               "wfs_metadataurl_format" "TXT"
+          "gml_include_items" "all"     
+        END
+      
+      
+ END
+ LAYER
+     NAME "TESTUTM33"
+     METADATA
+       "DESCRIPTION" "TESTUTM33"
+     END
+     #MINSCALE 300000
+     #GROUP "UTM36"
+     TYPE LINE
+     STATUS OFF
+     CLASS
+       NAME "TESTUTM33"
+       COLOR 120 120 120
+       LABEL
+         COLOR  120 120 120
+         FONT fritqat
+         TYPE truetype
+         SIZE 8
+         POSITION AUTO          
+         PARTIALS FALSE
+         BUFFER 5
+         OUTLINECOLOR 255 255 255           
+       END 
+    END
+    PROJECTION
+        "init=epsg:32633"
+    END
+    GRID
+ LABELFORMAT "%5.0f"
+ #MINARCS 2
+ #MAXARCS 13
+ MININTERVAL 20000
+    END
+      
+        METADATA
+         "ows_title"    "TESTUTM33 Grid"
+         "ows_abstract"    "TESTUTM33 Grid"
+         "ows_keywordlist"    "TESTUTM33 Grid"
+               "wms_opaque"    "0"
+               "wms_group_title" "Vectors"
+               "wms_group_abstract" "Vector layers"
+               "wms_dataurl_href" "http://www.artsdatabanken.no/"
+               "wms_dataurl_format" "text/html"
+               "ows_metadataurl_type" "FGDC"
+               "ows_metadataurl_href" "http://www.artsdatabanken.no"
+               "ows_metadataurl_format" "text/html"
+               "wfs_metadataurl_format" "TXT"
+          "gml_include_items" "all"     
+        END
+      
+      
+ END
+ 
+
+ 
+END

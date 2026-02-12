@@ -1,0 +1,2696 @@
+
+  LAYER NAME "LA-I-A"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Dalformet ås- og fjellandskap under skoggrensen"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-I-A-1"
+#      EXPRESSION "kode=LA-I-A-1"
+      STYLE
+        OUTLINECOLOR 195 207 165
+        #WIDTH 2
+        COLOR 195 207 165
+      END
+    END
+
+    CLASS NAME "LA-I-A-2"
+      EXPRESSION "kode=LA-I-A-2"
+      STYLE
+        OUTLINECOLOR 223 196 150
+        #WIDTH 2
+        COLOR 223 196 150
+      END
+    END
+
+    CLASS NAME "LA-I-A-3"
+      EXPRESSION "kode=LA-I-A-3"
+      STYLE
+        OUTLINECOLOR 193 202 170
+        #WIDTH 2
+        COLOR 193 202 170
+      END
+    END
+
+    CLASS NAME "LA-I-A-4"
+      EXPRESSION "kode=LA-I-A-4"
+      STYLE
+        OUTLINECOLOR 217 194 155
+        #WIDTH 2
+        COLOR 217 194 155
+      END
+    END
+
+    CLASS NAME "LA-I-A-5"
+      EXPRESSION "kode=LA-I-A-5"
+      STYLE
+        OUTLINECOLOR 192 199 173
+        #WIDTH 2
+        COLOR 192 199 173
+      END
+    END
+
+    CLASS NAME "LA-I-A-6"
+      EXPRESSION "kode=LA-I-A-6"
+      STYLE
+        OUTLINECOLOR 214 193 159
+        #WIDTH 2
+        COLOR 214 193 159
+      END
+    END
+
+    CLASS NAME "LA-I-A-7"
+      EXPRESSION "kode=LA-I-A-7"
+      STYLE
+        OUTLINECOLOR 191 196 176
+        #WIDTH 2
+        COLOR 191 196 176
+      END
+    END
+
+    CLASS NAME "LA-I-A-8"
+      EXPRESSION "kode=LA-I-A-8"
+      STYLE
+        OUTLINECOLOR 198 201 171
+        #WIDTH 2
+        COLOR 198 201 171
+      END
+    END
+
+    CLASS NAME "LA-I-A-9"
+      EXPRESSION "kode=LA-I-A-9"
+      STYLE
+        OUTLINECOLOR 219 192 153
+        #WIDTH 2
+        COLOR 219 192 153
+      END
+    END
+
+    CLASS NAME "LA-I-A-10"
+      EXPRESSION "kode=LA-I-A-10"
+      STYLE
+        OUTLINECOLOR 196 198 174
+        #WIDTH 2
+        COLOR 196 198 174
+      END
+    END
+
+    CLASS NAME "LA-I-A-11"
+      EXPRESSION "kode=LA-I-A-11"
+      STYLE
+        OUTLINECOLOR 196 195 176
+        #WIDTH 2
+        COLOR 196 195 176
+      END
+    END
+
+    CLASS NAME "LA-I-A-12"
+      EXPRESSION "kode=LA-I-A-12"
+      STYLE
+        OUTLINECOLOR 194 187 179
+        #WIDTH 2
+        COLOR 194 187 179
+      END
+    END
+
+    CLASS NAME "LA-I-A-13"
+      EXPRESSION "kode=LA-I-A-13"
+      STYLE
+        OUTLINECOLOR 216 234 215
+        #WIDTH 2
+        COLOR 216 234 215
+      END
+    END
+
+    CLASS NAME "LA-I-A-14"
+      EXPRESSION "kode=LA-I-A-14"
+      STYLE
+        OUTLINECOLOR 200 211 171
+        #WIDTH 2
+        COLOR 200 211 171
+      END
+    END
+
+    CLASS NAME "LA-I-A-15"
+      EXPRESSION "kode=LA-I-A-15"
+      STYLE
+        OUTLINECOLOR 225 200 157
+        #WIDTH 2
+        COLOR 225 200 157
+      END
+    END
+
+    CLASS NAME "LA-I-A-16"
+      EXPRESSION "kode=LA-I-A-16"
+      STYLE
+        OUTLINECOLOR 198 206 177
+        #WIDTH 2
+        COLOR 198 206 177
+      END
+    END
+
+    CLASS NAME "LA-I-A-17"
+      EXPRESSION "kode=LA-I-A-17"
+      STYLE
+        OUTLINECOLOR 220 199 163
+        #WIDTH 2
+        COLOR 220 199 163
+      END
+    END
+
+    CLASS NAME "LA-I-A-18"
+      EXPRESSION "kode=LA-I-A-18"
+      STYLE
+        OUTLINECOLOR 196 203 179
+        #WIDTH 2
+        COLOR 196 203 179
+      END
+    END
+
+    CLASS NAME "LA-I-A-19"
+      EXPRESSION "kode=LA-I-A-19"
+      STYLE
+        OUTLINECOLOR 217 198 166
+        #WIDTH 2
+        COLOR 217 198 166
+      END
+    END
+
+    CLASS NAME "LA-I-A-20"
+      EXPRESSION "kode=LA-I-A-20"
+      STYLE
+        OUTLINECOLOR 195 201 182
+        #WIDTH 2
+        COLOR 195 201 182
+      END
+    END
+
+    CLASS NAME "LA-I-A-21"
+      EXPRESSION "kode=LA-I-A-21"
+      STYLE
+        OUTLINECOLOR 202 205 177
+        #WIDTH 2
+        COLOR 202 205 177
+      END
+    END
+
+    CLASS NAME "LA-I-A-22"
+      EXPRESSION "kode=LA-I-A-22"
+      STYLE
+        OUTLINECOLOR 200 202 180
+        #WIDTH 2
+        COLOR 200 202 180
+      END
+    END
+
+    CLASS NAME "LA-I-A-23"
+      EXPRESSION "kode=LA-I-A-23"
+      STYLE
+        OUTLINECOLOR 201 199 182
+        #WIDTH 2
+        COLOR 201 199 182
+      END
+    END
+
+    CLASS NAME "LA-I-A-24"
+      EXPRESSION "kode=LA-I-A-24"
+      STYLE
+        OUTLINECOLOR 198 197 184
+        #WIDTH 2
+        COLOR 198 197 184
+      END
+    END
+
+    CLASS NAME "LA-I-A-25"
+      EXPRESSION "kode=LA-I-A-25"
+      STYLE
+        OUTLINECOLOR 198 192 184
+        #WIDTH 2
+        COLOR 198 192 184
+      END
+    END
+
+    CLASS NAME "LA-I-A-26"
+      EXPRESSION "kode=LA-I-A-26"
+      STYLE
+        OUTLINECOLOR 216 234 215
+        #WIDTH 2
+        COLOR 216 234 215
+      END
+    END
+
+    CLASS NAME "LA-I-A-27"
+      EXPRESSION "kode=LA-I-A-27"
+      STYLE
+        OUTLINECOLOR 204 215 178
+        #WIDTH 2
+        COLOR 204 215 178
+      END
+    END
+
+    CLASS NAME "LA-I-A-28"
+      EXPRESSION "kode=LA-I-A-28"
+      STYLE
+        OUTLINECOLOR 226 202 161
+        #WIDTH 2
+        COLOR 226 202 161
+      END
+    END
+
+    CLASS NAME "LA-I-A-29"
+      EXPRESSION "kode=LA-I-A-29"
+      STYLE
+        OUTLINECOLOR 202 210 183
+        #WIDTH 2
+        COLOR 202 210 183
+      END
+    END
+
+    CLASS NAME "LA-I-A-30"
+      EXPRESSION "kode=LA-I-A-30"
+      STYLE
+        OUTLINECOLOR 221 201 166
+        #WIDTH 2
+        COLOR 221 201 166
+      END
+    END
+
+    CLASS NAME "LA-I-A-31"
+      EXPRESSION "kode=LA-I-A-31"
+      STYLE
+        OUTLINECOLOR 201 207 185
+        #WIDTH 2
+        COLOR 201 207 185
+      END
+    END
+
+    CLASS NAME "LA-I-A-32"
+      EXPRESSION "kode=LA-I-A-32"
+      STYLE
+        OUTLINECOLOR 218 200 169
+        #WIDTH 2
+        COLOR 218 200 169
+      END
+    END
+
+    CLASS NAME "LA-I-A-33"
+      EXPRESSION "kode=LA-I-A-33"
+      STYLE
+        OUTLINECOLOR 207 209 183
+        #WIDTH 2
+        COLOR 207 209 183
+      END
+    END
+
+    CLASS NAME "LA-I-A-34"
+      EXPRESSION "kode=LA-I-A-34"
+      STYLE
+        OUTLINECOLOR 223 199 164
+        #WIDTH 2
+        COLOR 223 199 164
+      END
+    END
+
+    CLASS NAME "LA-I-A-35"
+      EXPRESSION "kode=LA-I-A-35"
+      STYLE
+        OUTLINECOLOR 204 206 186
+        #WIDTH 2
+        COLOR 204 206 186
+      END
+    END
+
+    CLASS NAME "LA-I-A-36"
+      EXPRESSION "kode=LA-I-A-36"
+      STYLE
+        OUTLINECOLOR 205 204 188
+        #WIDTH 2
+        COLOR 205 204 188
+      END
+    END
+
+    CLASS NAME "LA-I-A-37"
+      EXPRESSION "kode=LA-I-A-37"
+      STYLE
+        OUTLINECOLOR 203 202 190
+        #WIDTH 2
+        COLOR 203 202 190
+      END
+    END
+
+    CLASS NAME "LA-I-A-38"
+      EXPRESSION "kode=LA-I-A-38"
+      STYLE
+        OUTLINECOLOR 203 197 190
+        #WIDTH 2
+        COLOR 203 197 190
+      END
+    END
+
+    CLASS NAME "LA-I-A-39"
+      EXPRESSION "kode=LA-I-A-39"
+      STYLE
+        OUTLINECOLOR 219 235 219
+        #WIDTH 2
+        COLOR 219 235 219
+      END
+    END
+
+    CLASS NAME "LA-I-A-40"
+      EXPRESSION "kode=LA-I-A-40"
+      STYLE
+        OUTLINECOLOR 209 218 185
+        #WIDTH 2
+        COLOR 209 218 185
+      END
+    END
+
+    CLASS NAME "LA-I-A-41"
+      EXPRESSION "kode=LA-I-A-41"
+      STYLE
+        OUTLINECOLOR 207 214 189
+        #WIDTH 2
+        COLOR 207 214 189
+      END
+    END
+
+    CLASS NAME "LA-I-A-42"
+      EXPRESSION "kode=LA-I-A-42"
+      STYLE
+        OUTLINECOLOR 224 206 174
+        #WIDTH 2
+        COLOR 224 206 174
+      END
+    END
+
+    CLASS NAME "LA-I-A-43"
+      EXPRESSION "kode=LA-I-A-43"
+      STYLE
+        OUTLINECOLOR 206 212 191
+        #WIDTH 2
+        COLOR 206 212 191
+      END
+    END
+
+    CLASS NAME "LA-I-A-44"
+      EXPRESSION "kode=LA-I-A-44"
+      STYLE
+        OUTLINECOLOR 211 213 190
+        #WIDTH 2
+        COLOR 211 213 190
+      END
+    END
+
+    CLASS NAME "LA-I-A-45"
+      EXPRESSION "kode=LA-I-A-45"
+      STYLE
+        OUTLINECOLOR 209 208 193
+        #WIDTH 2
+        COLOR 209 208 193
+      END
+    END
+
+    CLASS NAME "LA-I-A-46"
+      EXPRESSION "kode=LA-I-A-46"
+      STYLE
+        OUTLINECOLOR 207 202 196
+        #WIDTH 2
+        COLOR 207 202 196
+      END
+    END
+
+    CLASS NAME "LA-I-A-47"
+      EXPRESSION "kode=LA-I-A-47"
+      STYLE
+        OUTLINECOLOR 222 237 222
+        #WIDTH 2
+        COLOR 222 237 222
+      END
+    END
+
+    CLASS NAME "LA-I-A-48"
+      EXPRESSION "kode=LA-I-A-48"
+      STYLE
+        OUTLINECOLOR 213 222 192
+        #WIDTH 2
+        COLOR 213 222 192
+      END
+    END
+
+    CLASS NAME "LA-I-A-49"
+      EXPRESSION "kode=LA-I-A-49"
+      STYLE
+        OUTLINECOLOR 211 218 195
+        #WIDTH 2
+        COLOR 211 218 195
+      END
+    END
+
+    CLASS NAME "LA-I-A-50"
+      EXPRESSION "kode=LA-I-A-50"
+      STYLE
+        OUTLINECOLOR 211 216 197
+        #WIDTH 2
+        COLOR 211 216 197
+      END
+    END
+
+    CLASS NAME "LA-I-A-51"
+      EXPRESSION "kode=LA-I-A-51"
+      STYLE
+        OUTLINECOLOR 215 217 196
+        #WIDTH 2
+        COLOR 215 217 196
+      END
+    END
+
+    CLASS NAME "LA-I-A-52"
+      EXPRESSION "kode=LA-I-A-52"
+      STYLE
+        OUTLINECOLOR 214 213 199
+        #WIDTH 2
+        COLOR 214 213 199
+      END
+    END
+
+    CLASS NAME "LA-I-A-53"
+      EXPRESSION "kode=LA-I-A-53"
+      STYLE
+        OUTLINECOLOR 212 207 201
+        #WIDTH 2
+        COLOR 212 207 201
+      END
+    END
+
+    CLASS NAME "LA-I-A-54"
+      EXPRESSION "kode=LA-I-A-54"
+      STYLE
+        OUTLINECOLOR 222 237 222
+        #WIDTH 2
+        COLOR 222 237 222
+      END
+    END
+  END
+
+  LAYER NAME "LA-I-D"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Åpent dallandskap under skoggrensen"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-I-D-1"
+      EXPRESSION "kode=LA-I-D-1"
+      STYLE
+        OUTLINECOLOR 197 211 171
+        #WIDTH 2
+        COLOR 197 211 171
+      END
+    END
+
+    CLASS NAME "LA-I-D-2"
+      EXPRESSION "kode=LA-I-D-2"
+      STYLE
+        OUTLINECOLOR 224 199 154
+        #WIDTH 2
+        COLOR 224 199 154
+      END
+    END
+
+    CLASS NAME "LA-I-D-3"
+      EXPRESSION "kode=LA-I-D-3"
+      STYLE
+        OUTLINECOLOR 195 206 177
+        #WIDTH 2
+        COLOR 195 206 177
+      END
+    END
+
+    CLASS NAME "LA-I-D-4"
+      EXPRESSION "kode=LA-I-D-4"
+      STYLE
+        OUTLINECOLOR 219 198 159
+        #WIDTH 2
+        COLOR 219 198 159
+      END
+    END
+
+    CLASS NAME "LA-I-D-5"
+      EXPRESSION "kode=LA-I-D-5"
+      STYLE
+        OUTLINECOLOR 194 203 179
+        #WIDTH 2
+        COLOR 194 203 179
+      END
+    END
+
+    CLASS NAME "LA-I-D-6"
+      EXPRESSION "kode=LA-I-D-6"
+      STYLE
+        OUTLINECOLOR 215 197 162
+        #WIDTH 2
+        COLOR 215 197 162
+      END
+    END
+
+    CLASS NAME "LA-I-D-7"
+      EXPRESSION "kode=LA-I-D-7"
+      STYLE
+        OUTLINECOLOR 200 205 177
+        #WIDTH 2
+        COLOR 200 205 177
+      END
+    END
+
+    CLASS NAME "LA-I-D-8"
+      EXPRESSION "kode=LA-I-D-8"
+      STYLE
+        OUTLINECOLOR 198 202 180
+        #WIDTH 2
+        COLOR 198 202 180
+      END
+    END
+
+    CLASS NAME "LA-I-D-9"
+      EXPRESSION "kode=LA-I-D-9"
+      STYLE
+        OUTLINECOLOR 201 200 182
+        #WIDTH 2
+        COLOR 201 200 182
+      END
+    END
+
+    CLASS NAME "LA-I-D-10"
+      EXPRESSION "kode=LA-I-D-10"
+      STYLE
+        OUTLINECOLOR 198 192 184
+        #WIDTH 2
+        COLOR 198 192 184
+      END
+    END
+
+    CLASS NAME "LA-I-D-11"
+      EXPRESSION "kode=LA-I-D-11"
+      STYLE
+        OUTLINECOLOR 215 234 224
+        #WIDTH 2
+        COLOR 215 234 224
+      END
+    END
+
+    CLASS NAME "LA-I-D-12"
+      EXPRESSION "kode=LA-I-D-12"
+      STYLE
+        OUTLINECOLOR 173 197 209
+        #WIDTH 2
+        COLOR 173 197 209
+      END
+    END
+
+    CLASS NAME "LA-I-D-13"
+      EXPRESSION "kode=LA-I-D-13"
+      STYLE
+        OUTLINECOLOR 218 180 160
+        #WIDTH 2
+        COLOR 218 180 160
+      END
+    END
+
+    CLASS NAME "LA-I-D-14"
+      EXPRESSION "kode=LA-I-D-14"
+      STYLE
+        OUTLINECOLOR 176 196 207
+        #WIDTH 2
+        COLOR 176 196 207
+      END
+    END
+
+    CLASS NAME "LA-I-D-15"
+      EXPRESSION "kode=LA-I-D-15"
+      STYLE
+        OUTLINECOLOR 215 181 163
+        #WIDTH 2
+        COLOR 215 181 163
+      END
+    END
+
+    CLASS NAME "LA-I-D-16"
+      EXPRESSION "kode=LA-I-D-16"
+      STYLE
+        OUTLINECOLOR 178 196 205
+        #WIDTH 2
+        COLOR 178 196 205
+      END
+    END
+
+    CLASS NAME "LA-I-D-17"
+      EXPRESSION "kode=LA-I-D-17"
+      STYLE
+        OUTLINECOLOR 177 194 206
+        #WIDTH 2
+        COLOR 177 194 206
+      END
+    END
+
+    CLASS NAME "LA-I-D-18"
+      EXPRESSION "kode=LA-I-D-18"
+      STYLE
+        OUTLINECOLOR 179 193 204
+        #WIDTH 2
+        COLOR 179 193 204
+      END
+    END
+
+    CLASS NAME "LA-I-D-19"
+      EXPRESSION "kode=LA-I-D-19"
+      STYLE
+        OUTLINECOLOR 179 190 204
+        #WIDTH 2
+        COLOR 179 190 204
+      END
+    END
+
+    CLASS NAME "LA-I-D-20"
+      EXPRESSION "kode=LA-I-D-20"
+      STYLE
+        OUTLINECOLOR 180 182 203
+        #WIDTH 2
+        COLOR 180 182 203
+      END
+    END
+
+    CLASS NAME "LA-I-D-21"
+      EXPRESSION "kode=LA-I-D-21"
+      STYLE
+        OUTLINECOLOR 165 200 217
+        #WIDTH 2
+        COLOR 165 200 217
+      END
+    END
+
+    CLASS NAME "LA-I-D-22"
+      EXPRESSION "kode=LA-I-D-22"
+      STYLE
+        OUTLINECOLOR 169 199 214
+        #WIDTH 2
+        COLOR 169 199 214
+      END
+    END
+
+    CLASS NAME "LA-I-D-23"
+      EXPRESSION "kode=LA-I-D-23"
+      STYLE
+        OUTLINECOLOR 220 179 158
+        #WIDTH 2
+        COLOR 220 179 158
+      END
+    END
+
+    CLASS NAME "LA-I-D-24"
+      EXPRESSION "kode=LA-I-D-24"
+      STYLE
+        OUTLINECOLOR 171 198 211
+        #WIDTH 2
+        COLOR 171 198 211
+      END
+    END
+
+    CLASS NAME "LA-I-D-25"
+      EXPRESSION "kode=LA-I-D-25"
+      STYLE
+        OUTLINECOLOR 217 180 160
+        #WIDTH 2
+        COLOR 217 180 160
+      END
+    END
+
+    CLASS NAME "LA-I-D-26"
+      EXPRESSION "kode=LA-I-D-26"
+      STYLE
+        OUTLINECOLOR 174 197 208
+        #WIDTH 2
+        COLOR 174 197 208
+      END
+    END
+
+    CLASS NAME "LA-I-D-27"
+      EXPRESSION "kode=LA-I-D-27"
+      STYLE
+        OUTLINECOLOR 168 195 214
+        #WIDTH 2
+        COLOR 168 195 214
+      END
+    END
+
+    CLASS NAME "LA-I-D-28"
+      EXPRESSION "kode=LA-I-D-28"
+      STYLE
+        OUTLINECOLOR 171 195 211
+        #WIDTH 2
+        COLOR 171 195 211
+      END
+    END
+
+    CLASS NAME "LA-I-D-29"
+      EXPRESSION "kode=LA-I-D-29"
+      STYLE
+        OUTLINECOLOR 174 194 208
+        #WIDTH 2
+        COLOR 174 194 208
+      END
+    END
+
+    CLASS NAME "LA-I-D-30"
+      EXPRESSION "kode=LA-I-D-30"
+      STYLE
+        OUTLINECOLOR 170 189 212
+        #WIDTH 2
+        COLOR 170 189 212
+      END
+    END
+
+    CLASS NAME "LA-I-D-31"
+      EXPRESSION "kode=LA-I-D-31"
+      STYLE
+        OUTLINECOLOR 171 176 211
+        #WIDTH 2
+        COLOR 171 176 211
+      END
+    END
+
+    CLASS NAME "LA-I-D-32"
+      EXPRESSION "kode=LA-I-D-32"
+      STYLE
+        OUTLINECOLOR 187 204 158
+        #WIDTH 2
+        COLOR 187 204 158
+      END
+    END
+
+    CLASS NAME "LA-I-D-33"
+      EXPRESSION "kode=LA-I-D-33"
+      STYLE
+        OUTLINECOLOR 219 191 138
+        #WIDTH 2
+        COLOR 219 191 138
+      END
+    END
+
+    CLASS NAME "LA-I-D-34"
+      EXPRESSION "kode=LA-I-D-34"
+      STYLE
+        OUTLINECOLOR 186 198 164
+        #WIDTH 2
+        COLOR 186 198 164
+      END
+    END
+
+    CLASS NAME "LA-I-D-35"
+      EXPRESSION "kode=LA-I-D-35"
+      STYLE
+        OUTLINECOLOR 213 189 144
+        #WIDTH 2
+        COLOR 213 189 144
+      END
+    END
+
+    CLASS NAME "LA-I-D-36"
+      EXPRESSION "kode=LA-I-D-36"
+      STYLE
+        OUTLINECOLOR 185 195 167
+        #WIDTH 2
+        COLOR 185 195 167
+      END
+    END
+
+    CLASS NAME "LA-I-D-37"
+      EXPRESSION "kode=LA-I-D-37"
+      STYLE
+        OUTLINECOLOR 209 188 148
+        #WIDTH 2
+        COLOR 209 188 148
+      END
+    END
+
+    CLASS NAME "LA-I-D-38"
+      EXPRESSION "kode=LA-I-D-38"
+      STYLE
+        OUTLINECOLOR 191 197 165
+        #WIDTH 2
+        COLOR 191 197 165
+      END
+    END
+
+    CLASS NAME "LA-I-D-39"
+      EXPRESSION "kode=LA-I-D-39"
+      STYLE
+        OUTLINECOLOR 189 194 168
+        #WIDTH 2
+        COLOR 189 194 168
+      END
+    END
+
+    CLASS NAME "LA-I-D-40"
+      EXPRESSION "kode=LA-I-D-40"
+      STYLE
+        OUTLINECOLOR 187 191 171
+        #WIDTH 2
+        COLOR 187 191 171
+      END
+    END
+
+    CLASS NAME "LA-I-D-41"
+      EXPRESSION "kode=LA-I-D-41"
+      STYLE
+        OUTLINECOLOR 192 192 170
+        #WIDTH 2
+        COLOR 192 192 170
+      END
+    END
+
+    CLASS NAME "LA-I-D-42"
+      EXPRESSION "kode=LA-I-D-42"
+      STYLE
+        OUTLINECOLOR 189 189 173
+        #WIDTH 2
+        COLOR 189 189 173
+      END
+    END
+
+    CLASS NAME "LA-I-D-43"
+      EXPRESSION "kode=LA-I-D-43"
+      STYLE
+        OUTLINECOLOR 189 182 173
+        #WIDTH 2
+        COLOR 189 182 173
+      END
+    END
+
+    CLASS NAME "LA-I-D-44"
+      EXPRESSION "kode=LA-I-D-44"
+      STYLE
+        OUTLINECOLOR 212 232 221
+        #WIDTH 2
+        COLOR 212 232 221
+      END
+    END
+
+    CLASS NAME "LA-I-D-45"
+      EXPRESSION "kode=LA-I-D-45"
+      STYLE
+        OUTLINECOLOR 160 188 202
+        #WIDTH 2
+        COLOR 160 188 202
+      END
+    END
+
+    CLASS NAME "LA-I-D-46"
+      EXPRESSION "kode=LA-I-D-46"
+      STYLE
+        OUTLINECOLOR 163 187 199
+        #WIDTH 2
+        COLOR 163 187 199
+      END
+    END
+
+    CLASS NAME "LA-I-D-47"
+      EXPRESSION "kode=LA-I-D-47"
+      STYLE
+        OUTLINECOLOR 208 170 149
+        #WIDTH 2
+        COLOR 208 170 149
+      END
+    END
+
+    CLASS NAME "LA-I-D-48"
+      EXPRESSION "kode=LA-I-D-48"
+      STYLE
+        OUTLINECOLOR 166 186 197
+        #WIDTH 2
+        COLOR 166 186 197
+      END
+    END
+
+    CLASS NAME "LA-I-D-49"
+      EXPRESSION "kode=LA-I-D-49"
+      STYLE
+        OUTLINECOLOR 164 184 198
+        #WIDTH 2
+        COLOR 164 184 198
+      END
+    END
+
+    CLASS NAME "LA-I-D-50"
+      EXPRESSION "kode=LA-I-D-50"
+      STYLE
+        OUTLINECOLOR 166 184 196
+        #WIDTH 2
+        COLOR 166 184 196
+      END
+    END
+
+    CLASS NAME "LA-I-D-51"
+      EXPRESSION "kode=LA-I-D-51"
+      STYLE
+        OUTLINECOLOR 166 180 196
+        #WIDTH 2
+        COLOR 166 180 196
+      END
+    END
+
+    CLASS NAME "LA-I-D-52"
+      EXPRESSION "kode=LA-I-D-52"
+      STYLE
+        OUTLINECOLOR 168 171 194
+        #WIDTH 2
+        COLOR 168 171 194
+      END
+    END
+
+    CLASS NAME "LA-I-D-53"
+      EXPRESSION "kode=LA-I-D-53"
+      STYLE
+        OUTLINECOLOR 170 173 192
+        #WIDTH 2
+        COLOR 170 173 192
+      END
+    END
+
+    CLASS NAME "LA-I-D-54"
+      EXPRESSION "kode=LA-I-D-54"
+      STYLE
+        OUTLINECOLOR 212 219 231
+        #WIDTH 2
+        COLOR 212 219 231
+      END
+    END
+
+    CLASS NAME "LA-I-D-55"
+      EXPRESSION "kode=LA-I-D-55"
+      STYLE
+        OUTLINECOLOR 151 191 211
+        #WIDTH 2
+        COLOR 151 191 211
+      END
+    END
+
+    CLASS NAME "LA-I-D-56"
+      EXPRESSION "kode=LA-I-D-56"
+      STYLE
+        OUTLINECOLOR 155 190 207
+        #WIDTH 2
+        COLOR 155 190 207
+      END
+    END
+
+    CLASS NAME "LA-I-D-57"
+      EXPRESSION "kode=LA-I-D-57"
+      STYLE
+        OUTLINECOLOR 214 168 143
+        #WIDTH 2
+        COLOR 214 168 143
+      END
+    END
+
+    CLASS NAME "LA-I-D-58"
+      EXPRESSION "kode=LA-I-D-58"
+      STYLE
+        OUTLINECOLOR 158 189 204
+        #WIDTH 2
+        COLOR 158 189 204
+      END
+    END
+
+    CLASS NAME "LA-I-D-59"
+      EXPRESSION "kode=LA-I-D-59"
+      STYLE
+        OUTLINECOLOR 154 185 208
+        #WIDTH 2
+        COLOR 154 185 208
+      END
+    END
+
+    CLASS NAME "LA-I-D-60"
+      EXPRESSION "kode=LA-I-D-60"
+      STYLE
+        OUTLINECOLOR 158 185 204
+        #WIDTH 2
+        COLOR 158 185 204
+      END
+    END
+
+    CLASS NAME "LA-I-D-61"
+      EXPRESSION "kode=LA-I-D-61"
+      STYLE
+        OUTLINECOLOR 157 179 205
+        #WIDTH 2
+        COLOR 157 179 205
+      END
+    END
+
+    CLASS NAME "LA-I-D-62"
+      EXPRESSION "kode=LA-I-D-62"
+      STYLE
+        OUTLINECOLOR 160 179 202
+        #WIDTH 2
+        COLOR 160 179 202
+      END
+    END
+
+    CLASS NAME "LA-I-D-63"
+      EXPRESSION "kode=LA-I-D-63"
+      STYLE
+        OUTLINECOLOR 158 163 204
+        #WIDTH 2
+        COLOR 158 163 204
+      END
+    END
+
+    CLASS NAME "LA-I-D-64"
+      EXPRESSION "kode=LA-I-D-64"
+      STYLE
+        OUTLINECOLOR 210 218 234
+        #WIDTH 2
+        COLOR 210 218 234
+      END
+    END
+
+    CLASS NAME "LA-I-D-65"
+      EXPRESSION "kode=LA-I-D-65"
+      STYLE
+        OUTLINECOLOR 154 188 162
+        #WIDTH 2
+        COLOR 154 188 162
+      END
+    END
+
+    CLASS NAME "LA-I-D-66"
+      EXPRESSION "kode=LA-I-D-66"
+      STYLE
+        OUTLINECOLOR 202 194 134
+        #WIDTH 2
+        COLOR 202 194 134
+      END
+    END
+
+    CLASS NAME "LA-I-D-67"
+      EXPRESSION "kode=LA-I-D-67"
+      STYLE
+        OUTLINECOLOR 156 186 162
+        #WIDTH 2
+        COLOR 156 186 162
+      END
+    END
+
+    CLASS NAME "LA-I-D-68"
+      EXPRESSION "kode=LA-I-D-68"
+      STYLE
+        OUTLINECOLOR 199 192 138
+        #WIDTH 2
+        COLOR 199 192 138
+      END
+    END
+
+    CLASS NAME "LA-I-D-69"
+      EXPRESSION "kode=LA-I-D-69"
+      STYLE
+        OUTLINECOLOR 158 183 164
+        #WIDTH 2
+        COLOR 158 183 164
+      END
+    END
+
+    CLASS NAME "LA-I-D-70"
+      EXPRESSION "kode=LA-I-D-70"
+      STYLE
+        OUTLINECOLOR 157 184 161
+        #WIDTH 2
+        COLOR 157 184 161
+      END
+    END
+
+    CLASS NAME "LA-I-D-71"
+      EXPRESSION "kode=LA-I-D-71"
+      STYLE
+        OUTLINECOLOR 159 183 162
+        #WIDTH 2
+        COLOR 159 183 162
+      END
+    END
+
+    CLASS NAME "LA-I-D-72"
+      EXPRESSION "kode=LA-I-D-72"
+      STYLE
+        OUTLINECOLOR 160 182 161
+        #WIDTH 2
+        COLOR 160 182 161
+      END
+    END
+
+    CLASS NAME "LA-I-D-73"
+      EXPRESSION "kode=LA-I-D-73"
+      STYLE
+        OUTLINECOLOR 165 179 162
+        #WIDTH 2
+        COLOR 165 179 162
+      END
+    END
+
+    CLASS NAME "LA-I-D-74"
+      EXPRESSION "kode=LA-I-D-74"
+      STYLE
+        OUTLINECOLOR 166 178 163
+        #WIDTH 2
+        COLOR 166 178 163
+      END
+    END
+
+    CLASS NAME "LA-I-D-75"
+      EXPRESSION "kode=LA-I-D-75"
+      STYLE
+        OUTLINECOLOR 211 227 228
+        #WIDTH 2
+        COLOR 211 227 228
+      END
+    END
+
+    CLASS NAME "LA-I-D-76"
+      EXPRESSION "kode=LA-I-D-76"
+      STYLE
+        OUTLINECOLOR 152 179 189
+        #WIDTH 2
+        COLOR 152 179 189
+      END
+    END
+
+    CLASS NAME "LA-I-D-77"
+      EXPRESSION "kode=LA-I-D-77"
+      STYLE
+        OUTLINECOLOR 154 179 188
+        #WIDTH 2
+        COLOR 154 179 188
+      END
+    END
+
+    CLASS NAME "LA-I-D-78"
+      EXPRESSION "kode=LA-I-D-78"
+      STYLE
+        OUTLINECOLOR 156 178 186
+        #WIDTH 2
+        COLOR 156 178 186
+      END
+    END
+
+    CLASS NAME "LA-I-D-79"
+      EXPRESSION "kode=LA-I-D-79"
+      STYLE
+        OUTLINECOLOR 155 177 187
+        #WIDTH 2
+        COLOR 155 177 187
+      END
+    END
+
+    CLASS NAME "LA-I-D-80"
+      EXPRESSION "kode=LA-I-D-80"
+      STYLE
+        OUTLINECOLOR 157 176 185
+        #WIDTH 2
+        COLOR 157 176 185
+      END
+    END
+
+    CLASS NAME "LA-I-D-81"
+      EXPRESSION "kode=LA-I-D-81"
+      STYLE
+        OUTLINECOLOR 157 174 185
+        #WIDTH 2
+        COLOR 157 174 185
+      END
+    END
+
+    CLASS NAME "LA-I-D-82"
+      EXPRESSION "kode=LA-I-D-82"
+      STYLE
+        OUTLINECOLOR 158 169 183
+        #WIDTH 2
+        COLOR 158 169 183
+      END
+    END
+
+    CLASS NAME "LA-I-D-83"
+      EXPRESSION "kode=LA-I-D-83"
+      STYLE
+        OUTLINECOLOR 211 219 228
+        #WIDTH 2
+        COLOR 211 219 228
+      END
+    END
+
+    CLASS NAME "LA-I-D-84"
+      EXPRESSION "kode=LA-I-D-84"
+      STYLE
+        OUTLINECOLOR 145 183 197
+        #WIDTH 2
+        COLOR 145 183 197
+      END
+    END
+
+    CLASS NAME "LA-I-D-85"
+      EXPRESSION "kode=LA-I-D-85"
+      STYLE
+        OUTLINECOLOR 147 182 194
+        #WIDTH 2
+        COLOR 147 182 194
+      END
+    END
+
+    CLASS NAME "LA-I-D-86"
+      EXPRESSION "kode=LA-I-D-86"
+      STYLE
+        OUTLINECOLOR 134 202 187
+        #WIDTH 2
+        COLOR 134 202 187
+      END
+    END
+
+    CLASS NAME "LA-I-D-87"
+      EXPRESSION "kode=LA-I-D-87"
+      STYLE
+        OUTLINECOLOR 147 179 194
+        #WIDTH 2
+        COLOR 147 179 194
+      END
+    END
+
+    CLASS NAME "LA-I-D-88"
+      EXPRESSION "kode=LA-I-D-88"
+      STYLE
+        OUTLINECOLOR 150 176 192
+        #WIDTH 2
+        COLOR 150 176 192
+      END
+    END
+
+    CLASS NAME "LA-I-D-89"
+      EXPRESSION "kode=LA-I-D-89"
+      STYLE
+        OUTLINECOLOR 151 168 191
+        #WIDTH 2
+        COLOR 151 168 191
+      END
+    END
+
+    CLASS NAME "LA-I-D-90"
+      EXPRESSION "kode=LA-I-D-90"
+      STYLE
+        OUTLINECOLOR 142 180 151
+        #WIDTH 2
+        COLOR 142 180 151
+      END
+    END
+
+    CLASS NAME "LA-I-D-91"
+      EXPRESSION "kode=LA-I-D-91"
+      STYLE
+        OUTLINECOLOR 144 178 152
+        #WIDTH 2
+        COLOR 144 178 152
+      END
+    END
+
+    CLASS NAME "LA-I-D-92"
+      EXPRESSION "kode=LA-I-D-92"
+      STYLE
+        OUTLINECOLOR 146 175 153
+        #WIDTH 2
+        COLOR 146 175 153
+      END
+    END
+
+    CLASS NAME "LA-I-D-93"
+      EXPRESSION "kode=LA-I-D-93"
+      STYLE
+        OUTLINECOLOR 146 176 150
+        #WIDTH 2
+        COLOR 146 176 150
+      END
+    END
+
+    CLASS NAME "LA-I-D-94"
+      EXPRESSION "kode=LA-I-D-94"
+      STYLE
+        OUTLINECOLOR 147 174 151
+        #WIDTH 2
+        COLOR 147 174 151
+      END
+    END
+
+    CLASS NAME "LA-I-D-95"
+      EXPRESSION "kode=LA-I-D-95"
+      STYLE
+        OUTLINECOLOR 149 172 150
+        #WIDTH 2
+        COLOR 149 172 150
+      END
+    END
+
+    CLASS NAME "LA-I-D-96"
+      EXPRESSION "kode=LA-I-D-96"
+      STYLE
+        OUTLINECOLOR 154 170 151
+        #WIDTH 2
+        COLOR 154 170 151
+      END
+    END
+
+    CLASS NAME "LA-I-D-97"
+      EXPRESSION "kode=LA-I-D-97"
+      STYLE
+        OUTLINECOLOR 204 223 224
+        #WIDTH 2
+        COLOR 204 223 224
+      END
+    END
+
+    CLASS NAME "LA-I-D-98"
+      EXPRESSION "kode=LA-I-D-98"
+      STYLE
+        OUTLINECOLOR 140 170 181
+        #WIDTH 2
+        COLOR 140 170 181
+      END
+    END
+
+    CLASS NAME "LA-I-D-99"
+      EXPRESSION "kode=LA-I-D-99"
+      STYLE
+        OUTLINECOLOR 142 169 180
+        #WIDTH 2
+        COLOR 142 169 180
+      END
+    END
+
+    CLASS NAME "LA-I-D-100"
+      EXPRESSION "kode=LA-I-D-100"
+      STYLE
+        OUTLINECOLOR 146 159 175
+        #WIDTH 2
+        COLOR 146 159 175
+      END
+    END
+
+    CLASS NAME "LA-I-D-101"
+      EXPRESSION "kode=LA-I-D-101"
+      STYLE
+        OUTLINECOLOR 131 174 190
+        #WIDTH 2
+        COLOR 131 174 190
+      END
+    END
+
+    CLASS NAME "LA-I-D-102"
+      EXPRESSION "kode=LA-I-D-102"
+      STYLE
+        OUTLINECOLOR 134 173 187
+        #WIDTH 2
+        COLOR 134 173 187
+      END
+    END
+
+    CLASS NAME "LA-I-D-103"
+      EXPRESSION "kode=LA-I-D-103"
+      STYLE
+        OUTLINECOLOR 134 170 187
+        #WIDTH 2
+        COLOR 134 170 187
+      END
+    END
+
+    CLASS NAME "LA-I-D-104"
+      EXPRESSION "kode=LA-I-D-104"
+      STYLE
+        OUTLINECOLOR 138 158 183
+        #WIDTH 2
+        COLOR 138 158 183
+      END
+    END
+  END
+
+  LAYER NAME "LA-I-S"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Innlandsslettelandskap under skoggrensen"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-I-S-1"
+      EXPRESSION "kode=LA-I-S-1"
+      STYLE
+        OUTLINECOLOR 180 199 133
+        #WIDTH 2
+        COLOR 180 199 133
+      END
+    END
+
+    CLASS NAME "LA-I-S-2"
+      EXPRESSION "kode=LA-I-S-2"
+      STYLE
+        OUTLINECOLOR 210 194 121
+        #WIDTH 2
+        COLOR 210 194 121
+      END
+    END
+
+    CLASS NAME "LA-I-S-3"
+      EXPRESSION "kode=LA-I-S-3"
+      STYLE
+        OUTLINECOLOR 178 194 137
+        #WIDTH 2
+        COLOR 178 194 137
+      END
+    END
+
+    CLASS NAME "LA-I-S-4"
+      EXPRESSION "kode=LA-I-S-4"
+      STYLE
+        OUTLINECOLOR 206 191 126
+        #WIDTH 2
+        COLOR 206 191 126
+      END
+    END
+
+    CLASS NAME "LA-I-S-5"
+      EXPRESSION "kode=LA-I-S-5"
+      STYLE
+        OUTLINECOLOR 177 191 141
+        #WIDTH 2
+        COLOR 177 191 141
+      END
+    END
+
+    CLASS NAME "LA-I-S-6"
+      EXPRESSION "kode=LA-I-S-6"
+      STYLE
+        OUTLINECOLOR 202 189 129
+        #WIDTH 2
+        COLOR 202 189 129
+      END
+    END
+
+    CLASS NAME "LA-I-S-7"
+      EXPRESSION "kode=LA-I-S-7"
+      STYLE
+        OUTLINECOLOR 175 188 143
+        #WIDTH 2
+        COLOR 175 188 143
+      END
+    END
+
+    CLASS NAME "LA-I-S-8"
+      EXPRESSION "kode=LA-I-S-8"
+      STYLE
+        OUTLINECOLOR 184 195 136
+        #WIDTH 2
+        COLOR 184 195 136
+      END
+    END
+
+    CLASS NAME "LA-I-S-9"
+      EXPRESSION "kode=LA-I-S-9"
+      STYLE
+        OUTLINECOLOR 182 191 141
+        #WIDTH 2
+        COLOR 182 191 141
+      END
+    END
+
+    CLASS NAME "LA-I-S-10"
+      EXPRESSION "kode=LA-I-S-10"
+      STYLE
+        OUTLINECOLOR 186 192 140
+        #WIDTH 2
+        COLOR 186 192 140
+      END
+    END
+
+    CLASS NAME "LA-I-S-11"
+      EXPRESSION "kode=LA-I-S-11"
+      STYLE
+        OUTLINECOLOR 190 186 142
+        #WIDTH 2
+        COLOR 190 186 142
+      END
+    END
+
+    CLASS NAME "LA-I-S-12"
+      EXPRESSION "kode=LA-I-S-12"
+      STYLE
+        OUTLINECOLOR 230 237 217
+        #WIDTH 2
+        COLOR 230 237 217
+      END
+    END
+
+    CLASS NAME "LA-I-S-13"
+      EXPRESSION "kode=LA-I-S-13"
+      STYLE
+        OUTLINECOLOR 151 201 131
+        #WIDTH 2
+        COLOR 151 201 131
+      END
+    END
+
+    CLASS NAME "LA-I-S-14"
+      EXPRESSION "kode=LA-I-S-14"
+      STYLE
+        OUTLINECOLOR 152 197 135
+        #WIDTH 2
+        COLOR 152 197 135
+      END
+    END
+
+    CLASS NAME "LA-I-S-15"
+      EXPRESSION "kode=LA-I-S-15"
+      STYLE
+        OUTLINECOLOR 198 205 126
+        #WIDTH 2
+        COLOR 198 205 126
+      END
+    END
+
+    CLASS NAME "LA-I-S-16"
+      EXPRESSION "kode=LA-I-S-16"
+      STYLE
+        OUTLINECOLOR 153 194 137
+        #WIDTH 2
+        COLOR 153 194 137
+      END
+    END
+
+    CLASS NAME "LA-I-S-17"
+      EXPRESSION "kode=LA-I-S-17"
+      STYLE
+        OUTLINECOLOR 156 198 134
+        #WIDTH 2
+        COLOR 156 198 134
+      END
+    END
+
+    CLASS NAME "LA-I-S-18"
+      EXPRESSION "kode=LA-I-S-18"
+      STYLE
+        OUTLINECOLOR 161 195 136
+        #WIDTH 2
+        COLOR 161 195 136
+      END
+    END
+
+    CLASS NAME "LA-I-S-19"
+      EXPRESSION "kode=LA-I-S-19"
+      STYLE
+        OUTLINECOLOR 169 194 137
+        #WIDTH 2
+        COLOR 169 194 137
+      END
+    END
+
+    CLASS NAME "LA-I-S-20"
+      EXPRESSION "kode=LA-I-S-20"
+      STYLE
+        OUTLINECOLOR 174 184 147
+        #WIDTH 2
+        COLOR 174 184 147
+      END
+    END
+
+    CLASS NAME "LA-I-S-21"
+      EXPRESSION "kode=LA-I-S-21"
+      STYLE
+        OUTLINECOLOR 173 182 150
+        #WIDTH 2
+        COLOR 173 182 150
+      END
+    END
+
+    CLASS NAME "LA-I-S-22"
+      EXPRESSION "kode=LA-I-S-22"
+      STYLE
+        OUTLINECOLOR 197 186 135
+        #WIDTH 2
+        COLOR 197 186 135
+      END
+    END
+
+    CLASS NAME "LA-I-S-23"
+      EXPRESSION "kode=LA-I-S-23"
+      STYLE
+        OUTLINECOLOR 172 180 151
+        #WIDTH 2
+        COLOR 172 180 151
+      END
+    END
+
+    CLASS NAME "LA-I-S-24"
+      EXPRESSION "kode=LA-I-S-24"
+      STYLE
+        OUTLINECOLOR 194 184 137
+        #WIDTH 2
+        COLOR 194 184 137
+      END
+    END
+
+    CLASS NAME "LA-I-S-25"
+      EXPRESSION "kode=LA-I-S-25"
+      STYLE
+        OUTLINECOLOR 171 178 153
+        #WIDTH 2
+        COLOR 171 178 153
+      END
+    END
+
+    CLASS NAME "LA-I-S-26"
+      EXPRESSION "kode=LA-I-S-26"
+      STYLE
+        OUTLINECOLOR 174 180 151
+        #WIDTH 2
+        COLOR 174 180 151
+      END
+    END
+
+    CLASS NAME "LA-I-S-27"
+      EXPRESSION "kode=LA-I-S-27"
+      STYLE
+        OUTLINECOLOR 175 177 154
+        #WIDTH 2
+        COLOR 175 177 154
+      END
+    END
+
+    CLASS NAME "LA-I-S-28"
+      EXPRESSION "kode=LA-I-S-28"
+      STYLE
+        OUTLINECOLOR 176 174 156
+        #WIDTH 2
+        COLOR 176 174 156
+      END
+    END
+
+    CLASS NAME "LA-I-S-29"
+      EXPRESSION "kode=LA-I-S-29"
+      STYLE
+        OUTLINECOLOR 229 234 220
+        #WIDTH 2
+        COLOR 229 234 220
+      END
+    END
+
+    CLASS NAME "LA-I-S-30"
+      EXPRESSION "kode=LA-I-S-30"
+      STYLE
+        OUTLINECOLOR 155 191 141
+        #WIDTH 2
+        COLOR 155 191 141
+      END
+    END
+
+    CLASS NAME "LA-I-S-31"
+      EXPRESSION "kode=LA-I-S-31"
+      STYLE
+        OUTLINECOLOR 195 201 131
+        #WIDTH 2
+        COLOR 195 201 131
+      END
+    END
+
+    CLASS NAME "LA-I-S-32"
+      EXPRESSION "kode=LA-I-S-32"
+      STYLE
+        OUTLINECOLOR 156 188 143
+        #WIDTH 2
+        COLOR 156 188 143
+      END
+    END
+
+    CLASS NAME "LA-I-S-33"
+      EXPRESSION "kode=LA-I-S-33"
+      STYLE
+        OUTLINECOLOR 193 198 134
+        #WIDTH 2
+        COLOR 193 198 134
+      END
+    END
+
+    CLASS NAME "LA-I-S-34"
+      EXPRESSION "kode=LA-I-S-34"
+      STYLE
+        OUTLINECOLOR 159 188 143
+        #WIDTH 2
+        COLOR 159 188 143
+      END
+    END
+
+    CLASS NAME "LA-I-S-35"
+      EXPRESSION "kode=LA-I-S-35"
+      STYLE
+        OUTLINECOLOR 162 185 146
+        #WIDTH 2
+        COLOR 162 185 146
+      END
+    END
+
+    CLASS NAME "LA-I-S-36"
+      EXPRESSION "kode=LA-I-S-36"
+      STYLE
+        OUTLINECOLOR 168 184 147
+        #WIDTH 2
+        COLOR 168 184 147
+      END
+    END
+  END
+
+  LAYER NAME "LA-K-A"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Kystås- og kysfjellandskap"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-K-A-1"
+      EXPRESSION "kode=LA-K-A-1"
+      STYLE
+        OUTLINECOLOR 175 236 175
+        #WIDTH 2
+        COLOR 175 236 175
+      END
+    END
+  END
+
+  LAYER NAME "LA-K-F"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Åpent fjordlandskap"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-K-F-1"
+      EXPRESSION "kode=LA-K-F-1"
+      STYLE
+        OUTLINECOLOR 207 215 216
+        #WIDTH 2
+        COLOR 207 215 216
+      END
+    END
+
+    CLASS NAME "LA-K-F-2"
+      EXPRESSION "kode=LA-K-F-2"
+      STYLE
+        OUTLINECOLOR 212 212 212
+        #WIDTH 2
+        COLOR 212 212 212
+      END
+    END
+
+    CLASS NAME "LA-K-F-3"
+      EXPRESSION "kode=LA-K-F-3"
+      STYLE
+        OUTLINECOLOR 234 198 179
+        #WIDTH 2
+        COLOR 234 198 179
+      END
+    END
+
+    CLASS NAME "LA-K-F-4"
+      EXPRESSION "kode=LA-K-F-4"
+      STYLE
+        OUTLINECOLOR 212 212 212
+        #WIDTH 2
+        COLOR 212 212 212
+      END
+    END
+
+    CLASS NAME "LA-K-F-5"
+      EXPRESSION "kode=LA-K-F-5"
+      STYLE
+        OUTLINECOLOR 212 212 212
+        #WIDTH 2
+        COLOR 212 212 212
+      END
+    END
+
+    CLASS NAME "LA-K-F-6"
+      EXPRESSION "kode=LA-K-F-6"
+      STYLE
+        OUTLINECOLOR 194 229 222
+        #WIDTH 2
+        COLOR 194 229 222
+      END
+    END
+
+    CLASS NAME "LA-K-F-7"
+      EXPRESSION "kode=LA-K-F-7"
+      STYLE
+        OUTLINECOLOR 198 225 219
+        #WIDTH 2
+        COLOR 198 225 219
+      END
+    END
+
+    CLASS NAME "LA-K-F-8"
+      EXPRESSION "kode=LA-K-F-8"
+      STYLE
+        OUTLINECOLOR 185 195 198
+        #WIDTH 2
+        COLOR 185 195 198
+      END
+    END
+
+    CLASS NAME "LA-K-F-9"
+      EXPRESSION "kode=LA-K-F-9"
+      STYLE
+        OUTLINECOLOR 191 191 191
+        #WIDTH 2
+        COLOR 191 191 191
+      END
+    END
+
+    CLASS NAME "LA-K-F-10"
+      EXPRESSION "kode=LA-K-F-10"
+      STYLE
+        OUTLINECOLOR 226 178 152
+        #WIDTH 2
+        COLOR 226 178 152
+      END
+    END
+
+    CLASS NAME "LA-K-F-11"
+      EXPRESSION "kode=LA-K-F-11"
+      STYLE
+        OUTLINECOLOR 191 191 191
+        #WIDTH 2
+        COLOR 191 191 191
+      END
+    END
+
+    CLASS NAME "LA-K-F-12"
+      EXPRESSION "kode=LA-K-F-12"
+      STYLE
+        OUTLINECOLOR 219 180 159
+        #WIDTH 2
+        COLOR 219 180 159
+      END
+    END
+
+    CLASS NAME "LA-K-F-13"
+      EXPRESSION "kode=LA-K-F-13"
+      STYLE
+        OUTLINECOLOR 191 191 191
+        #WIDTH 2
+        COLOR 191 191 191
+      END
+    END
+
+    CLASS NAME "LA-K-F-14"
+      EXPRESSION "kode=LA-K-F-14"
+      STYLE
+        OUTLINECOLOR 165 217 206
+        #WIDTH 2
+        COLOR 165 217 206
+      END
+    END
+
+    CLASS NAME "LA-K-F-15"
+      EXPRESSION "kode=LA-K-F-15"
+      STYLE
+        OUTLINECOLOR 171 211 202
+        #WIDTH 2
+        COLOR 171 211 202
+      END
+    END
+
+    CLASS NAME "LA-K-F-16"
+      EXPRESSION "kode=LA-K-F-16"
+      STYLE
+        OUTLINECOLOR 175 207 200
+        #WIDTH 2
+        COLOR 175 207 200
+      END
+    END
+
+    CLASS NAME "LA-K-F-17"
+      EXPRESSION "kode=LA-K-F-17"
+      STYLE
+        OUTLINECOLOR 162 176 179
+        #WIDTH 2
+        COLOR 162 176 179
+      END
+    END
+
+    CLASS NAME "LA-K-F-18"
+      EXPRESSION "kode=LA-K-F-18"
+      STYLE
+        OUTLINECOLOR 164 175 178
+        #WIDTH 2
+        COLOR 164 175 178
+      END
+    END
+
+    CLASS NAME "LA-K-F-19"
+      EXPRESSION "kode=LA-K-F-19"
+      STYLE
+        OUTLINECOLOR 201 171 141
+        #WIDTH 2
+        COLOR 201 171 141
+      END
+    END
+
+    CLASS NAME "LA-K-F-20"
+      EXPRESSION "kode=LA-K-F-20"
+      STYLE
+        OUTLINECOLOR 166 174 176
+        #WIDTH 2
+        COLOR 166 174 176
+      END
+    END
+
+    CLASS NAME "LA-K-F-21"
+      EXPRESSION "kode=LA-K-F-21"
+      STYLE
+        OUTLINECOLOR 198 171 144
+        #WIDTH 2
+        COLOR 198 171 144
+      END
+    END
+
+    CLASS NAME "LA-K-F-22"
+      EXPRESSION "kode=LA-K-F-22"
+      STYLE
+        OUTLINECOLOR 150 192 190
+        #WIDTH 2
+        COLOR 150 192 190
+      END
+    END
+
+    CLASS NAME "LA-K-F-23"
+      EXPRESSION "kode=LA-K-F-23"
+      STYLE
+        OUTLINECOLOR 152 189 188
+        #WIDTH 2
+        COLOR 152 189 188
+      END
+    END
+
+    CLASS NAME "LA-K-F-24"
+      EXPRESSION "kode=LA-K-F-24"
+      STYLE
+        OUTLINECOLOR 143 160 163
+        #WIDTH 2
+        COLOR 143 160 163
+      END
+    END
+
+    CLASS NAME "LA-K-F-25"
+      EXPRESSION "kode=LA-K-F-25"
+      STYLE
+        OUTLINECOLOR 145 158 161
+        #WIDTH 2
+        COLOR 145 158 161
+      END
+    END
+
+    CLASS NAME "LA-K-F-26"
+      EXPRESSION "kode=LA-K-F-26"
+      STYLE
+        OUTLINECOLOR 147 157 159
+        #WIDTH 2
+        COLOR 147 157 159
+      END
+    END
+  END
+
+  LAYER NAME "LA-K-S"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Skjermet indre kystslettelandskap"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-K-S-1"
+      EXPRESSION "kode=LA-K-S-1"
+      STYLE
+        OUTLINECOLOR 153 173 172
+        #WIDTH 2
+        COLOR 153 173 172
+      END
+    END
+
+    CLASS NAME "LA-K-S-2"
+      EXPRESSION "kode=LA-K-S-2"
+      STYLE
+        OUTLINECOLOR 203 176 124
+        #WIDTH 2
+        COLOR 203 176 124
+      END
+    END
+
+    CLASS NAME "LA-K-S-3"
+      EXPRESSION "kode=LA-K-S-3"
+      STYLE
+        OUTLINECOLOR 157 170 169
+        #WIDTH 2
+        COLOR 157 170 169
+      END
+    END
+
+    CLASS NAME "LA-K-S-4"
+      EXPRESSION "kode=LA-K-S-4"
+      STYLE
+        OUTLINECOLOR 194 174 132
+        #WIDTH 2
+        COLOR 194 174 132
+      END
+    END
+
+    CLASS NAME "LA-K-S-5"
+      EXPRESSION "kode=LA-K-S-5"
+      STYLE
+        OUTLINECOLOR 159 168 167
+        #WIDTH 2
+        COLOR 159 168 167
+      END
+    END
+
+    CLASS NAME "LA-K-S-6"
+      EXPRESSION "kode=LA-K-S-6"
+      STYLE
+        OUTLINECOLOR 139 187 180
+        #WIDTH 2
+        COLOR 139 187 180
+      END
+    END
+
+    CLASS NAME "LA-K-S-7"
+      EXPRESSION "kode=LA-K-S-7"
+      STYLE
+        OUTLINECOLOR 157 202 125
+        #WIDTH 2
+        COLOR 157 202 125
+      END
+    END
+
+    CLASS NAME "LA-K-S-8"
+      EXPRESSION "kode=LA-K-S-8"
+      STYLE
+        OUTLINECOLOR 144 182 177
+        #WIDTH 2
+        COLOR 144 182 177
+      END
+    END
+
+    CLASS NAME "LA-K-S-9"
+      EXPRESSION "kode=LA-K-S-9"
+      STYLE
+        OUTLINECOLOR 187 201 200
+        #WIDTH 2
+        COLOR 187 201 200
+      END
+    END
+
+    CLASS NAME "LA-K-S-10"
+      EXPRESSION "kode=LA-K-S-10"
+      STYLE
+        OUTLINECOLOR 219 200 164
+        #WIDTH 2
+        COLOR 219 200 164
+      END
+    END
+
+    CLASS NAME "LA-K-S-11"
+      EXPRESSION "kode=LA-K-S-11"
+      STYLE
+        OUTLINECOLOR 190 198 198
+        #WIDTH 2
+        COLOR 190 198 198
+      END
+    END
+
+    CLASS NAME "LA-K-S-12"
+      EXPRESSION "kode=LA-K-S-12"
+      STYLE
+        OUTLINECOLOR 213 198 170
+        #WIDTH 2
+        COLOR 213 198 170
+      END
+    END
+
+    CLASS NAME "LA-K-S-13"
+      EXPRESSION "kode=LA-K-S-13"
+      STYLE
+        OUTLINECOLOR 191 197 197
+        #WIDTH 2
+        COLOR 191 197 197
+      END
+    END
+
+    CLASS NAME "LA-K-S-14"
+      EXPRESSION "kode=LA-K-S-14"
+      STYLE
+        OUTLINECOLOR 210 197 173
+        #WIDTH 2
+        COLOR 210 197 173
+      END
+    END
+
+    CLASS NAME "LA-K-S-15"
+      EXPRESSION "kode=LA-K-S-15"
+      STYLE
+        OUTLINECOLOR 178 210 205
+        #WIDTH 2
+        COLOR 178 210 205
+      END
+    END
+
+    CLASS NAME "LA-K-S-16"
+      EXPRESSION "kode=LA-K-S-16"
+      STYLE
+        OUTLINECOLOR 187 218 164
+        #WIDTH 2
+        COLOR 187 218 164
+      END
+    END
+
+    CLASS NAME "LA-K-S-17"
+      EXPRESSION "kode=LA-K-S-17"
+      STYLE
+        OUTLINECOLOR 218 225 225
+        #WIDTH 2
+        COLOR 218 225 225
+      END
+    END
+
+    CLASS NAME "LA-K-S-18"
+      EXPRESSION "kode=LA-K-S-18"
+      STYLE
+        OUTLINECOLOR 233 222 200
+        #WIDTH 2
+        COLOR 233 222 200
+      END
+    END
+
+    CLASS NAME "LA-K-S-19"
+      EXPRESSION "kode=LA-K-S-19"
+      STYLE
+        OUTLINECOLOR 220 224 224
+        #WIDTH 2
+        COLOR 220 224 224
+      END
+    END
+
+    CLASS NAME "LA-K-S-20"
+      EXPRESSION "kode=LA-K-S-20"
+      STYLE
+        OUTLINECOLOR 213 230 228
+        #WIDTH 2
+        COLOR 213 230 228
+      END
+    END
+
+    CLASS NAME "LA-K-S-21"
+      EXPRESSION "kode=LA-K-S-21"
+      STYLE
+        OUTLINECOLOR 144 177 182
+        #WIDTH 2
+        COLOR 144 177 182
+      END
+    END
+
+    CLASS NAME "LA-K-S-22"
+      EXPRESSION "kode=LA-K-S-22"
+      STYLE
+        OUTLINECOLOR 207 166 119
+        #WIDTH 2
+        COLOR 207 166 119
+      END
+    END
+
+    CLASS NAME "LA-K-S-23"
+      EXPRESSION "kode=LA-K-S-23"
+      STYLE
+        OUTLINECOLOR 150 173 176
+        #WIDTH 2
+        COLOR 150 173 176
+      END
+    END
+
+    CLASS NAME "LA-K-S-24"
+      EXPRESSION "kode=LA-K-S-24"
+      STYLE
+        OUTLINECOLOR 198 166 128
+        #WIDTH 2
+        COLOR 198 166 128
+      END
+    END
+
+    CLASS NAME "LA-K-S-25"
+      EXPRESSION "kode=LA-K-S-25"
+      STYLE
+        OUTLINECOLOR 154 170 172
+        #WIDTH 2
+        COLOR 154 170 172
+      END
+    END
+
+    CLASS NAME "LA-K-S-26"
+      EXPRESSION "kode=LA-K-S-26"
+      STYLE
+        OUTLINECOLOR 135 192 189
+        #WIDTH 2
+        COLOR 135 192 189
+      END
+    END
+
+    CLASS NAME "LA-K-S-27"
+      EXPRESSION "kode=LA-K-S-27"
+      STYLE
+        OUTLINECOLOR 181 203 207
+        #WIDTH 2
+        COLOR 181 203 207
+      END
+    END
+
+    CLASS NAME "LA-K-S-28"
+      EXPRESSION "kode=LA-K-S-28"
+      STYLE
+        OUTLINECOLOR 222 193 161
+        #WIDTH 2
+        COLOR 222 193 161
+      END
+    END
+
+    CLASS NAME "LA-K-S-29"
+      EXPRESSION "kode=LA-K-S-29"
+      STYLE
+        OUTLINECOLOR 185 200 202
+        #WIDTH 2
+        COLOR 185 200 202
+      END
+    END
+
+    CLASS NAME "LA-K-S-30"
+      EXPRESSION "kode=LA-K-S-30"
+      STYLE
+        OUTLINECOLOR 215 193 167
+        #WIDTH 2
+        COLOR 215 193 167
+      END
+    END
+
+    CLASS NAME "LA-K-S-31"
+      EXPRESSION "kode=LA-K-S-31"
+      STYLE
+        OUTLINECOLOR 188 198 200
+        #WIDTH 2
+        COLOR 188 198 200
+      END
+    END
+
+    CLASS NAME "LA-K-S-32"
+      EXPRESSION "kode=LA-K-S-32"
+      STYLE
+        OUTLINECOLOR 175 213 211
+        #WIDTH 2
+        COLOR 175 213 211
+      END
+    END
+
+    CLASS NAME "LA-K-S-33"
+      EXPRESSION "kode=LA-K-S-33"
+      STYLE
+        OUTLINECOLOR 179 209 208
+        #WIDTH 2
+        COLOR 179 209 208
+      END
+    END
+
+    CLASS NAME "LA-K-S-34"
+      EXPRESSION "kode=LA-K-S-34"
+      STYLE
+        OUTLINECOLOR 215 227 229
+        #WIDTH 2
+        COLOR 215 227 229
+      END
+    END
+
+    CLASS NAME "LA-K-S-35"
+      EXPRESSION "kode=LA-K-S-35"
+      STYLE
+        OUTLINECOLOR 235 218 198
+        #WIDTH 2
+        COLOR 235 218 198
+      END
+    END
+
+    CLASS NAME "LA-K-S-36"
+      EXPRESSION "kode=LA-K-S-36"
+      STYLE
+        OUTLINECOLOR 217 225 226
+        #WIDTH 2
+        COLOR 217 225 226
+      END
+    END
+
+    CLASS NAME "LA-K-S-37"
+      EXPRESSION "kode=LA-K-S-37"
+      STYLE
+        OUTLINECOLOR 214 234 199
+        #WIDTH 2
+        COLOR 214 234 199
+      END
+    END
+
+    CLASS NAME "LA-K-S-38"
+      EXPRESSION "kode=LA-K-S-38"
+      STYLE
+        OUTLINECOLOR 133 174 193
+        #WIDTH 2
+        COLOR 133 174 193
+      END
+    END
+
+    CLASS NAME "LA-K-S-39"
+      EXPRESSION "kode=LA-K-S-39"
+      STYLE
+        OUTLINECOLOR 213 148 114
+        #WIDTH 2
+        COLOR 213 148 114
+      END
+    END
+
+    CLASS NAME "LA-K-S-40"
+      EXPRESSION "kode=LA-K-S-40"
+      STYLE
+        OUTLINECOLOR 143 171 183
+        #WIDTH 2
+        COLOR 143 171 183
+      END
+    END
+
+    CLASS NAME "LA-K-S-41"
+      EXPRESSION "kode=LA-K-S-41"
+      STYLE
+        OUTLINECOLOR 203 151 124
+        #WIDTH 2
+        COLOR 203 151 124
+      END
+    END
+
+    CLASS NAME "LA-K-S-42"
+      EXPRESSION "kode=LA-K-S-42"
+      STYLE
+        OUTLINECOLOR 129 195 197
+        #WIDTH 2
+        COLOR 129 195 197
+      END
+    END
+
+    CLASS NAME "LA-K-S-43"
+      EXPRESSION "kode=LA-K-S-43"
+      STYLE
+        OUTLINECOLOR 136 189 191
+        #WIDTH 2
+        COLOR 136 189 191
+      END
+    END
+
+    CLASS NAME "LA-K-S-44"
+      EXPRESSION "kode=LA-K-S-44"
+      STYLE
+        OUTLINECOLOR 174 201 214
+        #WIDTH 2
+        COLOR 174 201 214
+      END
+    END
+
+    CLASS NAME "LA-K-S-45"
+      EXPRESSION "kode=LA-K-S-45"
+      STYLE
+        OUTLINECOLOR 226 181 157
+        #WIDTH 2
+        COLOR 226 181 157
+      END
+    END
+
+    CLASS NAME "LA-K-S-46"
+      EXPRESSION "kode=LA-K-S-46"
+      STYLE
+        OUTLINECOLOR 180 199 207
+        #WIDTH 2
+        COLOR 180 199 207
+      END
+    END
+
+    CLASS NAME "LA-K-S-47"
+      EXPRESSION "kode=LA-K-S-47"
+      STYLE
+        OUTLINECOLOR 219 183 164
+        #WIDTH 2
+        COLOR 219 183 164
+      END
+    END
+
+    CLASS NAME "LA-K-S-48"
+      EXPRESSION "kode=LA-K-S-48"
+      STYLE
+        OUTLINECOLOR 183 198 204
+        #WIDTH 2
+        COLOR 183 198 204
+      END
+    END
+
+    CLASS NAME "LA-K-S-49"
+      EXPRESSION "kode=LA-K-S-49"
+      STYLE
+        OUTLINECOLOR 171 215 216
+        #WIDTH 2
+        COLOR 171 215 216
+      END
+    END
+
+    CLASS NAME "LA-K-S-50"
+      EXPRESSION "kode=LA-K-S-50"
+      STYLE
+        OUTLINECOLOR 211 226 233
+        #WIDTH 2
+        COLOR 211 226 233
+      END
+    END
+
+    CLASS NAME "LA-K-S-51"
+      EXPRESSION "kode=LA-K-S-51"
+      STYLE
+        OUTLINECOLOR 215 225 229
+        #WIDTH 2
+        COLOR 215 225 229
+      END
+    END
+
+    CLASS NAME "LA-K-S-52"
+      EXPRESSION "kode=LA-K-S-52"
+      STYLE
+        OUTLINECOLOR 122 163 205
+        #WIDTH 2
+        COLOR 122 163 205
+      END
+    END
+
+    CLASS NAME "LA-K-S-53"
+      EXPRESSION "kode=LA-K-S-53"
+      STYLE
+        OUTLINECOLOR 218 126 108
+        #WIDTH 2
+        COLOR 218 126 108
+      END
+    END
+
+    CLASS NAME "LA-K-S-54"
+      EXPRESSION "kode=LA-K-S-54"
+      STYLE
+        OUTLINECOLOR 136 163 191
+        #WIDTH 2
+        COLOR 136 163 191
+      END
+    END
+
+    CLASS NAME "LA-K-S-55"
+      EXPRESSION "kode=LA-K-S-55"
+      STYLE
+        OUTLINECOLOR 124 192 203
+        #WIDTH 2
+        COLOR 124 192 203
+      END
+    END
+
+    CLASS NAME "LA-K-S-56"
+      EXPRESSION "kode=LA-K-S-56"
+      STYLE
+        OUTLINECOLOR 132 186 194
+        #WIDTH 2
+        COLOR 132 186 194
+      END
+    END
+
+    CLASS NAME "LA-K-S-57"
+      EXPRESSION "kode=LA-K-S-57"
+      STYLE
+        OUTLINECOLOR 166 194 221
+        #WIDTH 2
+        COLOR 166 194 221
+      END
+    END
+
+    CLASS NAME "LA-K-S-58"
+      EXPRESSION "kode=LA-K-S-58"
+      STYLE
+        OUTLINECOLOR 175 194 212
+        #WIDTH 2
+        COLOR 175 194 212
+      END
+    END
+
+    CLASS NAME "LA-K-S-59"
+      EXPRESSION "kode=LA-K-S-59"
+      STYLE
+        OUTLINECOLOR 222 171 161
+        #WIDTH 2
+        COLOR 222 171 161
+      END
+    END
+
+    CLASS NAME "LA-K-S-60"
+      EXPRESSION "kode=LA-K-S-60"
+      STYLE
+        OUTLINECOLOR 180 194 207
+        #WIDTH 2
+        COLOR 180 194 207
+      END
+    END
+
+    CLASS NAME "LA-K-S-61"
+      EXPRESSION "kode=LA-K-S-61"
+      STYLE
+        OUTLINECOLOR 167 213 220
+        #WIDTH 2
+        COLOR 167 213 220
+      END
+    END
+
+    CLASS NAME "LA-K-S-62"
+      EXPRESSION "kode=LA-K-S-62"
+      STYLE
+        OUTLINECOLOR 207 222 237
+        #WIDTH 2
+        COLOR 207 222 237
+      END
+    END
+
+    CLASS NAME "LA-K-S-63"
+      EXPRESSION "kode=LA-K-S-63"
+      STYLE
+        OUTLINECOLOR 208 232 236
+        #WIDTH 2
+        COLOR 208 232 236
+      END
+    END
+  END
+
+  LAYER NAME "LA-M"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+   DATA "sql_statement"
+#   FILTER ('[kode]' = '27031')
+#  DATA 'LA.shp'
+  TYPE         POLYGON
+    METADATA
+      "title" "Marine ås- og fjellandskap"
+    END
+    PROJECTION
+      "init=epsg:32633"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-M-A"
+      EXPRESSION "kode=LA-M-A"
+      STYLE
+        OUTLINECOLOR 221 232 238
+        #WIDTH 2
+        COLOR 221 232 238
+      END
+    END
+
+    CLASS NAME "LA-M-D"
+      EXPRESSION "kode=LA-M-D"
+      STYLE
+        OUTLINECOLOR 133 194 224
+        #WIDTH 2
+        COLOR 133 194 224
+      END
+    END
+
+    CLASS NAME "LA-M-S"
+      EXPRESSION "kode=LA-M-S"
+      STYLE
+        OUTLINECOLOR 214 235 245
+        #WIDTH 2
+        COLOR 214 235 245
+      END
+    END
+  END
+

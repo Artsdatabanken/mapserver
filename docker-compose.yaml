@@ -1,0 +1,13 @@
+services:
+  mapserver:
+    image: camptocamp/mapserver:8.4 #camptocamp/mapserver:latest
+    container_name: mapserver
+    environment:
+      - MAPSERVER_CONFIG_FILE=/etc/mapserver/docker_mapserver.conf
+      - IO_TIMEOUT=300 #Lets Apache run for 300sec before timeout instead of the default 40sec.
+    ports:
+      - "8080:80"
+    volumes:
+      #- ./:/etc/mapserver/
+      - /c/mapserver/:/etc/mapserver/
+    restart: unless-stopped

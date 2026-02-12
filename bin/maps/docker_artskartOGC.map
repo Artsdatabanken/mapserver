@@ -1,0 +1,669 @@
+#
+# Artsdatabankens WMS mapfil
+#
+
+# the metadata entered here is what drives the OGC interfaces:
+# OGC:WMS
+# OGC:WFS
+# OGC:WCS
+# OGC:WMC
+#
+# Here are example URLs so you can see where the metadata entered
+# below fits in:
+#
+# For OGC:WMS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.1.1&service=WMS&request=GetCapabilities
+#
+# For OGC:WFS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WFS&request=GetCapabilities
+#
+# For OGC:WCS:
+#
+# http://129.241.46.252/WMS/mapserv.exe?map=wms.map&version=1.0.0&service=WCS&request=GetCapabilities
+#
+
+MAP
+ #CONFIG "MS_ERRORFILE" "ms_error.txt"
+ #CONFIG "PROJ_LIB" "D:/MapServer/bin/nad/"
+ # all temp files get prefixed with this string
+ NAME Artskart
+ 
+ /*
+ MAXSIZE 12000
+
+ # background color of image if transparency
+ # is not requested
+ IMAGECOLOR 125 125 125
+
+ # default output image dimensions
+ SIZE 600 400
+
+ # always returns a map
+ STATUS ON
+ */
+ # SHAPEPATH "C:/MapServer/bin/kartdata/Artskart" 
+
+ SHAPEPATH "/etc/mapserver/bin/kartdata/artskart/" #Lokal base
+
+ # set top level projection
+ PROJECTION
+  "init=epsg:25833"
+ END
+
+ 
+
+ # image format options
+ OUTPUTFORMAT
+  NAME "png"
+  DRIVER AGG/PNG
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "GAMMA=0.75"
+END
+
+OUTPUTFORMAT
+    NAME "application/json"
+    DRIVER "OGR/GEOJSON"
+    MIMETYPE "application/json"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "STORAGE=memory"
+END
+
+OUTPUTFORMAT
+  NAME "gif"
+  DRIVER GD/GIF
+  MIMETYPE "image/gif"
+  IMAGEMODE PC256
+  EXTENSION "gif"
+END
+OUTPUTFORMAT
+  NAME "png8"
+  DRIVER AGG/PNG8
+  MIMETYPE "image/png; mode=8bit"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  FORMATOPTION "QUANTIZE_FORCE=on"
+  FORMATOPTION "QUANTIZE_COLORS=256"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "jpeg"
+  DRIVER AGG/JPEG
+  MIMETYPE "image/jpeg"
+  IMAGEMODE RGB
+  EXTENSION "jpg"
+  FORMATOPTION "GAMMA=0.75"
+END
+OUTPUTFORMAT
+  NAME "svg"
+  DRIVER CAIRO/SVG
+  MIMETYPE "image/svg+xml"
+  IMAGEMODE RGB
+  EXTENSION "svg"
+END
+OUTPUTFORMAT
+  NAME "pdf"
+  DRIVER CAIRO/PDF
+  MIMETYPE "application/x-pdf"
+  IMAGEMODE RGB
+  EXTENSION "pdf"
+END
+OUTPUTFORMAT
+  NAME "GTiff"
+  DRIVER GDAL/GTiff
+  MIMETYPE "image/tiff"
+  IMAGEMODE RGB
+  EXTENSION "tif"
+END
+
+OUTPUTFORMAT
+  NAME "cairopng"
+  DRIVER CAIRO/PNG
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+END
+
+ # minx miny maxx maxy
+ # sets:
+ # /WMT_MS_Capabilities/Capability/Layer/LatLonBoundingBox(@minx @miny @maxx @maxx)
+#EXTENT -300000 5000000 1000000 9000000 # World
+EXTENT 300000 7000000 310000 7010000 #Server times out if number of features starts in the millions.
+#Smaller bbox soves this by not loading the WHOLE feature-dataset.
+
+ # add def pointers for symbols
+
+ #SYMBOLSET "symbols/symbols.sym"
+ FONTSET   "/etc/mapserver/bin/maps/fonts/fonts.txt"
+ #
+ # Start of web interface definition
+ WEB
+
+  # this is the real filepath to the temp dir for intermediate file creation
+  IMAGEPATH "/etc/mapserver/bin/maps/output/"
+
+  # this is the web-accessible path to IMAGEPATH
+  #IMAGEURL "/output/"
+
+  METADATA
+
+
+    #"oga_max_limit" "100"
+    
+    #"oga_html_template_directory" "../templates/"
+    "oga_html_template_directory" "/etc/mapserver/bin/maps/query/ogcapi/templates/html-plain/"
+
+   "map" "wms.map"
+   "ows_enable_request" "*"
+   "ows_getfeatureinfo_formatlist" "text/plain, text/html, Application/json, geojson"
+   
+
+   #OGC API Requirements
+   "oga_onlineresource" "http://localhost:8080/docker_artskartogc/ogcapi/"
+
+   # generic OWS specific info
+   # sets base URL for OGC Schemas so the root element in the
+   # Capabilities document points to the correct schema location
+   # to produce valid XML
+   "ows_schemas_location" "http://schemas.opengeospatial.net"
+
+   # unified OWS tags
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Title
+   # /WMT_MS_Capabilities/Capability/Layer/Title
+   # /WFS_Capabilities/Service/Title
+   "ows_title" "Data fra Artskart"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/Abstract
+   # /WFS_Capabilities/Service/Abstract
+   "ows_abstract" "Artsdatabanken publiserer via denne tjenesten data fra tjenesten Artskart"
+   
+   # sets:
+   # /WMT_MS_Capabilities/Service/KeywordList/Keyword[]
+   # /WFS_Capabilities/Service/Keywords   
+   # /WCS_Capabilities/Service/keywords/keyword[]
+   "ows_keywordlist" "Funn av arter, species observations"
+
+   # sets:
+   # /WMT_MS_Capabilities/Service/OnlineResource
+   # /WFS_Capabilities/Service/OnlineResource
+   # /WCS_Capabilities/Service/responsibleParty/onlineResource/@xlink:href
+   "ows_service_onlineresource" "https://artskart.artsdatabanken.no"
+   
+
+   #"ows_onlineresource" "https://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
+  
+   #"ows_onlineresource" "https://kart.artsdatabanken.no/WMS/artskart.aspx?"
+
+   "ows_fees" "none"
+  
+   "ows_accessconstraints" "read online"
+
+
+   "ows_contactperson" "Stein Hoem"
+
+
+   "ows_contactorganization" "Artsdatabanken"
+
+   "ows_contactposition" "Seksjonsleder"
+
+   "ows_addresstype" "post"
+
+   "ows_address"     "Postboks 1285 Torgarden"
+  
+   "ows_city" "Trondheim"
+ 
+   "ows_stateorprovince" "T"
+
+   "ows_postcode" "7462"
+
+   "ows_country" "Norway"
+
+   "ows_contactvoicetelephone" "+47-73590792"
+ 
+   "ows_contactfacsimiletelephone" "+47-73592240"
+
+   "ows_contactelectronicmailaddress" "stein.hoem@artsdatabanken.no"
+
+   # unless differently defined in LAYER object
+   # if you are setting > 1 SRS for WMS, you need to define "wms_srs" and "wfs_srs"
+   # seperately because OGC:WFS only accepts one OUTPUT SRS
+   "wms_srs" "EPSG:4326 EPSG:4258 EPSG:32633 EPSG:32632 EPSG:32631 EPSG:32634 EPSG:32635 EPSG:32636 EPSG:25829 EPSG:25830 EPSG:25831 EPSG:25832 EPSG:25833 EPSG:25834 EPSG:25835 EPSG:25836 EPSG:3857"
+   "wfs_srs" "EPSG:32633 EPSG:4326 EPSG:25833"
+   
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/OnlineResource/@xlink:href
+   "wms_attribution_onlineresource" "https://artskart.artsdatabanken.no/"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/Title   
+   "wms_attribution_title" "Data fra tjenesten Artskart"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@width
+   "wms_attribution_logourl_width" "655"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/@height
+   "wms_attribution_logourl_height" "130"
+
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/Format   
+   "wms_attribution_logourl_format" "image/png"
+   
+   # sets /WMT_MS_Capabilities/Capability/Layer/Attribution/LogoURL/OnlineResource/@xlink:href
+
+   #The link must be updated:
+   "wms_attribution_logourl_href" "https://design.artsdatabanken.no/icons/adb-logo/Artsdatabanken_Logo-CMYK-H-Colour@2x.png"
+
+   # we support GetFeatureInfo text/html queries
+   # you NEED query headers, footers, and body templates
+   "wms_feature_info_mime_type"  "text/html"
+   
+   
+   # sets namespace URI when performing a DescribeFeatureType or GetFeature
+   # in the root element of the XML response
+   "wfs_namespace_uri" "http://rs.tdwg.org/dwc/xsd/tdwg_dwc_simple.xsd"
+
+   # sets the XML namespace prefix to be used when defining types for data
+   # in this mapfile
+   "wfs_namespace_prefix" "dwcN"
+
+   # OGC:WCS
+   
+   # sets:
+   # /WCS_Capabilities/Service/label
+   "wcs_label" "Artsdatabankens karttjeneste for Artskart"
+
+   # sets:
+   # /WCS_Capabilities/Service/description
+   "wcs_description" "Funn av arter fra tjenesten Artskart artskart.artsdatabanken.no"
+
+   # sets:
+   # /WCS_Capabilities/Service/metadataLink/@xlink:href
+   "wcs_metadatalink_href" "https://www.artsdatabanken.no"
+   
+   "wms_allow_getmap_without_styles" "true"
+   END
+ END
+
+ # hilite map for GetFeatureInfo "info_format=text/html"
+ # requests
+/*
+ QUERYMAP
+  STATUS ON
+  SIZE 200 200
+  STYLE HILITE
+  COLOR 255 255 0
+ END
+
+
+ # Include chivo in the font library, and use one of those?
+LEGEND
+   STATUS ON
+   KEYSIZE 16 10
+   TRANSPARENT ON
+   LABEL
+     TYPE TRUETYPE
+       FONT "chivo"
+       SIZE 8
+       COLOR 1 1 1
+   END
+END
+ 
+      #Circle symbol
+      SYMBOL
+        NAME "circle"
+        TYPE ellipse
+        FILLED true
+        POINTS
+          1 1
+        END
+      END
+      SYMBOL
+	     NAME "TRIANGLE"
+	     TYPE vector
+	     POINTS
+	       0 4
+	       2 0
+	       4 4
+	       0 4
+	     END
+	     FILLED TRUE
+	   END
+	    SYMBOL
+	        NAME "SQUARE"
+	        TYPE vector
+	        POINTS
+	          0 0
+	          0 1
+	          1 1
+	          1 0
+	          0 0
+	        END
+	     FILLED TRUE
+	   END
+
+*/
+
+LAYER
+      NAME "DD_punkt"
+      GROUP "DD"
+      TYPE POINT
+
+      CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+      DATA "artskartredDD"
+
+      STATUS ON
+
+      TOLERANCE 6
+        CLASS
+          NAME 'DD - Datamangel' 
+          STYLE
+            SYMBOL "circle"
+            SIZE 5 
+             OUTLINECOLOR 100 100 100
+             COLOR "#6C6C6C"
+           END
+        END
+      
+     PROJECTION
+         "init=epsg:25833"
+     END
+       
+         METADATA
+        "DESCRIPTION" "DD"
+                "gml_featureid" "FID" 
+          "ows_title"    "DD - Datamangel"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          "wms_opaque"    "0"
+          "wms_group_title" "DD - Datamangel"
+          "wms_group_abstract" "DD - Datamangel"
+          "wms_dataurl_href" "https://www.artsdatabanken.no/"
+          "wms_dataurl_format" "text/html"
+          "ows_metadataurl_type" "FGDC"
+          "ows_metadataurl_href" "https://www.artsdatabanken.no"
+          "ows_metadataurl_format" "text/html"
+          "wfs_metadataurl_format" "TXT"
+          # specify which fields to include when returning queries
+          "gml_include_items" "all"
+          "wms_include_items" "all"
+
+          "oga_use_default_extent_for_getfeature" "false"# Optional. Can improve performance.
+         END
+       
+       TEMPLATE "VOID"
+  END
+ 
+
+
+ LAYER
+      NAME "NT_punkt"
+      GROUP "NT"
+      TYPE POINT
+    
+      
+      CONNECTIONTYPE OGR
+      CONNECTION "artskartredOO.sqlite"
+      PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+      DATA "artskartredNT"
+
+      STATUS ON
+
+      TOLERANCE 6
+        
+       CLASS
+          NAME 'NT - Nær truet' 
+          STYLE
+            SYMBOL "SQUARE"
+            SIZE 6
+             OUTLINECOLOR 0 0 0
+             COLOR "#E6C000"
+           END
+        END
+       
+     PROJECTION
+         "init=epsg:25833"
+     END
+       
+         METADATA
+        "DESCRIPTION" "NT"
+                "gml_featureid" "FID" 
+          "ows_title"    "NT - Nær truet"
+          "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+          "ows_keywordlist"    "Species observation, artsobservasjoner"
+          "wms_opaque"    "0"
+          "wms_group_title" "Vectors"
+          "wms_group_abstract" "Vector layers"
+          "wms_dataurl_href" "https://www.artsdatabanken.no/"
+          "wms_dataurl_format" "text/html"
+          "ows_metadataurl_type" "FGDC"
+          "ows_metadataurl_href" "https://www.artsdatabanken.no"
+          "ows_metadataurl_format" "text/html"
+          "wfs_metadataurl_format" "TXT"
+          # specify which fields to include when returning queries
+          "gml_include_items" "all"
+          "wms_include_items" "all"
+
+
+         # "oga_max_limit" "1000"
+
+       #  "wfs_extent" "300000 7000000 310000 7010000"
+
+       #   "oga_use_default_extent_for_getfeature" "false" # Optional. Can improve performance.
+         END
+       
+         TEMPLATE "VOID"
+  END
+ 
+
+ LAYER
+     NAME "VU_punkt"
+     TYPE POINT
+	 CONNECTIONTYPE OGR
+     CONNECTION "artskartredOO.sqlite"
+	 PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA "artskartredVU"
+     STATUS ON
+     TOLERANCE 6
+   # EXTENT -300000 5000000 1000000 9000000 # World
+ #    EXTENT 300000 7000000 301000 7001000 #Server times out if number of features starts in the millions.
+
+       
+        CLASS
+          NAME 'VU - Sårbar' 
+          STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR "#EBB107"
+           END
+        END
+      
+    PROJECTION
+        "init=epsg:25833"
+    END
+      
+        METADATA
+       "DESCRIPTION" "VU"
+         "gml_featureid" "FID" 
+         "ows_title"    "VU - Sårbar"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+        # "ows_metadataurl_type" "FGDC"
+        # "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+
+    #    "oga_use_default_extent_for_getfeature" "false"# Optional. Can improve performance.
+        END
+      
+        TEMPLATE "VOID"
+      
+ END
+
+ LAYER
+     NAME "EN_punkt"
+     GROUP "EN"
+     TYPE POINT
+	 CONNECTIONTYPE OGR
+     CONNECTION "artskartredOO.sqlite"
+	 PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA "artskartredEN"
+     STATUS ON
+     
+     
+     TOLERANCE 6
+       
+        CLASS
+          NAME 'EN - Sterkt truet' 
+         
+          STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR "#F34F39"
+           END
+        END
+      
+    PROJECTION
+        "init=epsg:25833"
+    END
+      
+        METADATA
+       "DESCRIPTION" "EN"
+         "gml_featureid" "FID"      
+         "ows_title"    "EN - Sterkt truet"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+
+         "oga_use_default_extent_for_getfeature" "false"# Optional. Can improve performance.
+        END
+      
+        TEMPLATE "VOID"
+      
+ END
+
+ LAYER
+     NAME "CR_punkt"
+     GROUP "CR"
+     TYPE POINT
+	 CONNECTIONTYPE OGR
+     CONNECTION "artskartredOO.sqlite"
+	 PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA "artskartredCR"
+
+
+         CLASS
+           NAME 'CR - Kritisk truet' 
+           STYLE
+            SYMBOL "circle"
+            SIZE 6 
+             OUTLINECOLOR 0 0 0
+             COLOR "#D61900"
+           END
+         END
+      
+    PROJECTION
+        "init=epsg:25833"
+    END
+      
+        METADATA
+       "DESCRIPTION" "CR"
+               "gml_featureid" "FID" 
+         "ows_title"    "CR - Kritisk truet"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+
+         "oga_use_default_extent_for_getfeature" "false"# Optional. Can improve performance.
+        END
+      
+      TEMPLATE "VOID"
+
+ END
+ LAYER
+     NAME "RE_punkt"
+     GROUP "RE"
+     TYPE POINT
+	 CONNECTIONTYPE OGR
+     CONNECTION "artskartredOO.sqlite"
+	 PROCESSING "CLOSE_CONNECTION=DEFER" # for maximum performance
+     DATA "artskartredRE"
+
+     
+     TOLERANCE 6
+         CLASS
+           NAME 'RE - Regionalt utdødd' 
+           STYLE
+             SYMBOL "TRIANGLE"
+             SIZE 6 
+              OUTLINECOLOR 0 0 0
+              COLOR "#262F31"
+            END
+         END
+      
+    PROJECTION
+        "init=epsg:25833"
+    END
+      
+        METADATA
+       "DESCRIPTION" "RE"
+               "gml_featureid" "FID" 
+         "ows_title"    "RE - Regionalt utdødd"
+         "ows_abstract"    "Funn av rødlistede arter fra tjenesten artskart.artsdatabanken.no"
+         "ows_keywordlist"    "Species observation, artsobservasjoner"
+         "wms_opaque"    "0"
+         "wms_group_title" "Vectors"
+         "wms_group_abstract" "Vector layers"
+         "wms_dataurl_href" "https://www.artsdatabanken.no/"
+         "wms_dataurl_format" "text/html"
+         "ows_metadataurl_type" "FGDC"
+         "ows_metadataurl_href" "https://www.artsdatabanken.no"
+         "ows_metadataurl_format" "text/html"
+         "wfs_metadataurl_format" "TXT"
+         # specify which fields to include when returning queries
+         "gml_include_items" "all"
+         "wms_include_items" "all"
+
+         "oga_use_default_extent_for_getfeature" "false"# Optional. Can improve performance.
+        END
+      
+      TEMPLATE "VOID"
+ END
+
+END
