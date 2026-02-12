@@ -1,0 +1,7 @@
+    STATUS ON
+    TYPE RASTER ### required
+    STATUS ON
+ #   DUMP TRUE
+    PROJECTION
+      "init=epsg:25833"
+    END

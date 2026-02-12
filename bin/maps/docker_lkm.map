@@ -1,0 +1,275 @@
+MAP
+  #CONFIG "MS_ERRORFILE" "stdout"
+  #CONFIG "PROJ_LIB" "D:/MapServer/bin/nad/"
+  EXTENT -542632.234809826 6325530.98751701 1637376.23480982 7887835.01248299
+  FONTSET   "/etc/mapserver/bin/maps/fonts/fonts.txt"
+  IMAGECOLOR 125 125 125
+  IMAGETYPE "png"
+  MAXSIZE 12000
+  NAME "LKM"
+  SHAPEPATH "/etc/mapserver/bin/kartdata/la/data/"
+  SIZE 1028 737
+  STATUS ON
+  UNITS METERS
+
+  OUTPUTFORMAT
+    NAME "png"
+    MIMETYPE "image/png"
+    DRIVER "AGG/PNG"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "gif"
+    MIMETYPE "image/gif"
+    DRIVER "AGG/PNG8"
+    EXTENSION "gif"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "png8"
+    MIMETYPE "image/png; mode=8bit"
+    DRIVER "AGG/PNG8"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "jpeg"
+    MIMETYPE "image/jpeg"
+    DRIVER "AGG/JPEG"
+    EXTENSION "jpg"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "svg"
+    MIMETYPE "image/svg+xml"
+    DRIVER "CAIRO/SVG"
+    EXTENSION "svg"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "pdf"
+    MIMETYPE "application/x-pdf"
+    DRIVER "CAIRO/PDF"
+    EXTENSION "pdf"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "GTiff"
+    MIMETYPE "image/tiff"
+    DRIVER "GDAL/GTiff"
+    EXTENSION "tif"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "cairopng"
+    MIMETYPE "image/png"
+    DRIVER "CAIRO/PNG"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  PROJECTION
+    "init=epsg:32633"
+  END # PROJECTION
+  LEGEND
+    KEYSIZE 16 10
+    KEYSPACING 5 5
+    LABEL
+      FONT "arial"
+      SIZE 8
+      COLOR 1 1 1
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+    END # LABEL
+    STATUS ON
+    TRANSPARENT TRUE
+  END # LEGEND
+
+  QUERYMAP
+    SIZE 200 200
+    STATUS OFF
+    STYLE HILITE
+  END # QUERYMAP
+
+  SCALEBAR
+    INTERVALS 4
+    LABEL
+      SIZE 10
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+    END # LABEL
+    SIZE 200 3
+    STATUS OFF
+    UNITS MILES
+  END # SCALEBAR
+
+  WEB
+    IMAGEPATH "/etc/MapServer/bin/maps/output/"
+    IMAGEURL "/etc/mapserver/bin/maps/output/"
+    METADATA
+      "wcs_metadatalink_href"	"http://www.artsdatabanken.no"
+      "wcs_label"	"NIN soner og seksjoner"
+      "wms_srs"	"EPSG:32633 EPSG:32632 EPSG:32631 EPSG:32634 EPSG:32635 EPSG:32636 EPSG:25829 EPSG:25830 EPSG:25831 EPSG:25832 EPSG:25833 EPSG:25834 EPSG:25835 EPSG:25836 EPSG:4326 EPSG:4258 EPSG:3857"
+      "wms_attribution_logourl_width"	"655"
+      "ows_country"	"Norway"
+      "ows_contactfacsimiletelephone"	"+47 934 66 992"
+      "ows_contactvoicetelephone"	"+47 934 66 992 "
+      "ows_keywordlist"	""
+      "ows_city"	"Trondheim"
+      "ows_addresstype"	"post"
+      "ows_contactperson"	"Stein Hoem"
+      "mapmanager_version"	"1.3.0.0"
+      "wms_attribution_title"	"Data fra tjenesten Artskart"
+      "ows_abstract"	"Modellerte rasterkart for bioklimatiske soner og sekjoner. Utarbeidet av NINA."
+      "ows_contactposition"	"Seksjonsleder IT"
+      "ows_onlineresource"	"http://kart.artsdatabanken.no/WMS/lkm.aspx?"
+      "ows_enable_request"	"*"
+      "ows_stateorprovince"	"ST"
+      "wms_feature_info_mime_type"	"text/plain"
+      "ows_schemas_location"	"http://schemas.opengeospatial.net"
+      "wms_attribution_logourl_format"	"image/png"
+      "ows_contactorganization"	"Artsdatabanken"
+      "wcs_description"	"Modellerte rasterkart for bioklimatiske soner og sekjoner. Utarbeidet av NINA."
+      "wms_attribution_logourl_height"	"130"
+      "ows_accessconstraints"	"read online"
+      "ows_title"	"NIN soner og seksjoner"
+      "ows_fees"	"free"
+      "ows_contactelectronicmailaddress"	"stein.hoem@artsdatabanken.no"
+      "ows_address"	"Havnegata 9"
+      "map"	"wms.map"
+      "ows_postcode"	"7010"
+    END # METADATA
+  END # WEB
+
+  LAYER
+    CLASSITEM "[pixel]"
+    DATA "seksjoner2017_klasser_colorTable_t.tif"
+    METADATA
+      "wms_include_items"	"value_0"
+      "wms_extent"	"-78000.000 6448000.000 1116000.000 7940000.000"
+      "ows_enable_request"	"*"
+      "gml_include_items"	"value_0"
+      "wms_title"	"Bioklimatiske seksjoner"
+    END # METADATA
+    NAME "seksjoner2017"
+    OFFSITE 255 255 255
+    STATUS ON
+    TEMPLATE "empty"
+    TILEITEM "location"
+    TYPE RASTER
+    UNITS METERS
+    CLASS
+      NAME "Sterkt oseanisk seksjon"
+      EXPRESSION "1"
+      STYLE
+        COLOR 48 69 253
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Klart oseanisk seksjon"
+      EXPRESSION "2"
+      STYLE
+        COLOR 103 117 253
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Svak oseanisk seksjon"
+      EXPRESSION "3"
+      STYLE
+        COLOR 129 253 254
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Overgangsseksjon"
+      EXPRESSION "4"
+      STYLE
+        COLOR 179 253 247
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Svak kontinental seksjon"
+      EXPRESSION "5"
+      STYLE
+        COLOR 235 249 250
+      END # STYLE
+    END # CLASS
+  END # LAYER
+
+  LAYER
+    CLASSITEM "[pixel]"
+    DATA "soner2017_klasser_colorTable_t.tif"
+    METADATA
+      "wms_include_items"	"value_0"
+      "wms_extent"	"-78000.000 6448000.000 1116000.000 7940000.000"
+      "ows_enable_request"	"*"
+      "gml_include_items"	"value_0"
+      "wms_title"	"Bioklimatiske soner"
+    END # METADATA
+    NAME "soner2017"
+    OFFSITE 255 255 255
+    STATUS ON
+    TEMPLATE "empty"
+    TILEITEM "location"
+    TYPE RASTER
+    UNITS METERS
+    CLASS
+      NAME "Boreonemoral"
+      EXPRESSION "1"
+      STYLE
+        COLOR 253 194 111
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Sørboreal"
+      EXPRESSION "2"
+      STYLE
+        COLOR 253 250 64
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Mellomboreal"
+      EXPRESSION "3"
+      STYLE
+        COLOR 165 254 164
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Nordboreal"
+      EXPRESSION "4"
+      STYLE
+        COLOR 167 253 88
+      END # STYLE
+    END # CLASS
+    CLASS
+      NAME "Lavalpin"
+      EXPRESSION "5"
+      STYLE
+        COLOR 116 218 255
+      END # STYLE
+    END # CLASS
+  END # LAYER
+
+END # MAP

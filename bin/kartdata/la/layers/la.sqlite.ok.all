@@ -1,0 +1,29 @@
+  LAYER NAME "LA-M"
+  CONNECTIONTYPE OGR
+  CONNECTION "/data/LA/LA.4326.sqlite"
+  DATA "la"
+#  FILTER ('[kode]' LIKE 'LA-I%')
+  STATUS ON
+  TYPE         POLYGON
+    PROJECTION
+      "init=epsg:4326"
+    END
+    CLASSITEM "kode"
+
+    CLASS NAME "LA-M-S"
+      EXPRESSION ('[kode]'='LA-I-D-1')
+      STYLE
+        OUTLINECOLOR 195 207 0
+        WIDTH 1
+        COLOR 0 207 165
+      END
+    END
+    CLASS NAME "LA-M-A"
+      EXPRESSION ('[kode]'='LA-I-D-44')
+      STYLE
+        OUTLINECOLOR 19 20 255
+        WIDTH 1
+        COLOR 0 207 65
+      END
+    END
+  END

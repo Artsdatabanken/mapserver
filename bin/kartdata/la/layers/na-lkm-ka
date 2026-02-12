@@ -1,0 +1,56 @@
+ LAYER
+    INCLUDE "../config/bigbadabom"
+    NAME "NA-LKM-KA"
+    STATUS ON
+    TYPE POLYGON
+    DATA "geography from data.v_geometry using unique id using srid=4326"
+    PROCESSING "NATIVE_FILTER=code like 'NA-LKM-KA-%'"
+    PROJECTION
+      "init=epsg:4326"
+    END
+    METADATA
+      "wms_srs" "epsg:4326"
+      "wms_title" "Kalk"
+      "wms_extent" "-0.968659 57.7478 31.9628 71.5612"
+      "ows_enable_request" "*"
+    END
+
+    CLASSITEM "code"
+
+    CLASS
+       EXPRESSION 'NA-LKM-KA-A'
+       NAME "NA-LKM-KA-A"
+       STYLE
+         COLOR 248 248 237
+       END
+    END
+    CLASS
+       EXPRESSION 'NA-LKM-KA-B'
+       NAME "NA-LKM-KA-B"
+       STYLE
+         COLOR 242 241 217
+       END
+    END
+    CLASS
+       EXPRESSION 'NA-LKM-KA-D'
+       NAME "NA-LKM-KA-D"
+       STYLE
+         COLOR 238 220 195
+       END
+    END
+    CLASS
+       EXPRESSION 'NA-LKM-KA-F'
+       NAME "NA-LKM-KA-F"
+       STYLE
+         COLOR 236 193 172
+       END
+    END
+    CLASS
+       EXPRESSION 'NA-LKM-KA-H'
+       NAME "NA-LKM-KA-H"
+       STYLE
+         COLOR 235 148 148
+       END
+    END
+  END
+
