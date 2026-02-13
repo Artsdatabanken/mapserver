@@ -209,7 +209,7 @@ END
    # /WCS_Capabilities/Capability/Request/DescribeFeatureType/DCPType/HTTP/Post/OnlineResource/@xlink:href
    # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
    # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
-   "oga_onlineresource" "http://localhost:8080/fremmedarterogc/ogcapi/"
+   "oga_onlineresource" "https://mapserver.test.artsdatabanken.no/fremmedarterogc/ogcapi/"
 
 
 

@@ -162,7 +162,7 @@ EXTENT 300000 7000000 310000 7010000 #Server times out if number of features sta
    
 
    #OGC API Requirements
-   "oga_onlineresource" "http://localhost:8080/docker_artskartogc/ogcapi/"
+   "oga_onlineresource" "https://mapserver.test.artsdatabanken.no/docker_artskartogc/ogcapi/"
 
    # generic OWS specific info
    # sets base URL for OGC Schemas so the root element in the
