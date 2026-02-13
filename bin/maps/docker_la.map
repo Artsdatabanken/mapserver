@@ -132,6 +132,7 @@ END
    #"ows_service_onlineresource" "http://artskart.artsdatabanken.no"
    #"ows_onlineresource" "http://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
    #"ows_onlineresource" "http://kart.artsdatabanken.no/WMS/artskart.aspx?"
+   "ows_onlineresource" "https://mapserver.test.artsdatabanken.no/?map=docker_la"
    "ows_fees" "none"  
    "ows_accessconstraints" "read online"
    "ows_contactperson" "Stein Arild Hoem"
