@@ -45,3 +45,9 @@ jobs:
   #     scriptType: 'pscore'
   #     scriptLocation: 'inlineScript'
   #     inlineScript: 'az webapp restart --name adb-test-mapserver-as --resource-group adb-test-mapserver-rg'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'bin'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
