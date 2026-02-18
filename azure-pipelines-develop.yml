@@ -84,4 +84,4 @@ jobs:
         $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
         $IP  
         Remove-AzStorageAccountNetworkRule -ResourceGroupName "ResourceGroup" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
-      preferredAzurePowerShellVersion: '3.1.9'
+      preferredAzurePowerShellVersion: '3.1.0'
