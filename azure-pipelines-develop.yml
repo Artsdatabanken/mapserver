@@ -64,5 +64,4 @@ jobs:
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
           --source "$(Pipeline.Workspace)/drop/bin" \
-          --destination "mapserverdata" \
-          --overwrite
+          --destination "mapserverdata"
