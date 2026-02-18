@@ -63,5 +63,5 @@ jobs:
         az storage file upload-batch \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Pipeline.Workspace)/drop/bin" \
+          --source "$(Pipeline.Workspace)/drop" \
           --destination "mapserverdata"
