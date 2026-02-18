@@ -15,13 +15,6 @@ jobs:
   steps:
   - checkout: self
     #lfs: true
-  
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'bin'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
-  
   - task: Docker@2
     displayName: Build an image
     inputs:
@@ -30,8 +23,6 @@ jobs:
       command: 'build'
       Dockerfile: '**/Dockerfile'
       tags: '$(tag)'
-  
-  
   - task: Docker@2
     displayName: Publish image
     inputs:
@@ -55,3 +46,23 @@ jobs:
   #     scriptLocation: 'inlineScript'
   #     inlineScript: 'az webapp restart --name adb-test-mapserver-as --resource-group adb-test-mapserver-rg'
 
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'bin'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+
+  - task: AzureCLI@2
+    displayName: "Upload files to Azure File Share"
+    inputs:
+      azureSubscription: 'test-deploy-legacy'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "Uploading files from: $(Pipeline.Workspace)/drop/bin"
+        az storage file upload-batch \
+         --account-name $(storageAccountName) \
+         --account-key $(storageAccountKey) \
+          --source "$(Pipeline.Workspace)/drop/bin" \
+          --destination "mapserverdata" \
+          --overwrite
