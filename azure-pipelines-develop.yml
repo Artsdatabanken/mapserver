@@ -52,6 +52,16 @@ jobs:
       ArtifactName: 'drop'
       publishLocation: 'Container'
 
+  - task: AzurePowerShell@5
+    inputs:
+      azureSubscription: 'test-deploy-code'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
+        $IP
+        Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-test-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.0'
+
   - task: AzureCLI@2
     displayName: "Upload files to Azure File Share"
     inputs:
@@ -65,3 +75,13 @@ jobs:
          --account-key $(storageAccountKey) \
           --source "$(Build.SourcesDirectory)/bin" \
           --destination "mapserverdata"
+
+  - task: AzurePowerShell@5
+    inputs:
+      azureSubscription: 'test-deploy-code'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
+        $IP  
+        Remove-AzStorageAccountNetworkRule -ResourceGroupName "ResourceGroup" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.9'
