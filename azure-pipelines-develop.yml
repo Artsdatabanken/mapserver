@@ -59,9 +59,9 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        echo "Uploading files from: $(Pipeline.Workspace)/drop/bin"
+        echo "Uploading files from: $(Build.SourcesDirectory)/bin"
         az storage file upload-batch \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Pipeline.Workspace)/drop" \
+          --source "$(Build.SourcesDirectory)/bin" \
           --destination "mapserverdata"
