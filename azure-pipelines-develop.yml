@@ -54,7 +54,7 @@ jobs:
 
   - task: AzurePowerShell@5
     inputs:
-      azureSubscription: 'test-deploy-code'
+      azureSubscription: 'test-deploy-legacy'
       ScriptType: 'InlineScript'
       Inline: |
         $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
@@ -78,7 +78,7 @@ jobs:
 
   - task: AzurePowerShell@5
     inputs:
-      azureSubscription: 'test-deploy-code'
+      azureSubscription: 'test-deploy-legacy'
       ScriptType: 'InlineScript'
       Inline: |
         $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
