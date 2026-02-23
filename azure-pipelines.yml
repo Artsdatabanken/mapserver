@@ -86,7 +86,9 @@ jobs:
       repository: 'artsdatabanken/mapserverazure'
       command: 'build'
       Dockerfile: '**/Dockerfile'
-      tags: '$(tag)'
+      tags: |
+        $(tag)
+        latest
   - task: Docker@2
     displayName: Publish image
     inputs:
