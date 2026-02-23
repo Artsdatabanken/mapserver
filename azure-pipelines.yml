@@ -43,7 +43,59 @@ jobs:
             }
         }
 
+  - task: PowerShell@2
+    displayName: Update ows_onlineresource URLs (partial replace)
+    inputs:
+      targetType: inline
+      script: |
+        $pattern = '^\s*("ows_onlineresource"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
+        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
+
+        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
+        ForEach-Object {
+            Write-Host "Checking file: $($_.FullName)"
+            Get-Content $_.FullName | ForEach-Object {
+                if ($_ -match $pattern) {
+                    Write-Host " MATCHED: $_"
+                    $newLine = ($_ -replace $pattern, $replacement)
+                    Write-Host " NEW:     $newLine"
+                }
+            }
+        }
+
+  - task: PowerShell@2
+    displayName: Update MS_ONLINERESOURCE URLs (partial replace)
+    inputs:
+      targetType: inline
+      script: |
+        $pattern = '^\s*(MS_ONLINERESOURCE\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
+        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
+
+        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
+        ForEach-Object {
+            $file = $_.FullName
+            Write-Host "Found file: $file"
+
+            $content = Get-Content $file
+            $foundMatch = $false
+
+            foreach ($line in $content) {
+                if ($line -match $pattern) {
+                    Write-Host " MATCHED: $line"
+                    $newLine = ($line -replace $pattern, $replacement)
+                    Write-Host " NEW:     $newLine"
+                    $foundMatch = $true
+                }
+            }
+
+            if (-not $foundMatch) {
+                Write-Host " No matching lines found in: $file"
+            }
+        }
+
+
   - task: AzurePowerShell@5
+    displayName: add IP to firewall
     inputs:
       azureSubscription: 'prod-deploy-legacy'
       ScriptType: 'InlineScript'
@@ -68,6 +120,7 @@ jobs:
           --destination "mapserverdata/bin"
 
   - task: AzurePowerShell@5
+    displayName: remove IP from firewall
     inputs:
       azureSubscription: 'prod-deploy-legacy'
       ScriptType: 'InlineScript'
@@ -76,3 +129,31 @@ jobs:
         $IP  
         Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
       preferredAzurePowerShellVersion: '3.1.0'
+
+  - task: Docker@2
+    displayName: Build an image
+    inputs:
+      containerRegistry: 'Dockerhub'
+      repository: 'artsdatabanken/mapserverazure'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
+      tags: |
+        $(tag)
+        latest
+  - task: Docker@2
+    displayName: Publish image
+    inputs:
+      containerRegistry: 'Dockerhub'
+      repository: 'artsdatabanken/mapserverazure'
+      command: 'push'
+      tags: |
+        $(tag)
+        latest
+
+
+  - task: AzureWebAppContainer@1
+    displayName: 'Azure Web App on Container Deploy'
+    inputs:
+      azureSubscription: 'prod-deploy-code'
+      appName: 'adb-prod-mapserver-as'
+      containers: 'artsdatabanken/mapserverazure:$(tag)'
