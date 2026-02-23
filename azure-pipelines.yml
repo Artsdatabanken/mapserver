@@ -68,7 +68,7 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        $pattern = '^\s*("MS_ONLINERESOURCE"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
+        $pattern = '^\s*(MS_ONLINERESOURCE\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
         $replacement = '$1https://mapserver.artsdatabanken.no$2"'
 
         Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
