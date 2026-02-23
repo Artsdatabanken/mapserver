@@ -207,6 +207,7 @@ END
    # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Get/OnlineResource/@xlink:href
    # /WCS_Capabilities/Capability/Request/GetFeature/DCPType/HTTP/Post/OnlineResource/@xlink:href
    #"ows_onlineresource" "https://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
+   "ows_onlineresource" "https://mapserver.test.artsdatabanken.no/?map=docker_artskartfa"
 
 
 
