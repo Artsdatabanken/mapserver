@@ -44,6 +44,7 @@ jobs:
         }
 
   - task: AzurePowerShell@5
+    displayName: add IP to firewall
     inputs:
       azureSubscription: 'prod-deploy-legacy'
       ScriptType: 'InlineScript'
@@ -68,6 +69,7 @@ jobs:
           --destination "mapserverdata/bin"
 
   - task: AzurePowerShell@5
+    displayName: remove IP from firewall
     inputs:
       azureSubscription: 'prod-deploy-legacy'
       ScriptType: 'InlineScript'
