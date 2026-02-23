@@ -1,22 +1,78 @@
 trigger:
 - main
 
+# no PR triggers
 pr: none
 
 variables:
-  tag: 'latest'
+  tag: '$(Build.BuildId)'
 
 jobs:
-- job: PublishToAppService
-  displayName: Publish
+- job: BuildAndPublish
+  displayName: Build and publish Docker image
   pool:
     vmImage: ubuntu-latest
-
   steps:
+  - checkout: self
+    #lfs: true
 
-  - task: AzureWebAppContainer@1
-    displayName: 'Deploy container to App Service'
+  # - task: AzureCLI@2
+  #   inputs:
+  #     azureSubscription: 'test-deploy-code'
+  #     scriptType: 'pscore'
+  #     scriptLocation: 'inlineScript'
+  #     inlineScript: 'az webapp restart --name adb-test-mapserver-as --resource-group adb-test-mapserver-rg'
+
+  - task: PowerShell@2
+    displayName: Update oga_onlineresource URLs (partial replace)
     inputs:
-      azureSubscription: 'prod-deploy-code'
-      appName: 'adb-prod-mapserver-as'
-      containers: 'artsdatabanken/mapserver:$(tag)'
+      targetType: inline
+      script: |
+        $pattern = '^\s*("oga_onlineresource"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
+        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
+
+        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
+        ForEach-Object {
+            Write-Host "Checking file: $($_.FullName)"
+            Get-Content $_.FullName | ForEach-Object {
+                if ($_ -match $pattern) {
+                    Write-Host " MATCHED: $_"
+                    $newLine = ($_ -replace $pattern, $replacement)
+                    Write-Host " NEW:     $newLine"
+                }
+            }
+        }
+
+  - task: AzurePowerShell@5
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
+        $IP
+        Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.0'
+
+  - task: AzureCLI@2
+    displayName: "Upload files to Azure File Share"
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "Uploading files from: $(Build.SourcesDirectory)/bin"
+        az storage file upload-batch \
+         --account-name $(storageAccountName) \
+         --account-key $(storageAccountKey) \
+          --source "$(Build.SourcesDirectory)/bin" \
+          --destination "mapserverdata/bin"
+
+  - task: AzurePowerShell@5
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
+        $IP  
+        Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.0'
