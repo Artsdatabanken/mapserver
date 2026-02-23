@@ -78,3 +78,29 @@ jobs:
         $IP  
         Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
       preferredAzurePowerShellVersion: '3.1.0'
+
+  - task: Docker@2
+    displayName: Build an image
+    inputs:
+      containerRegistry: 'Dockerhub'
+      repository: 'artsdatabanken/mapserverazure'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
+      tags: '$(tag)'
+  - task: Docker@2
+    displayName: Publish image
+    inputs:
+      containerRegistry: 'Dockerhub'
+      repository: 'artsdatabanken/mapserverazure'
+      command: 'push'
+      tags: |
+        $(tag)
+        latest
+
+
+  - task: AzureWebAppContainer@1
+    displayName: 'Azure Web App on Container Deploy'
+    inputs:
+      azureSubscription: 'prod-deploy-code'
+      appName: 'adb-prod-mapserver-as'
+      containers: 'artsdatabanken/mapserverazure:$(tag)'
