@@ -63,6 +63,26 @@ jobs:
             }
         }
 
+  - task: PowerShell@2
+    displayName: Update MS_ONLINERESOURCE URLs (partial replace)
+    inputs:
+      targetType: inline
+      script: |
+        $pattern = '^\s*("MS_ONLINERESOURCE"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
+        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
+
+        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
+        ForEach-Object {
+            Write-Host "Checking file: $($_.FullName)"
+            Get-Content $_.FullName | ForEach-Object {
+                if ($_ -match $pattern) {
+                    Write-Host " MATCHED: $_"
+                    $newLine = ($_ -replace $pattern, $replacement)
+                    Write-Host " NEW:     $newLine"
+                }
+            }
+        }
+
   - task: AzurePowerShell@5
     displayName: add IP to firewall
     inputs:
