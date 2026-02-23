@@ -73,15 +73,26 @@ jobs:
 
         Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
         ForEach-Object {
-            Write-Host "Checking file: $($_.FullName)"
-            Get-Content $_.FullName | ForEach-Object {
-                if ($_ -match $pattern) {
-                    Write-Host " MATCHED: $_"
-                    $newLine = ($_ -replace $pattern, $replacement)
+            $file = $_.FullName
+            Write-Host "Found file: $file"
+
+            $content = Get-Content $file
+            $foundMatch = $false
+
+            foreach ($line in $content) {
+                if ($line -match $pattern) {
+                    Write-Host " MATCHED: $line"
+                    $newLine = ($line -replace $pattern, $replacement)
                     Write-Host " NEW:     $newLine"
+                    $foundMatch = $true
                 }
             }
+
+            if (-not $foundMatch) {
+                Write-Host " No matching lines found in: $file"
+            }
         }
+
 
   - task: AzurePowerShell@5
     displayName: add IP to firewall
