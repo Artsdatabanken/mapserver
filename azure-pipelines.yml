@@ -33,15 +33,32 @@ jobs:
 
         Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
         ForEach-Object {
-            Write-Host "Checking file: $($_.FullName)"
-            Get-Content $_.FullName | ForEach-Object {
-                if ($_ -match $pattern) {
-                    Write-Host " MATCHED: $_"
-                    $newLine = ($_ -replace $pattern, $replacement)
-                    Write-Host " NEW:     $newLine"
+            $file = $_.FullName
+            Write-Host "Checking file: $file"
+
+            $content = Get-Content $file
+            $changed = $false
+            $newContent = @()
+
+            foreach ($line in $content) {
+                if ($line -match $pattern) {
+                    Write-Host " MATCHED: $line"
+                    $line = $line -replace $pattern, $replacement
+                    Write-Host " NEW:     $line"
+                    $changed = $true
                 }
+                $newContent += $line
+            }
+
+            if ($changed) {
+                Write-Host "Writing updated content to file: $file"
+                Set-Content -Path $file -Value $newContent
+            }
+            else {
+                Write-Host "No matching lines found in: $file"
             }
         }
+
 
   - task: PowerShell@2
     displayName: Update ows_onlineresource URLs (partial replace)
