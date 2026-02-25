@@ -105,6 +105,13 @@ jobs:
         Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
       preferredAzurePowerShellVersion: '3.1.0'
 
+  
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'cat $(Build.SourcesDirectory)/bin/maps/docker_artskartfaOGC.map | grep mapserver.test'
+  
+
   - task: AzureCLI@2
     displayName: "Upload files to Azure File Share"
     inputs:
