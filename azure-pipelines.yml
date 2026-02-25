@@ -112,12 +112,12 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        echo "Uploading files from: $(Build.SourcesDirectory)/bin"
+        echo "Uploading files from: $(Build.SourcesDirectory)"
         az storage file upload-batch \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Build.SourcesDirectory)/bin" \
-          --destination "mapserverdata/bin"
+          --source "$(Build.SourcesDirectory)" \
+          --destination "mapserverdata"
 
   - task: AzurePowerShell@5
     displayName: remove IP from firewall
