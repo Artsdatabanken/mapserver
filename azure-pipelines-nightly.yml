@@ -46,7 +46,7 @@ jobs:
          --account-key $(storageAccountKey) \
          --share-name mapserverdata \
          --source "$(Build.SourcesDirectory)/extracted/artskartredOO.sqlite" \
-         --path "test/artskartredOO.sqlite"
+         --path "bin/kartdata/artskart/artskartredOO.sqlite"
 
   - task: AzurePowerShell@5
     displayName: remove IP from firewall
