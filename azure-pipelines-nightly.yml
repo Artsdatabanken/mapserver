@@ -44,7 +44,7 @@ jobs:
         az storage file upload-batch \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Build.SourcesDirectory)/extracted" \
+          --source "$(Build.SourcesDirectory)/extracted/artskartredOO.sqlite" \
           --destination "mapserverdata/test"
 
   - task: AzurePowerShell@5
