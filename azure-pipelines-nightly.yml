@@ -41,11 +41,12 @@ jobs:
       scriptLocation: 'inlineScript'
       inlineScript: |
         echo "Uploading files from: $(Build.SourcesDirectory)"
-        az storage file upload-batch \
+        az storage file upload \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Build.SourcesDirectory)/extracted/artskartredOO.sqlite" \
-          --destination "mapserverdata/test"
+         --share-name mapserverdata \
+         --source "$(Build.SourcesDirectory)/extracted/artskartredOO.sqlite" \
+         --path "test/artskartredOO.sqlite"
 
   - task: AzurePowerShell@5
     displayName: remove IP from firewall
