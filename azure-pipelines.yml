@@ -33,15 +33,32 @@ jobs:
 
         Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
         ForEach-Object {
-            Write-Host "Checking file: $($_.FullName)"
-            Get-Content $_.FullName | ForEach-Object {
-                if ($_ -match $pattern) {
-                    Write-Host " MATCHED: $_"
-                    $newLine = ($_ -replace $pattern, $replacement)
-                    Write-Host " NEW:     $newLine"
+            $file = $_.FullName
+            Write-Host "Checking file: $file"
+
+            $content = Get-Content $file
+            $changed = $false
+            $newContent = @()
+
+            foreach ($line in $content) {
+                if ($line -match $pattern) {
+                    Write-Host " MATCHED: $line"
+                    $line = $line -replace $pattern, $replacement
+                    Write-Host " NEW:     $line"
+                    $changed = $true
                 }
+                $newContent += $line
+            }
+
+            if ($changed) {
+                Write-Host "Writing updated content to file: $file"
+                Set-Content -Path $file -Value $newContent
+            }
+            else {
+                Write-Host "No matching lines found in: $file"
             }
         }
+
 
   - task: PowerShell@2
     displayName: Update ows_onlineresource URLs (partial replace)
@@ -53,15 +70,32 @@ jobs:
 
         Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
         ForEach-Object {
-            Write-Host "Checking file: $($_.FullName)"
-            Get-Content $_.FullName | ForEach-Object {
-                if ($_ -match $pattern) {
-                    Write-Host " MATCHED: $_"
-                    $newLine = ($_ -replace $pattern, $replacement)
-                    Write-Host " NEW:     $newLine"
+            $file = $_.FullName
+            Write-Host "Checking file: $file"
+
+            $content = Get-Content $file
+            $changed = $false
+            $newContent = @()
+
+            foreach ($line in $content) {
+                if ($line -match $pattern) {
+                    Write-Host " MATCHED: $line"
+                    $line = $line -replace $pattern, $replacement
+                    Write-Host " NEW:     $line"
+                    $changed = $true
                 }
+                $newContent += $line
+            }
+
+            if ($changed) {
+                Write-Host "Writing updated content to file: $file"
+                Set-Content -Path $file -Value $newContent
+            }
+            else {
+                Write-Host "No matching lines found in: $file"
             }
         }
+
 
   - task: PowerShell@2
     displayName: Update MS_ONLINERESOURCE URLs (partial replace)
@@ -77,21 +111,28 @@ jobs:
             Write-Host "Found file: $file"
 
             $content = Get-Content $file
-            $foundMatch = $false
+            $changed = $false
+            $newContent = @()
 
             foreach ($line in $content) {
                 if ($line -match $pattern) {
                     Write-Host " MATCHED: $line"
-                    $newLine = ($line -replace $pattern, $replacement)
-                    Write-Host " NEW:     $newLine"
-                    $foundMatch = $true
+                    $line = $line -replace $pattern, $replacement
+                    Write-Host " NEW:     $line"
+                    $changed = $true
                 }
+                $newContent += $line
             }
 
-            if (-not $foundMatch) {
-                Write-Host " No matching lines found in: $file"
+            if ($changed) {
+                Write-Host "Writing updated content to file: $file"
+                Set-Content -Path $file -Value $newContent
+            }
+            else {
+                Write-Host "No matching lines found in: $file"
             }
         }
+
 
 
   - task: AzurePowerShell@5
@@ -104,6 +145,7 @@ jobs:
         $IP
         Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
       preferredAzurePowerShellVersion: '3.1.0'
+  
 
   - task: AzureCLI@2
     displayName: "Upload files to Azure File Share"
@@ -112,12 +154,12 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        echo "Uploading files from: $(Build.SourcesDirectory)/bin"
+        echo "Uploading files from: $(Build.SourcesDirectory)"
         az storage file upload-batch \
          --account-name $(storageAccountName) \
          --account-key $(storageAccountKey) \
-          --source "$(Build.SourcesDirectory)/bin" \
-          --destination "mapserverdata/bin"
+          --source "$(Build.SourcesDirectory)" \
+          --destination "mapserverdata"
 
   - task: AzurePowerShell@5
     displayName: remove IP from firewall
