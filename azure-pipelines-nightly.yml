@@ -29,7 +29,7 @@ jobs:
 
   - script: |
       wget "https://kart.artsdatabanken.no/WMS/kartdata/artskart/artskart.zip"
-      unzip artskart.zip -d extracted
+      unzip artskart.zip artskartredOO.sqlite -d extracted
     displayName: 'Download and Extract Artskart Data'
   
 
