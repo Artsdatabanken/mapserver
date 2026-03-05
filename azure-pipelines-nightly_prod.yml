@@ -1,0 +1,60 @@
+schedules:
+- cron: "0 6 * * *"   
+  displayName: Daily 6AM build
+  branches:
+    include:
+    - main
+  always: true
+
+
+pool:
+  vmImage: ubuntu-laprod
+
+
+jobs:
+- job: DownloadAndExtract
+  steps:
+  - checkout: self
+
+  - task: AzurePowerShell@5
+    displayName: add IP to firewall
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
+        $IP
+        Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.0'
+
+  - script: |
+      wget "https://kart.artsdatabanken.no/WMS/kartdata/artskart/artskart.zip"
+      unzip artskart.zip artskartredOO.sqlite -d extracted
+    displayName: 'Download and Extract Artskart Data'
+  
+
+  - task: AzureCLI@2
+    displayName: "Upload files to Azure File Share"
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo "Uploading files from: $(Build.SourcesDirectory)"
+        az storage file upload \
+         --account-name $(storageAccountName) \
+         --account-key $(storageAccountKey) \
+         --share-name mapserverdata \
+         --source "$(Build.SourcesDirectory)/extracted/artskartredOO.sqlite" \
+         --path "kartdata/artskart/artskartredOO.sqlite"
+
+  - task: AzurePowerShell@5
+    displayName: remove IP from firewall
+    inputs:
+      azureSubscription: 'prod-deploy-legacy'
+      ScriptType: 'InlineScript'
+      Inline: |
+        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
+        $IP  
+        Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+      preferredAzurePowerShellVersion: '3.1.0'
