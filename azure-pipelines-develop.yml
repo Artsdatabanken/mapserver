@@ -74,8 +74,7 @@ jobs:
              --account-key $(storageAccountKey) \
               --source "$(Build.SourcesDirectory)/bin" \
               --destination "mapserver" \
-              --destination-path "bin" \
-              --overwrite true
+              --destination-path "bin" 
 
       - task: AzurePowerShell@5
         inputs:
