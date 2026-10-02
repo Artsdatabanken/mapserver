@@ -20,8 +20,9 @@ jobs:
         inputs:
           containerRegistry: "Dockerhub"
           repository: "artsdatabanken/mapserverazure"
+          buildContext: "$(Build.SourcesDirectory)"
           command: "build"
-          Dockerfile: "**/Dockerfile"
+          Dockerfile: "$(Build.SourcesDirectory)/Dockerfile"
           tags: "$(tag)"
       - task: Docker@2
         displayName: Publish image

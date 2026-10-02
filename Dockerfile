@@ -7,6 +7,7 @@ ENV MAPSERVER_CONFIG_FILE=/etc/mapserver/docker_mapserver.conf \
     IO_TIMEOUT=300 \
     MS_MAPSERVER_URL=https://wms.test.artsdatabanken.no
 
+COPY docker_mapserver.conf /etc/mapserver/docker_mapserver.conf
 # Expose port (informational only — does NOT publish it on the host)
 EXPOSE 80
 
