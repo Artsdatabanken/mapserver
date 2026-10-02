@@ -69,7 +69,7 @@ jobs:
           scriptLocation: "inlineScript"
           inlineScript: |
             echo "Uploading files from: $(Build.SourcesDirectory)/bin"
-            az storage file upload-batch \
+            az storage blob upload-batch \
              --account-name $(storageAccountName) \
              --account-key $(storageAccountKey) \
               --source "$(Build.SourcesDirectory)/bin" \
