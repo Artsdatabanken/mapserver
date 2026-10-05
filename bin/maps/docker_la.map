@@ -15,7 +15,7 @@ MAP
   SHAPEPATH "/etc/mapserver/bin/kartdata/la/"
   #CONFIG "PROJ_LIB" "C:/inetpub/Webber/kart.artsdatabanken.no/Mapserver/nad/"
   PROJECTION
-    "init=epsg:25833"
+    "init=epsg:32633"
   END
 
 #  INCLUDE "../mapdata/la/outputformats" #path relative to mapfile
@@ -204,14 +204,13 @@ END
     DATA "la_i"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandslandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
 
      CLASS 
@@ -247,14 +246,13 @@ END
     DATA "la_k"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystlandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
          
     CLASS 
@@ -291,14 +289,13 @@ END
     DATA "la_i_a"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsås- og fjellandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -796,14 +793,13 @@ END
     DATA "la_i_d"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsdallandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -1751,14 +1747,13 @@ END
     DATA "la_i_s"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsslettelandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -2094,14 +2089,13 @@ END
     DATA "la_k_f"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Fjordlandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -2347,14 +2341,13 @@ END
     DATA "la_k_s"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystslettelandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -2933,14 +2926,13 @@ END
     DATA "la_k_a"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystås- og kystfjellandskap"
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:25833"
+      "init=epsg:4326"
     END
     CLASSITEM "code"
 
@@ -2961,15 +2953,14 @@ END
     DATA "la_m"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Marine landskap"
       "gml_include_items" "all"
     END #METADATA
     PROJECTION
-      "init=epsg:25833"
-    END
+      "init=epsg:4326"
+    END #PROJECTION
     CLASSITEM "code"
 
     CLASS NAME "LA-M-A"
