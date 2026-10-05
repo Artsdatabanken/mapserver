@@ -15,7 +15,7 @@ MAP
   SHAPEPATH "/etc/mapserver/bin/kartdata/la/"
   #CONFIG "PROJ_LIB" "C:/inetpub/Webber/kart.artsdatabanken.no/Mapserver/nad/"
   PROJECTION
-    "init=epsg:32633"
+    "init=epsg:25833"
   END
 
 #  INCLUDE "../mapdata/la/outputformats" #path relative to mapfile
@@ -211,7 +211,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
 
      CLASS 
@@ -254,7 +254,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
          
     CLASS 
@@ -298,7 +298,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -803,7 +803,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -1758,7 +1758,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -2101,7 +2101,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -2354,7 +2354,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -2940,7 +2940,7 @@ END
       "gml_include_items" "all"
     END
     PROJECTION
-      "init=epsg:4326"
+      "init=epsg:25833"
     END
     CLASSITEM "code"
 
@@ -2968,8 +2968,8 @@ END
       "gml_include_items" "all"
     END #METADATA
     PROJECTION
-      "init=epsg:4326"
-    END #PROJECTION
+      "init=epsg:25833"
+    END
     CLASSITEM "code"
 
     CLASS NAME "LA-M-A"
