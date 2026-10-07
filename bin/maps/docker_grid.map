@@ -165,7 +165,7 @@ END
    # sets:
    # /WMT_MS_Capabilities/Service/Abstract
    # /WFS_Capabilities/Service/Abstract
-   "ows_abstract" "Artsdatabanken publiserer via denne tjenesten GRID for bruk på kart"
+   "ows_abstract" "Artsdatabanken publiserer via denne tjenesten GRID for bruk pï¿½ kart"
    
    # sets:
    # /WMT_MS_Capabilities/Service/KeywordList/Keyword[]
@@ -232,7 +232,7 @@ END
    # sets:
    # /WMT_MS_Capabilities/Service/ContactInformation/ContactPosition
    # /WCS_Capabilities/Service/responsibleParty/positionName   
-   "ows_contactposition" "Overingeniør"
+   "ows_contactposition" "Overingeniï¿½r"
 
    # sets:
    # /WMT_MS_Capabilities/Service/ContactInformation/ContactAddress/AddressType
@@ -377,7 +377,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "Graticule"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -481,7 +483,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM32"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -584,7 +588,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM32"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -688,8 +694,10 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM32"
-      COLOR 0 0 0
-	LABEL
+      STYLE
+        COLOR 0 0 0
+      END
+	  LABEL
         COLOR  0 0 0
         FONT fritqat
         TYPE truetype
@@ -792,7 +800,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM33"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -841,7 +851,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM33"
-      COLOR 0 0 0
+      STYLE
+        COLOR 0 0 0
+      END
       LABEL
         COLOR  0 0 0
         FONT fritqat
@@ -889,7 +901,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM33"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -940,7 +954,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM34"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -991,7 +1007,9 @@ MININTERVAL 1000
      STATUS OFF
      CLASS
        NAME "UTM34"
-       COLOR 0 0 0
+       STYLE
+        COLOR 0 0 0
+       END
        LABEL
          COLOR  0 0 0
          FONT fritqat
@@ -1041,7 +1059,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM34"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -1094,7 +1114,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM35"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -1146,7 +1168,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM35"
-      COLOR 0 0 0
+      STYLE
+        COLOR 0 0 0
+      END
       LABEL
         COLOR  0 0 0
         FONT fritqat
@@ -1197,7 +1221,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM35"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -1251,7 +1277,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM36"
-      COLOR 120 120 120
+      STYLE
+        COLOR 120 120 120
+      END
       LABEL
         COLOR  120 120 120
         FONT fritqat
@@ -1302,7 +1330,9 @@ LAYER
     STATUS OFF
     CLASS
       NAME "UTM36"
-      COLOR 0 0 0
+      STYLE
+        COLOR 0 0 0
+      END
       LABEL
         COLOR  0 0 0
         FONT fritqat
@@ -1352,7 +1382,9 @@ MININTERVAL 10000
      STATUS OFF
      CLASS
        NAME "UTM36"
-       COLOR 120 120 120
+       STYLE
+        COLOR 120 120 120
+       END
        LABEL
          COLOR  120 120 120
          FONT fritqat
@@ -1403,7 +1435,9 @@ MININTERVAL 10000
      STATUS OFF
      CLASS
        NAME "TESTUTM33"
-       COLOR 120 120 120
+       STYLE
+        COLOR 120 120 120
+       END
        LABEL
          COLOR  120 120 120
          FONT fritqat

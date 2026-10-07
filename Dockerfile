@@ -3,10 +3,11 @@
 FROM camptocamp/mapserver:8.4
 
 # Set environment variables
-ENV MAPSERVER_CONFIG_FILE=/etc/mapserver/docker_mapserver.conf \
+ENV MAPSERVER_CONFIG_FILE=/etc/docker_mapserver.conf \
     IO_TIMEOUT=300 \
-    MS_MAPSERVER_URL=https://mapserver.test.artsdatabanken.no
+    MS_MAPSERVER_URL=https://wms.test.artsdatabanken.no
 
+COPY docker_mapserver.conf /etc/docker_mapserver.conf
 # Expose port (informational only — does NOT publish it on the host)
 EXPOSE 80
 

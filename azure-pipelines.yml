@@ -1,201 +1,199 @@
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 # no PR triggers
 pr: none
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: "$(Build.BuildId)"
 
 jobs:
-- job: BuildAndPublish
-  displayName: Build and publish Docker image
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - checkout: self
-    #lfs: true
+  - job: BuildAndPublish
+    displayName: Build and publish Docker image
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - checkout: self
+        #lfs: true
 
-  # - task: AzureCLI@2
-  #   inputs:
-  #     azureSubscription: 'test-deploy-code'
-  #     scriptType: 'pscore'
-  #     scriptLocation: 'inlineScript'
-  #     inlineScript: 'az webapp restart --name adb-test-mapserver-as --resource-group adb-test-mapserver-rg'
+      # - task: AzureCLI@2
+      #   inputs:
+      #     azureSubscription: 'test-deploy-code'
+      #     scriptType: 'pscore'
+      #     scriptLocation: 'inlineScript'
+      #     inlineScript: 'az webapp restart --name adb-test-mapserver-as --resource-group adb-test-mapserver-rg'
 
-  - task: PowerShell@2
-    displayName: Update oga_onlineresource URLs (partial replace)
-    inputs:
-      targetType: inline
-      script: |
-        $pattern = '^\s*("oga_onlineresource"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
-        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
+      - task: PowerShell@2
+        displayName: Update oga_onlineresource URLs (partial replace)
+        inputs:
+          targetType: inline
+          script: |
+            $pattern = '^\s*("oga_onlineresource"\s*")https://wms\.test\.artsdatabanken\.no(.*)"\s*$'
+            $replacement = '$1https://wms.artsdatabanken.no$2"'
 
-        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
-        ForEach-Object {
-            $file = $_.FullName
-            Write-Host "Checking file: $file"
+            Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
+            ForEach-Object {
+                $file = $_.FullName
+                Write-Host "Checking file: $file"
 
-            $content = Get-Content $file
-            $changed = $false
-            $newContent = @()
+                $content = Get-Content $file
+                $changed = $false
+                $newContent = @()
 
-            foreach ($line in $content) {
-                if ($line -match $pattern) {
-                    Write-Host " MATCHED: $line"
-                    $line = $line -replace $pattern, $replacement
-                    Write-Host " NEW:     $line"
-                    $changed = $true
+                foreach ($line in $content) {
+                    if ($line -match $pattern) {
+                        Write-Host " MATCHED: $line"
+                        $line = $line -replace $pattern, $replacement
+                        Write-Host " NEW:     $line"
+                        $changed = $true
+                    }
+                    $newContent += $line
                 }
-                $newContent += $line
-            }
 
-            if ($changed) {
-                Write-Host "Writing updated content to file: $file"
-                Set-Content -Path $file -Value $newContent
-            }
-            else {
-                Write-Host "No matching lines found in: $file"
-            }
-        }
-
-
-  - task: PowerShell@2
-    displayName: Update ows_onlineresource URLs (partial replace)
-    inputs:
-      targetType: inline
-      script: |
-        $pattern = '^\s*("ows_onlineresource"\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
-        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
-
-        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
-        ForEach-Object {
-            $file = $_.FullName
-            Write-Host "Checking file: $file"
-
-            $content = Get-Content $file
-            $changed = $false
-            $newContent = @()
-
-            foreach ($line in $content) {
-                if ($line -match $pattern) {
-                    Write-Host " MATCHED: $line"
-                    $line = $line -replace $pattern, $replacement
-                    Write-Host " NEW:     $line"
-                    $changed = $true
+                if ($changed) {
+                    Write-Host "Writing updated content to file: $file"
+                    Set-Content -Path $file -Value $newContent
                 }
-                $newContent += $line
-            }
-
-            if ($changed) {
-                Write-Host "Writing updated content to file: $file"
-                Set-Content -Path $file -Value $newContent
-            }
-            else {
-                Write-Host "No matching lines found in: $file"
-            }
-        }
-
-
-  - task: PowerShell@2
-    displayName: Update MS_ONLINERESOURCE URLs (partial replace)
-    inputs:
-      targetType: inline
-      script: |
-        $pattern = '^\s*(MS_ONLINERESOURCE\s*")https://mapserver\.test\.artsdatabanken\.no(.*)"\s*$'
-        $replacement = '$1https://mapserver.artsdatabanken.no$2"'
-
-        Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
-        ForEach-Object {
-            $file = $_.FullName
-            Write-Host "Found file: $file"
-
-            $content = Get-Content $file
-            $changed = $false
-            $newContent = @()
-
-            foreach ($line in $content) {
-                if ($line -match $pattern) {
-                    Write-Host " MATCHED: $line"
-                    $line = $line -replace $pattern, $replacement
-                    Write-Host " NEW:     $line"
-                    $changed = $true
+                else {
+                    Write-Host "No matching lines found in: $file"
                 }
-                $newContent += $line
             }
 
-            if ($changed) {
-                Write-Host "Writing updated content to file: $file"
-                Set-Content -Path $file -Value $newContent
+      - task: PowerShell@2
+        displayName: Update ows_onlineresource URLs (partial replace)
+        inputs:
+          targetType: inline
+          script: |
+            $pattern = '^\s*("ows_onlineresource"\s*")https://wms\.test\.artsdatabanken\.no(.*)"\s*$'
+            $replacement = '$1https://wms.artsdatabanken.no$2"'
+
+            Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter *.map |
+            ForEach-Object {
+                $file = $_.FullName
+                Write-Host "Checking file: $file"
+
+                $content = Get-Content $file
+                $changed = $false
+                $newContent = @()
+
+                foreach ($line in $content) {
+                    if ($line -match $pattern) {
+                        Write-Host " MATCHED: $line"
+                        $line = $line -replace $pattern, $replacement
+                        Write-Host " NEW:     $line"
+                        $changed = $true
+                    }
+                    $newContent += $line
+                }
+
+                if ($changed) {
+                    Write-Host "Writing updated content to file: $file"
+                    Set-Content -Path $file -Value $newContent
+                }
+                else {
+                    Write-Host "No matching lines found in: $file"
+                }
             }
-            else {
-                Write-Host "No matching lines found in: $file"
+
+      - task: PowerShell@2
+        displayName: Update MS_ONLINERESOURCE URLs (partial replace)
+        inputs:
+          targetType: inline
+          script: |
+            $pattern = '^\s*(MS_ONLINERESOURCE\s*")https://wms\.test\.artsdatabanken\.no(.*)"\s*$'
+            $replacement = '$1https://wms.artsdatabanken.no$2"'
+
+            Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter docker_mapserver.conf |
+            ForEach-Object {
+                $file = $_.FullName
+                Write-Host "Found file: $file"
+
+                $content = Get-Content $file
+                $changed = $false
+                $newContent = @()
+
+                foreach ($line in $content) {
+                    if ($line -match $pattern) {
+                        Write-Host " MATCHED: $line"
+                        $line = $line -replace $pattern, $replacement
+                        Write-Host " NEW:     $line"
+                        $changed = $true
+                    }
+                    $newContent += $line
+                }
+
+                if ($changed) {
+                    Write-Host "Writing updated content to file: $file"
+                    Set-Content -Path $file -Value $newContent
+                }
+                else {
+                    Write-Host "No matching lines found in: $file"
+                }
             }
-        }
 
+      - task: AzurePowerShell@5
+        displayName: add IP to firewall
+        inputs:
+          azureSubscription: "prod-deploy-legacy"
+          ScriptType: "InlineScript"
+          Inline: |
+            $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
+            $IP
+            Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+          preferredAzurePowerShellVersion: "3.1.0"
 
+      - task: AzureCLI@2
+        displayName: "Upload files to Azure File Share"
+        inputs:
+          azureSubscription: "prod-deploy-legacy"
+          scriptType: "bash"
+          scriptLocation: "inlineScript"
+          inlineScript: |
+            echo "Uploading files from: $(Build.SourcesDirectory)/bin"
+            az storage blob upload-batch \
+             --account-name $(storageAccountName) \
+             --account-key $(storageAccountKey) \
+              --source "$(Build.SourcesDirectory)/bin" \
+              --destination "mapserver" \
+              --destination-path "bin" \
+              --overwrite true
 
-  - task: AzurePowerShell@5
-    displayName: add IP to firewall
-    inputs:
-      azureSubscription: 'prod-deploy-legacy'
-      ScriptType: 'InlineScript'
-      Inline: |
-        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip     
-        $IP
-        Add-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
-      preferredAzurePowerShellVersion: '3.1.0'
-  
+      - task: AzurePowerShell@5
+        displayName: remove IP from firewall
+        inputs:
+          azureSubscription: "prod-deploy-legacy"
+          ScriptType: "InlineScript"
+          Inline: |
+            $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
+            $IP  
+            Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
+          preferredAzurePowerShellVersion: "3.1.0"
 
-  - task: AzureCLI@2
-    displayName: "Upload files to Azure File Share"
-    inputs:
-      azureSubscription: 'prod-deploy-legacy'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        echo "Uploading files from: $(Build.SourcesDirectory)"
-        az storage file upload-batch \
-         --account-name $(storageAccountName) \
-         --account-key $(storageAccountKey) \
-          --source "$(Build.SourcesDirectory)" \
-          --destination "mapserverdata"
+      - task: Docker@2
+        displayName: Build an image
+        inputs:
+          containerRegistry: "Dockerhub"
+          repository: "artsdatabanken/mapserverazure"
+          command: "build"
+          Dockerfile: "**/Dockerfile"
+          tags: |
+            $(tag)
+            latest
+      - task: Docker@2
+        displayName: Publish image
+        inputs:
+          containerRegistry: "Dockerhub"
+          repository: "artsdatabanken/mapserverazure"
+          command: "push"
+          tags: |
+            $(tag)
+            latest
 
-  - task: AzurePowerShell@5
-    displayName: remove IP from firewall
-    inputs:
-      azureSubscription: 'prod-deploy-legacy'
-      ScriptType: 'InlineScript'
-      Inline: |
-        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip  
-        $IP  
-        Remove-AzStorageAccountNetworkRule -ResourceGroupName "adb-prod-mapserver-rg" -AccountName "$(storageAccountName)" -IPAddressOrRange "$IP"
-      preferredAzurePowerShellVersion: '3.1.0'
-
-  - task: Docker@2
-    displayName: Build an image
-    inputs:
-      containerRegistry: 'Dockerhub'
-      repository: 'artsdatabanken/mapserverazure'
-      command: 'build'
-      Dockerfile: '**/Dockerfile'
-      tags: |
-        $(tag)
-        latest
-  - task: Docker@2
-    displayName: Publish image
-    inputs:
-      containerRegistry: 'Dockerhub'
-      repository: 'artsdatabanken/mapserverazure'
-      command: 'push'
-      tags: |
-        $(tag)
-        latest
-
-
-  - task: AzureWebAppContainer@1
-    displayName: 'Azure Web App on Container Deploy'
-    inputs:
-      azureSubscription: 'prod-deploy-code'
-      appName: 'adb-prod-mapserver-as'
-      containers: 'artsdatabanken/mapserverazure:$(tag)'
+      - task: AzureWebAppContainer@1
+        displayName: "Azure Web App on Container Deploy"
+        inputs:
+          azureSubscription: "prod-deploy-code"
+          appName: "adb-prod-mapserver-as"
+          containers: "artsdatabanken/mapserverazure:$(tag)"

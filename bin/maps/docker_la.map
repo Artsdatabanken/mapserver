@@ -132,7 +132,7 @@ END
    #"ows_service_onlineresource" "http://artskart.artsdatabanken.no"
    #"ows_onlineresource" "http://kart.artsdatabanken.no/WMS/mapserv.exe?map=C:\\Inetpub\\wwwroot\\WMS\\artskart.map&"
    #"ows_onlineresource" "http://kart.artsdatabanken.no/WMS/artskart.aspx?"
-   "ows_onlineresource" "https://wms.test.artsdatabanken.no/?map=docker_la"
+   "ows_onlineresource" "https://wms.test.artsdatabanken.no/?map=la"
    "ows_fees" "none"  
    "ows_accessconstraints" "read online"
    "ows_contactperson" "Stein Arild Hoem"
@@ -3016,6 +3016,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Lav arealbruksintensitet"
@@ -3070,6 +3071,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Ikke jordbruksdominert"
@@ -3105,6 +3107,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Kystnær"
@@ -3139,6 +3142,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Uten høyt våtmarkspreg"
@@ -3181,6 +3185,7 @@ END
     
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Ikke isbredominert"
@@ -3217,6 +3222,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     #UNITS METERS
     CLASS
         NAME "Uten stor innsjø"
@@ -3264,6 +3270,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     CLASS
         NAME "Svært skjermet indre kyst"
         EXPRESSION ([pixel] = 1)
@@ -3311,6 +3318,7 @@ END
     GROUP "LA-KLG"
     INCLUDE "/etc/mapserver/bin/kartdata/la/headers/la.wcs"
     DATA "/etc/mapserver/bin/kartdata/la/data/LA_raster/KLG_JA_d.tif"
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     STATUS OFF
     METADATA
       "wcs_label"           "LA-KLG-JA_d"  ### required
@@ -3327,6 +3335,7 @@ END
     GROUP "LA-KLG"
     INCLUDE "/etc/mapserver/bin/kartdata/la/headers/la.wcs"
     DATA "/etc/mapserver/bin/kartdata/la/data/LA_raster/KLG_RE_IA_d.tif"
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     STATUS OFF
     METADATA
       "wcs_label"           "LA-KLG-RE-IA_d"  ### required
@@ -3343,6 +3352,7 @@ END
     GROUP "LA-KLG"
     INCLUDE "/etc/mapserver/bin/kartdata/la/headers/la.wcs"
     DATA "/etc/mapserver/bin/kartdata/la/data/LA_raster/KLG_RE_KF_ID_d.tif"
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     STATUS OFF
     METADATA
       "wcs_label"           "LA-KLG-RE-KF-ID_d"  ### required
@@ -3359,6 +3369,7 @@ END
     GROUP "LA-KLG"
     INCLUDE "/etc/mapserver/bin/kartdata/la/headers/la.wcs"
     DATA "/etc/mapserver/bin/kartdata/la/data/LA_raster/KLG_RE_KS_d.tif"
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     STATUS OFF
     METADATA
       "wcs_label"           "LA-KLG-RE-KS_d"  ### required
@@ -3391,6 +3402,7 @@ END
     TEMPLATE "empty"
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
     CLASS
         NAME "Bart fjell over skoggrensen"
@@ -3443,6 +3455,7 @@ END
     END #METADATA
     CLASSITEM "[pixel]"
     TYPE RASTER
+    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     UNITS METERS
 
     CLASS
