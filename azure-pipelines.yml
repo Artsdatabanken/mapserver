@@ -197,3 +197,9 @@ jobs:
           azureSubscription: "prod-deploy-code"
           appName: "adb-prod-mapserver-as"
           containers: "artsdatabanken/mapserverazure:$(tag)"
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: "bin"
+          ArtifactName: "drop"
+          publishLocation: "Container"
