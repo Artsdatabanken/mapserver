@@ -1,5 +1,7 @@
 trigger:
-  - develop
+  branches:
+    include:
+      - develop
 
 # no PR triggers
 pr: none
