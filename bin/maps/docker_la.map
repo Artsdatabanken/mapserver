@@ -204,7 +204,6 @@ END
     DATA "la_i"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandslandskap"
@@ -247,7 +246,6 @@ END
     DATA "la_k"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystlandskap"
@@ -291,7 +289,6 @@ END
     DATA "la_i_a"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsås- og fjellandskap"
@@ -796,7 +793,6 @@ END
     DATA "la_i_d"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsdallandskap"
@@ -1751,7 +1747,6 @@ END
     DATA "la_i_s"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Innlandsslettelandskap"
@@ -2094,7 +2089,6 @@ END
     DATA "la_k_f"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Fjordlandskap"
@@ -2347,7 +2341,6 @@ END
     DATA "la_k_s"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystslettelandskap"
@@ -2933,7 +2926,6 @@ END
     DATA "la_k_a"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Kystås- og kystfjellandskap"
@@ -2961,7 +2953,6 @@ END
     DATA "la_m"
     CLASSITEM "code"
     TYPE         POLYGON
-    EXTENT -78000.000 6448000.000 1116000.000 7940000.000 # Norge
     TEMPLATE "/etc/mapserver/bin/kartdata/la/templates/la.html"
     METADATA
       "title" "Marine landskap"
