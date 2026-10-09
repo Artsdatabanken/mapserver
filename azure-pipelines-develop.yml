@@ -27,7 +27,7 @@ jobs:
           Dockerfile: "$(Build.SourcesDirectory)/Dockerfile"
           tags: |
             $(tag)
-            "develop"
+            develop
       - task: Docker@2
         displayName: Publish image
         inputs:
@@ -36,7 +36,7 @@ jobs:
           command: "push"
           tags: |
             $(tag)
-            "develop"
+            develop
 
       - task: AzureWebAppContainer@1
         displayName: "Azure Web App on Container Deploy"
