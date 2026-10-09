@@ -167,7 +167,7 @@ MAP
 
   LAYER
     CLASSITEM "[pixel]"
-    DATA "seksjoner2017_klasser_colorTable_t.tif"
+    DATA "seksjoner2017_klasser_colorTable.tif"
     METADATA
       "wms_include_items"	"value_0"
       "wms_extent"	"-78000.000 6448000.000 1116000.000 7940000.000"
@@ -221,7 +221,7 @@ MAP
 
   LAYER
     CLASSITEM "[pixel]"
-    DATA "soner2017_klasser_colorTable_t.tif"
+    DATA "soner2017_klasser_colorTable.tif"
     METADATA
       "wms_include_items"	"value_0"
       "wms_extent"	"-78000.000 6448000.000 1116000.000 7940000.000"
