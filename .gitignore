@@ -5,7 +5,4 @@ bin/kartdata/la/data/zones.gpkg
 bin/kartdata/la/data/Bioklimatiske_regioner_2026.gpkg
 bin/kartdata/la/data/Bioklimatiske_seksjoner_2026.gpkg
 bin/kartdata/la/data/Bioklimatiske_soner_2026.gpkg
-bin/kartdata/la/data/Bioklimatiske regioner raster.tif
-bin/kartdata/la/data/Bioklimatiske seksjoner raster.tif
-bin/kartdata/la/data/Bioklimatiske soner raster.tif
 bin/error.log
