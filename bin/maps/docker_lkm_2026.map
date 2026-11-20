@@ -1,0 +1,863 @@
+MAP
+  #CONFIG "MS_ERRORFILE" "stdout"
+  #CONFIG "PROJ_LIB" "D:/MapServer/bin/nad/"
+  EXTENT -78000 6448000 1116000 7940000
+  FONTSET   "/etc/mapserver/bin/maps/fonts/fonts.txt"
+  IMAGECOLOR 125 125 125
+  IMAGETYPE "png"
+  MAXSIZE 12000
+  NAME "LKM"
+  SHAPEPATH "/etc/mapserver/bin/kartdata/la/data/"
+  SIZE 1028 737
+  STATUS ON
+  UNITS METERS
+
+  OUTPUTFORMAT
+    NAME "png"
+    MIMETYPE "image/png"
+    DRIVER "AGG/PNG"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "application/json"
+    DRIVER "OGR/GEOJSON"
+    MIMETYPE "application/json"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "STORAGE=memory"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "gif"
+    MIMETYPE "image/gif"
+    DRIVER "AGG/PNG8"
+    EXTENSION "gif"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "png8"
+    MIMETYPE "image/png; mode=8bit"
+    DRIVER "AGG/PNG8"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "jpeg"
+    MIMETYPE "image/jpeg"
+    DRIVER "AGG/JPEG"
+    EXTENSION "jpg"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+    FORMATOPTION "GAMMA=0.75"
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "svg"
+    MIMETYPE "image/svg+xml"
+    DRIVER "CAIRO/SVG"
+    EXTENSION "svg"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "pdf"
+    MIMETYPE "application/x-pdf"
+    DRIVER "CAIRO/PDF"
+    EXTENSION "pdf"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "GTiff"
+    MIMETYPE "image/tiff"
+    DRIVER "GDAL/GTiff"
+    EXTENSION "tif"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  OUTPUTFORMAT
+    NAME "cairopng"
+    MIMETYPE "image/png"
+    DRIVER "CAIRO/PNG"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT FALSE
+  END # OUTPUTFORMAT
+
+  PROJECTION
+    "init=epsg:25833"
+  END # PROJECTION
+  LEGEND
+    KEYSIZE 16 10
+    KEYSPACING 5 5
+    LABEL
+      FONT "arial"
+      SIZE 8
+      COLOR 1 1 1
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+    END # LABEL
+    STATUS ON
+    TRANSPARENT TRUE
+  END # LEGEND
+
+  QUERYMAP
+    SIZE 200 200
+    STATUS OFF
+    STYLE HILITE
+  END # QUERYMAP
+
+  SCALEBAR
+    INTERVALS 4
+    LABEL
+      SIZE 10
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+    END # LABEL
+    SIZE 200 3
+    STATUS OFF
+    UNITS MILES
+  END # SCALEBAR
+
+  WEB
+    IMAGEPATH "/etc/MapServer/bin/maps/output/"
+    IMAGEURL "/etc/mapserver/bin/maps/output/"
+    METADATA
+      "wcs_metadatalink_href"	"http://www.artsdatabanken.no"
+      "wcs_label"	"NIN soner, seksjoner og regioner"
+      "wms_srs" "EPSG:4326 EPSG:4258 EPSG:32633 EPSG:32632 EPSG:32631 EPSG:32634 EPSG:32635 EPSG:32636 EPSG:25829 EPSG:25830 EPSG:25831 EPSG:25832 EPSG:25833 EPSG:25834 EPSG:25835 EPSG:25836 EPSG:3857"
+      "wfs_srs" "EPSG:25833 EPSG:32633 EPSG:4326"
+      "wfs_enable_request" "*"
+      "wms_attribution_logourl_width"	"655"
+      "ows_country"	"Norway"
+      "ows_contactfacsimiletelephone"	"+47 934 66 992"
+      "ows_contactvoicetelephone"	"+47 934 66 992 "
+      "ows_keywordlist"	""
+      "ows_city"	"Trondheim"
+      "ows_addresstype"	"post"
+      "ows_contactperson"	"Stein Hoem"
+      "mapmanager_version"	"1.3.0.0"
+      "wms_attribution_title"	"Bioklimatiske soner, seksjoner og regioner."
+      "ows_abstract"	"Modellerte raster- og vektorkart for bioklimatiske soner, sekjoner og regioner. Utarbeidet av NINA."
+      "ows_contactposition"	"Seksjonsleder IT"
+ #     "ows_onlineresource"	"http://kart.artsdatabanken.no/WMS/lkm.aspx?"
+ #     "ows_onlineresource" "https://wms.test.artsdatabanken.no/?map=lkm"
+      "ows_onlineresource" "http://localhost:8080/lkm_2026"
+      "ows_enable_request"	"*"
+      "ows_stateorprovince"	"ST"
+      "wms_feature_info_mime_type"	"application/json,text/plain,text/html"
+      "wms_getfeatureinfo_formatlist" "application/json,text/plain,text/html"
+      "wfs_getfeature_formatlist" "application/json,text/plain,text/html"
+      "ows_schemas_location"	"http://schemas.opengeospatial.net"
+      "wms_attribution_logourl_format"	"image/png"
+      "ows_contactorganization"	"Artsdatabanken"
+      "wcs_description"	"Modellerte kart for bioklimatiske soner, sekjoner og regioner. Utarbeidet av NINA."
+      "wms_attribution_logourl_height"	"130"
+      "ows_accessconstraints"	"read online"
+      "ows_title"	"NIN soner, seksjoner og regioner"
+      "wfs_title"	"NIN soner, seksjoner og regioner"
+      "ows_fees"	"none"
+      "ows_contactelectronicmailaddress"	"stein.hoem@artsdatabanken.no"
+      "ows_address"	"Havnegata 9"
+      "map"	"wms.map"
+      "ows_postcode"	"7010"
+
+      #OGCAPI-Features requirements:
+      #"oga_onlineresource" "https://wms.test.artsdatabanken.no/lkm_2026/ogcapi/"
+      "oga_onlineresource" "http://localhost:8080/lkm_2026/ogcapi"
+      "oga_enable_request" "*"
+      "oga_html_template_directory" "/etc/mapserver/bin/maps/query/ogcapi/templates/html-plain/"
+      "ows_getfeatureinfo_formatlist" "text/plain, Application/json"
+      "oga_enable" "true"
+      "oga_crs_default" "EPSG:25833"
+    END # METADATA
+  END # WEB
+
+
+  LAYER
+
+    METADATA
+      "wms_extent"	"-78000 6448000 1116000 7940000"
+      "wfs_extent" "-78000 6448000 1116000 7940000"
+      "wfs_use_default_extent_for_getfeature" "false"
+      "ows_enable_request" "*"
+      "wfs_enable_request" "*"
+      "wms_enable_request" "*"
+      "gml_include_items"	"all"
+      "ows_include_items"	"all"
+      "wms_include_items"	"all"
+      "wms_title"	"Målestokk >= 1:500k"
+      "wfs_title" "Bioklimatiske seksjoner"
+      "wfs_srs" "EPSG:25833"
+      "gml_featureid" "gpkg_fid"
+      "oga_enable" "true"
+      "oga_crs_default" "EPSG:25833"
+      "ows_group_title" "Bioklimatiske seksjoner"
+    END # METADATA
+
+    NAME "Seksjoner_malestokk_over_500k"
+    GROUP "Bioklimatiske seksjoner"
+    STATUS ON
+    TYPE POLYGON
+    CONNECTIONTYPE OGR
+    CONNECTION "bioklimatiske_seksjoner_2026.gpkg"
+    DATA "SELECT fid as gpkg_fid, * FROM seksjoner_copy"
+    HEADER "etc/mapserver/bin/maps/query/lkm_2026_soner_header.html"
+    TEMPLATE "etc/mapserver/bin/maps/query/lkm_2026_soner_body.html"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END #Projection
+    EXTENT -78000 6448000 1116000 7940000
+    CLASS
+      NAME "Sterkt oseanisk seksjon"
+      EXPRESSION ('[se_value]' = '1')
+      STYLE
+        COLOR '#120dfa'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Klart oseanisk seksjon"
+      EXPRESSION ('[se_value]' = '2')
+      STYLE
+        COLOR '#3c63fe'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Svak oseanisk seksjon"
+      EXPRESSION ('[se_value]' = '3')
+      STYLE
+        COLOR '#66a5fe'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Overgangsseksjon"
+      EXPRESSION ('[se_value]' = '4')
+      STYLE
+        COLOR '#91d2fe'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Svak kontinental seksjon"
+      EXPRESSION ('[se_value]' = '5')
+      STYLE
+        COLOR '#bcf4fe'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+  END # LAYER
+
+    LAYER
+    METADATA  
+      "wms_title" "Målestokk < 1:500k"
+      "wms_include_items"	"value_0"
+      "wms_extent"	"-78000 6448000 1116000 7940000"
+      "ows_enable_request"	"*"
+      "gml_include_items"	"value_0"
+      "oga_enable" "false"
+    END
+    GROUP "Bioklimatiske seksjoner"
+    NAME "Seksjoner_malestokk_under_500k"
+    TYPE RASTER
+    STATUS ON
+    MINSCALEDENOM 500000
+    DATA "sections.tif"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END
+  END
+
+
+  LAYER
+   
+    METADATA
+      "wms_extent"	"-78000 6448000 1116000 7940000"
+      "wfs_extent" "-78000 6448000 1116000 7940000"
+      "wfs_use_default_extent_for_getfeature" "false"
+      "ows_enable_request" "*"
+      "wfs_enable_request" "*"
+      "wms_enable_request" "*"
+      "gml_include_items"	"all"
+      "ows_include_items"	"all"
+      "wms_include_items"	"all"
+      "wms_title"	"Malestokk >= 1:500k"
+      "wfs_title" "Bioklimatiske soner"
+      "wfs_srs" "EPSG:25833"
+      "gml_featureid" "gpkg_fid"
+      "oga_enable" "true"
+      "oga_title" "Bioklimatiske soner"
+      "oga_description" "Bioklimatiske soner"
+      "oga_crs_default" "EPSG:25833"
+      "ows_group_title" "Bioklimatiske soner"
+    END # METADATA
+
+    NAME "Soner_malestokk_over_500k"
+    GROUP "Bioklimatiske soner"
+    STATUS ON
+    TYPE POLYGON
+    CONNECTIONTYPE OGR
+    CONNECTION "bioklimatiske_soner_2026.gpkg"
+    DATA "SELECT fid as gpkg_fid, * FROM soner_copy"
+    HEADER "etc/mapserver/bin/maps/query/lkm_2026_soner_header.html"
+    TEMPLATE "etc/mapserver/bin/maps/query/lkm_2026_soner_body.html"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END
+    EXTENT -78000 6448000 1116000 7940000
+    CLASS
+      NAME "Nemoral sone (N)"
+      EXPRESSION ([so_value] = 1)
+      STYLE
+        COLOR '#bd2838'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Boreonemoral sone (BN)"
+      EXPRESSION ([so_value] = 2)
+      STYLE
+        COLOR '#ff9901'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Sørboreal sone (SB)"
+      EXPRESSION ([so_value] = 3)
+      STYLE
+        COLOR '#ffff81'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Mellomboreal sone (MB)"
+      EXPRESSION ([so_value] = 4)
+      STYLE
+        COLOR '#caffb4'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Nordboreal sone (NB)"
+      EXPRESSION ([so_value] = 5)
+      STYLE
+        COLOR '#47ff49'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Lavalpin sone (LA)"
+      EXPRESSION ([so_value] = 6)
+      STYLE
+        COLOR '#7bb7d9'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Mellomalpin sone (MA)"
+      EXPRESSION ([so_value] = 7)
+      STYLE
+        COLOR '#3a8ac2'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+    CLASS
+      NAME "Høgalpin sone (HA)"
+      EXPRESSION ([so_value] = 8)
+      STYLE
+        COLOR '#084a92'
+      END # STYLE
+      MAXSCALEDENOM 500000
+    END # CLASS
+  END # LAYER 
+
+  LAYER
+    METADATA  
+      "wms_title" "Målestokk < 1:500k"
+      "wms_include_items"	"all"
+      "wms_extent"	"-78000.000 6448000.000 1116000.000 7940000.000"
+      "ows_enable_request"	"*"
+      "wms_enable_request" "*"
+      "gml_include_items"	"all"
+      "oga_enable" "false"
+    END
+    GROUP "Bioklimatiske soner"
+    NAME "Soner_malestokk_under_500k"
+    TYPE RASTER
+    STATUS ON
+    MINSCALEDENOM 500000
+    DATA "zones.tif"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END
+  END
+
+ LAYER
+
+    METADATA
+      "wms_extent"	"-78000 6448000 1116000 7940000"
+      "wfs_extent" "-78000 6448000 1116000 7940000"
+      "wfs_use_default_extent_for_getfeature" "false"
+      "ows_enable_request" "*"
+      "wfs_enable_request" "*"
+      "wms_enable_request" "*"
+      "gml_include_items"	"all"
+      "ows_include_items"	"all"
+      "wms_include_items"	"all"
+      "wms_title"	"Målestokk >= 1:500k"
+      "wfs_title" "Bioklimatiske regioner"
+      "wfs_srs" "EPSG:25833"
+      "gml_featureid" "gpkg_fid"
+      "oga_enable" "true"
+      "oga_crs_default" "EPSG:25833"
+      "ows_group_title" "Bioklimatiske regioner"
+    END # METADATA
+
+    NAME "Regioner_malestokk_over_500k"
+    GROUP "Bioklimatiske regioner"
+    STATUS ON
+    TYPE POLYGON
+    CONNECTIONTYPE OGR
+    CONNECTION "Bioklimatiske_regioner_2026.gpkg"
+    DATA "SELECT fid as gpkg_fid, * FROM bioklimatiske_regioner"
+    HEADER "etc/mapserver/bin/maps/query/lkm_2026_soner_header.html"
+    TEMPLATE "etc/mapserver/bin/maps/query/lkm_2026_soner_body.html"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END
+    EXTENT -78000 6448000 1116000 7940000
+
+
+
+CLASS
+  NAME "Nemoral sone (N) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-0')
+  STYLE COLOR '#6e1040' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-1')
+  STYLE COLOR '#75167b' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-2')
+  STYLE COLOR '#88397f' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-3')
+  STYLE COLOR '#9c5682' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-4')
+  STYLE COLOR '#b16b86' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-5')
+  STYLE COLOR '#c77d8a' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nemoral sone (N) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-0|6SE-6')
+  STYLE COLOR '#e08690' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-0')
+  STYLE COLOR '#94531b' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-1')
+  STYLE COLOR '#9c5b57' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-2')
+  STYLE COLOR '#b07e5b' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-3')
+  STYLE COLOR '#c59d5e' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-4')
+  STYLE COLOR '#dbb362' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-5')
+  STYLE COLOR '#f2c667' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Boreonemoral sone (BN) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-1|6SE-6')
+  STYLE COLOR '#ffc768' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-0')
+  STYLE COLOR '#94916a' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-1')
+  STYLE COLOR '#9c9aa6' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-2')
+  STYLE COLOR '#afbfaa' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-3')
+  STYLE COLOR '#c4ddaf' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-4')
+  STYLE COLOR '#daf4b4' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-5')
+  STYLE COLOR '#eaffb3' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Sørboreal sone (SB) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-2|6SE-6')
+  STYLE COLOR '#f8ffb3' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-0')
+  STYLE COLOR '#749189' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-1')
+  STYLE COLOR '#7898c4' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-2')
+  STYLE COLOR '#8dbeca' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-3')
+  STYLE COLOR '#a2ddd0' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-4')
+  STYLE COLOR '#b8f4d5' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-5')
+  STYLE COLOR '#c8ffd3' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomboreal sone (MB) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-3|6SE-6')
+  STYLE COLOR '#d8ffd1' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-0')
+  STYLE COLOR '#239148' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-1')
+  STYLE COLOR '#2a9a83' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-2')
+  STYLE COLOR '#3bbf88' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-3')
+  STYLE COLOR '#4fdd8c' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-4')
+  STYLE COLOR '#64f490' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-5')
+  STYLE COLOR '#75ff91' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Nordboreal sone (NB) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-4|6SE-6')
+  STYLE COLOR '#88ff90' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-0')
+  STYLE COLOR '#42649f' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-1')
+  STYLE COLOR '#4669da' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-2')
+  STYLE COLOR '#5a8fe1' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-3')
+  STYLE COLOR '#70aee7' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-4')
+  STYLE COLOR '#85c6ed' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-5')
+  STYLE COLOR '#9cd9f3' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Lavalpin sone (LA) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-5|6SE-6')
+  STYLE COLOR '#b5e3f9' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-0')
+  STYLE COLOR '#1b4a92' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-1')
+  STYLE COLOR '#1e4ecc' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-2')
+  STYLE COLOR '#3273d3' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-3')
+  STYLE COLOR '#4792d9' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-4')
+  STYLE COLOR '#5ca9df' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-5')
+  STYLE COLOR '#71bce5' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Mellomalpin sone (MA) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-6|6SE-6')
+  STYLE COLOR '#8ac5ea' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Hyperoseanisk seksjon (O4)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-0')
+  STYLE COLOR '#002577' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Sterkt oseanisk seksjon (O3)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-1')
+  STYLE COLOR '#0128b0' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Klart oseanisk seksjon (O2)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-2')
+  STYLE COLOR '#144db6' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Svakt oseanisk seksjon (O1)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-3')
+  STYLE COLOR '#286bbb' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Overgangsseksjon (OC)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-4')
+  STYLE COLOR '#3c81c0' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Svakt kontinental seksjon (C1)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-5')
+  STYLE COLOR '#5093c5' END
+  MAXSCALEDENOM 500000
+END
+
+CLASS
+  NAME "Høgalpin sone (HA) | Klart kontinental seksjon (C2)"
+  EXPRESSION ('[reg_kode]' = '6SO-7|6SE-6')
+  STYLE COLOR '#699bca' END
+  MAXSCALEDENOM 500000
+END
+
+  END # LAYER
+
+  LAYER
+    METADATA  
+      "wms_title" "Målestokk < 1:500k"
+      "wms_include_items"	"value_0"
+      "wms_extent"	"-78000 6448000 1116000 7940000"
+      "ows_enable_request"	"*"
+      "gml_include_items"	"value_0"
+      "oga_enable" "false"
+    END
+    GROUP "Bioklimatiske regioner"
+    NAME "Regioner_malestokk_under_500k"
+    TYPE RASTER
+    STATUS ON
+    MINSCALEDENOM 500000
+    DATA "regions.tif"
+    PROJECTION
+        "init=epsg:25833" # Match your data's projection
+    END
+  END
+
+END # MAP
